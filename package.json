@@ -1,0 +1,34 @@
+{
+  "name": "ifcalc",
+  "version": "1.3.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.9.3",
+    "@emotion/react": "^11.9.3",
+    "@emotion/server": "^11.4.0",
+    "@mantine/carousel": "^5.5.5",
+    "@mantine/core": "^5.4.0",
+    "@mantine/hooks": "^5.4.0",
+    "@mantine/next": "^5.4.0",
+    "@tabler/icons": "^1.101.0",
+    "axios": "^1.1.3",
+    "cookies-next": "^2.1.1",
+    "embla-carousel-autoplay": "^7.0.3",
+    "embla-carousel-react": "^7.0.3",
+    "mongoose": "^6.4.4",
+    "next": "12.2.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tabler-icons-react": "^1.52.0"
+  },
+  "devDependencies": {
+    "eslint": "8.19.0",
+    "eslint-config-next": "12.2.2"
+  }
+}
