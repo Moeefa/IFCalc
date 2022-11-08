@@ -20,14 +20,18 @@ export default () => {
   const [opened, setOpened] = useState(false);
 
   const handleLogout = () => {
-    axios.post(`https://suap.ifmt.edu.br/o/revoke_token/?client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&token=${JSON.parse(getCookie("suapObj")).token}`);
+    axios
+      .post("https://suap.ifmt.edu.br/o/revoke_token/", {
+        client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+        token: JSON.parse(getCookie("suapObj")).token
+      });
     deleteCookie("suapObj");
     setData(null);
     router.push("/");
   };
 
   const handleLogin = () => {
-    router.push(`https://suap.ifmt.edu.br/o/authorize/?response_type=token&grant_type=implicit&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&scope=identificacao%20email&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}`);
+    router.push(`https://suap.ifmt.edu.br/o/authorize/?response_type=token&grant_type=implicit&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&scope=identificacao%20email&redirect_uri=${process.env.NEXT_PUBLIC_URL}`);
   };
 
   return (
