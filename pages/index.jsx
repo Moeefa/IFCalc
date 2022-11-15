@@ -138,13 +138,13 @@ export default () => {
       case 0:
         axios
           .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: year.nome, type: 0 } })
-          .then((res) => setData(res.data));
+          .then((res) => setData(res.data))
           .catch((error) => setAxiosFailed(true));
         break;
       case 1:
         axios
           .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
-          .then((res) => setData(res.data));
+          .then((res) => setData(res.data))
           .catch((error) => setAxiosFailed(true));
         break;
     }
@@ -156,13 +156,13 @@ export default () => {
       case 0:
         axios
           .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token, nome: name, type: 0 } })
-          .then((res) => setData(res.data));
+          .then((res) => setData(res.data))
           .catch((error) => setAxiosFailed(true));
         break;
       case 1:
         axios
           .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token, nome: name, bimestre: bimestre, type: 1 } })
-          .then((res) => setData(res.data));
+          .then((res) => setData(res.data))
           .catch((error) => setAxiosFailed(true));
         break;
     }
