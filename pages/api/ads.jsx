@@ -1,8 +1,8 @@
-import connectDB from "../../lib/dbConnect";
-import Ads from "../../models/Ads";
+import mongodb from "../../shared/libs/database";
+import Ads from "../../shared/models/Ads";
 
 export default async (req, res) => {
-  await connectDB();
+  await mongodb();
   let ads = await Ads.find({});
 
   switch (req.method) {

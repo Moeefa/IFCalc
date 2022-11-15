@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '../static/images/logo.svg';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { IconCookie } from '@tabler/icons';
@@ -51,10 +50,6 @@ export default () => {
         p="xs"
       >
         <Group sx={{ height: '100%' }} px={20} position="apart">
-          {/*<UnstyledButton><Link href="/" passHref>
-            <Image src={logo} height={38.22} width={147.03}/>
-          </Link></UnstyledButton>*/}
-
           {!hasCookie("suapObj")
             ? <div style={{ float: "right" }}><Button radius="lg" size="xs" variant="default" color="dark" onClick={() => setOpened(true)}>Login</Button></div>
             : <div style={{ float: "right" }}><Button radius="lg" size="xs" variant="default" color="dark" onClick={handleLogout}>Logout</Button></div>}
