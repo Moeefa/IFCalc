@@ -2,7 +2,7 @@ import mongodb from "../../shared/libs/database";
 import Users from "../../shared/models/User";
 import axios from "axios";
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   if (!req.query.token) return res.status(400).json({ success: false, message: "Missing id query" });
 
   const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { headers: { Authorization: "Bearer " + req.query.token } });

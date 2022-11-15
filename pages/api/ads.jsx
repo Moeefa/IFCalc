@@ -1,7 +1,7 @@
 import mongodb from "../../shared/libs/database";
 import Ads from "../../shared/models/Ads";
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   await mongodb();
   let ads = await Ads.find({});
 

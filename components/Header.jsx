@@ -13,7 +13,7 @@ import {
   Group
 } from '@mantine/core';
 
-export default () => {
+export default function HeaderPage() {
   const router = useRouter();
 
   const [opened, setOpened] = useState(false);
