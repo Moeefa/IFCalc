@@ -100,7 +100,6 @@ export default () => {
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
-  const [user, setUser] = useState(null);
   const [data, setData] = useState(null);
   const [ads, setAds] = useState(null);
 
@@ -138,7 +137,7 @@ export default () => {
     switch (type) {
       case 0:
         axios
-          .put('/api/user', { notas: average }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: average.nome, type: 0 } })
+          .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: year.nome, type: 0 } })
           .then((res) => setData(res.data));
         break;
       case 1:
