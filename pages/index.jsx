@@ -104,7 +104,7 @@ export default () => {
   const [ads, setAds] = useState(null);
 
   /* if data var fetch fail */
-  const [fetchFailed, setFetchFailed] = useState(false);
+  const [axiosFailed, setAxiosFailed] = useState(false);
   
   const [year, setYear] = useState({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
   const [bim, setBim] = useState({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
@@ -121,7 +121,7 @@ export default () => {
     axios
       .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token } })
       .then((res) => setData(res.data))
-      .catch((error) => setFetchFailed(true));
+      .catch((error) => setAxiosFailed(true));
   }, []);
 
   useEffect(() => {
@@ -139,11 +139,13 @@ export default () => {
         axios
           .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: year.nome, type: 0 } })
           .then((res) => setData(res.data));
+          .catch((error) => setAxiosFailed(true));
         break;
       case 1:
         axios
           .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
           .then((res) => setData(res.data));
+          .catch((error) => setAxiosFailed(true));
         break;
     }
   }; 
@@ -155,11 +157,13 @@ export default () => {
         axios
           .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token, nome: name, type: 0 } })
           .then((res) => setData(res.data));
+          .catch((error) => setAxiosFailed(true));
         break;
       case 1:
         axios
           .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token, nome: name, bimestre: bimestre, type: 1 } })
           .then((res) => setData(res.data));
+          .catch((error) => setAxiosFailed(true));
         break;
     }
   };
@@ -270,11 +274,11 @@ export default () => {
               ? <>
                   <Divider my="sm"/>
                   <Group position="center">
-                    {fetchFailed
-                      ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente</Text>
+                    {axiosFailed
+                      ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Link href="mailto:luizhenrique.xinaider.ifmt@gmail.com" passHref><Text variant="link" component="a">luizhenrique.xinaider.ifmt@gmail.com</Text></Link></Text>
                       : !data
                         ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="md"/>
-                        : !data.data || data.data.materias_bimestral.length <= 0
+                        : !data.data || data.data.materias_anual.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
                           : data.data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome) || a.bimestre - b.bimestre).map(m => (
                             <>
@@ -388,8 +392,8 @@ export default () => {
               ? <>
                   <Divider my="sm"/>
                   <Group position="center">
-                    {fetchFailed
-                      ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente</Text>
+                    {axiosFailed
+                      ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Link href="mailto:luizhenrique.xinaider.ifmt@gmail.com" passHref><Text variant="link" component="a">luizhenrique.xinaider.ifmt@gmail.com</Text></Link></Text>
                       : !data
                         ? <Skeleton className={classes.skeleton} radius="md"/>
                         : !data.data || data.data.materias_bimestral.length <= 0
