@@ -115,7 +115,8 @@ export default function Page() {
     if (!window.location.hash) return;
     let urlParams = new URLSearchParams(window.location.hash.slice(1));
     if (!hasCookie("suapObj") && urlParams.get('access_token')) setCookie("suapObj", JSON.stringify({ message: "Não mostre o seu token a ninguém! Ele dá acesso tanto a sua conta do SUAP quanto do IFCalc.", token: urlParams.get('access_token') }, { maxAge: urlParams.get('expires_in') }));
-    history.replaceState('', document.title, window.location.origin + window.location.pathname + window.location.search);
+    
+    router.push('/', undefined, { shallow: true });
   }, []);
 
   useEffect(() => {
