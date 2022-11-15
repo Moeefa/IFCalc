@@ -112,11 +112,11 @@ export default () => {
   const [opened, setOpened] = useState({ type: -1 });
   
   useEffect(() => {
-    if (!window && !window.location.hash) return;
+    if (!window.location.hash) return;
     let urlParams = new URLSearchParams(window.location.hash.slice(1));
     if (!hasCookie("suapObj") && urlParams.get('access_token')) setCookie("suapObj", JSON.stringify({ message: "Não mostre o seu token a ninguém! Ele dá acesso tanto a sua conta do SUAP quanto do IFCalc.", token: urlParams.get('access_token') }, { maxAge: urlParams.get('expires_in') }));
-    history.pushState("", document.title, window.location.pathname + window.location.search);
-
+    history.replaceState('', document.title, window.location.origin + window.location.pathname + window.location.search);
+    
     if (!hasCookie("suapObj")) return;
     axios
       .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token } })
