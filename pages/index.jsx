@@ -130,7 +130,7 @@ export default () => {
 
   useEffect(() => {
     setYear({...year, avg: ((((year['1'] || 0) * 2) + ((year['2'] || 0) * 2) + ((year['3'] || 0) * 3) +  ((year['4'] || 0) * 3)) / (2 + 2 + 3 + 3)) });
-  }, [year]);
+  }, [year['1'], year['2'], year['3'], year['4']]);
 
   const saveData = (type) => {
     setData(null);

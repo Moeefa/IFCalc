@@ -1,17 +1,8 @@
 import '../shared/styles/global.css';
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
-import { useColorScheme, useLocalStorage } from '@mantine/hooks';
+import { MantineProvider } from '@mantine/core';
 
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}) {
-  /*const preferredColorScheme = useColorScheme();
-  const [colorScheme, setColorScheme] = useState('dark');
-  const toggleColorScheme = (value) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));*/
-
+export default function App({ Component, pageProps }) {
   return (
     <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
       <Head>
