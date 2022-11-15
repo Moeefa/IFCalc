@@ -1,5 +1,5 @@
-import connectDB from "../../lib/dbConnect";
-import Users from "../../models/User";
+import mongodb from "../../shared/libs/database";
+import Users from "../../shared/models/User";
 import axios from "axios";
 
 export default async (req, res) => {
@@ -7,7 +7,7 @@ export default async (req, res) => {
 
   const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { headers: { Authorization: "Bearer " + req.query.token } });
   
-  await connectDB();
+  await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
 
   switch (req.method) {

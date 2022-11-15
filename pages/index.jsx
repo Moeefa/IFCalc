@@ -96,6 +96,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
 export default () => {
   const { classes } = useStyles();
+  const router = useRouter();
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
@@ -106,19 +107,11 @@ export default () => {
   /* if data var fetch fail */
   const [fetchFailed, setFetchFailed] = useState(false);
   
-  const [nomeAnual, setNomeAnual] = useState("");
-  const [average, setAverage] = useState({ '1': 0, '2': 0, '3': 0, '4': 0, final: 0 });
+  const [year, setYear] = useState({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
+  const [bim, setBim] = useState({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
   
-  const [nomeBim, setNomeBim] = useState("");
-  const [numBim, setNumBim] = useState(1);
-  const [bim, setBim] = useState(0);
-  const [conc, setConc] = useState(0);
-  const [averageBim, setAverageBim] = useState(0);
-
   const [opened, setOpened] = useState({ type: -1 });
-
-  const router = useRouter();
-
+  
   useEffect(() => {
     if (!window && !window.location.hash) return;
     let urlParams = new URLSearchParams(window.location.hash.slice(1));
@@ -127,37 +120,30 @@ export default () => {
 
     if (!hasCookie("suapObj")) return;
     axios
-      .get('https://suap.ifmt.edu.br/api/eu/', { headers: { Authorization: "Bearer " + JSON.parse(getCookie("suapObj")).token } })
-      .then((res) => setUser(res.data));
-  }, []);
-
-  useEffect(() => {
-    if (!hasCookie("suapObj")) return;
-    axios
       .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token } })
       .then((res) => setData(res.data))
       .catch((error) => setFetchFailed(true));
   }, []);
 
   useEffect(() => {
-    setAverageBim(((bim || 0) * 0.8) + (conc || 0));
-  }, [bim, conc]);
+    setBim({...bim, avg: ((bim.nota || 0) * 0.8) + (bim.conceito || 0) });
+  }, [bim.nota, bim.conceito]);
 
   useEffect(() => {
-    setAverage({...average, final: ((((average['1'] || 0) * 2) + ((average['2'] || 0) * 2) + ((average['3'] || 0) * 3) +  ((average['4'] || 0) * 3)) / (2 + 2 + 3 + 3)) });
-  }, [average]);
+    setYear({...year, avg: ((((year['1'] || 0) * 2) + ((year['2'] || 0) * 2) + ((year['3'] || 0) * 3) +  ((year['4'] || 0) * 3)) / (2 + 2 + 3 + 3)) });
+  }, [year]);
 
   const saveData = (type) => {
     setData(null);
     switch (type) {
       case 0:
         axios
-          .put('/api/user', { notas: average }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: nomeAnual, type: 0 } })
+          .put('/api/user', { notas: average }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: average.nome, type: 0 } })
           .then((res) => setData(res.data));
         break;
       case 1:
         axios
-          .put('/api/user', { notas: { nota: bim, conceito: conc } }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: nomeBim, bimestre: numBim, type: 1 } })
+          .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
           .then((res) => setData(res.data));
         break;
     }
@@ -199,8 +185,8 @@ export default () => {
             {hasCookie("suapObj")
               ? <Group position="center">
                   <TextInput
-                    value={nomeAnual}
-                    onChange={(event) => setNomeAnual(event.currentTarget.value)}
+                    value={year.nome}
+                    onChange={(event) => setYear({...year, nome: event.currentTarget.value})}
                     placeholder="Matemática"
                     label="Nome da matéria"
                     description="Insira o nome da matéria para salvar a sua nota na sua conta"
@@ -217,7 +203,7 @@ export default () => {
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
-                onChange={(value) => setAverage({...average, '1': value })}
+                onChange={(value) => setYear({...year, '1': value })}
                 className={classes.numinput}
               />
 
@@ -229,7 +215,7 @@ export default () => {
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
-                onChange={(value) => setAverage({...average, '2': value })}
+                onChange={(value) => setYear({...year, '2': value })}
                 className={classes.numinput}
               />
 
@@ -241,7 +227,7 @@ export default () => {
                 step={0.50}
                 defaultValue={0.0}
                 decimalSeparator=","
-                onChange={(value) => setAverage({...average, '3': value })}
+                onChange={(value) => setYear({...year, '3': value })}
                 className={classes.numinput}
               />
 
@@ -253,7 +239,7 @@ export default () => {
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
-                onChange={(value) => setAverage({...average, '4': value })}
+                onChange={(value) => setYear({...year, '4': value })}
                 className={classes.numinput}
               />
             </Group>
@@ -266,16 +252,16 @@ export default () => {
             
             <Group position="center">
               <Box className={classes.average}>
-                <Text size="xl">Média final: {Number(average.final.toFixed(1)).toLocaleString("pt-BR")}</Text>
+                <Text size="xl">Média final: {Number(year.avg.toFixed(1)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
-                {average.final.toFixed(1) >= 6
+                {year.avg.toFixed(1) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                   : <>
                       <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>
                       <Text size="sm">
-                        {(average['1'] === 0 || average['2'] === 0)
-                          ? <>Nota necessária no 1° ou 2° bimestre: {Number((((6 - average.final) / 2) * 10).toFixed(1)).toLocaleString("pt-BR")}</>
-                          : <>Nota necessária no 3° ou 4° bimestre: {Number((((6 - average.final) / 3) * 10).toFixed(1)).toLocaleString("pt-BR")}</>}
+                        {(year['1'] === 0 || year['2'] === 0)
+                          ? <>Nota necessária no 1° ou 2° bimestre: {Number((((6 - year.avg) / 2) * 10).toFixed(1)).toLocaleString("pt-BR")}</>
+                          : <>Nota necessária no 3° ou 4° bimestre: {Number((((6 - year.avg) / 3) * 10).toFixed(1)).toLocaleString("pt-BR")}</>}
                       </Text>
                     </>}
               </Box>
@@ -330,8 +316,8 @@ export default () => {
             {hasCookie("suapObj")
               ? <Group style={{ marginBottom: 30 }} position="center">
                   <TextInput
-                    value={nomeBim}
-                    onChange={(event) => setNomeBim(event.currentTarget.value)}
+                    value={bim.nome}
+                    onChange={(event) => setBim({...bim, nome: event.currentTarget.value})}
                     placeholder="Matemática"
                     label="Nome da matéria"
                     description="Insira o nome da matéria"
@@ -341,7 +327,7 @@ export default () => {
                   />
 
                   <NumberInput
-                    onChange={(value) => setNumBim(value)}
+                    onChange={(value) => setBim({...bim, bimestre: value})}
                     label="Bimestre"
                     description="Insira o bimestre da matéria"
                     max={4}
@@ -364,7 +350,7 @@ export default () => {
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
-                onChange={(value) => setBim(value)}
+                onChange={(value) => setBim({...bim, nota: value})}
                 className={classes.numinput}
               />
 
@@ -376,7 +362,7 @@ export default () => {
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
-                onChange={(value) => setConc(value)}
+                onChange={(value) => setBim({...bim, conceito: value})}
                 className={classes.numinput}
               />
             </Group>
@@ -389,9 +375,9 @@ export default () => {
 
             <Group position="center">
               <Box className={classes.average}>
-                <Text size="xl">Média do bimestre: {Number(averageBim.toFixed(1)).toLocaleString("pt-BR")}</Text>
+                <Text size="xl">Média do bimestre: {Number(bim.avg.toFixed(1)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
-                {averageBim.toFixed(1) >= 6
+                {bim.avg.toFixed(1) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                   : <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>}
               </Box>
