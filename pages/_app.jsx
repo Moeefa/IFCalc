@@ -2,7 +2,7 @@ import '../shared/styles/global.css';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
 
-export default ({ Component, pageProps }) => {
+export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>

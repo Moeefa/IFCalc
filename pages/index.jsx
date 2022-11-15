@@ -94,7 +94,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
 }));
 
-export default () => {
+export default function Page() {
   const { classes } = useStyles();
   const router = useRouter();
   const theme = useMantineTheme();
@@ -277,10 +277,10 @@ export default () => {
                   <Divider my="sm"/>
                   <Group position="center">
                     {axiosFailed
-                      ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Link href="mailto:luizhenrique.xinaider.ifmt@gmail.com" passHref><Text variant="link" component="a">luizhenrique.xinaider.ifmt@gmail.com</Text></Link></Text>
+                      ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
                       : !data
                         ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="md"/>
-                        : !data.data || data.data.materias_anual.length <= 0
+                        : !data.data || (data.data && data.data.materias_anual && data.data.materias_anual.length <= 0)
                           ? <Text>Você não tem notas salvas</Text>
                           : data.data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome) || a.bimestre - b.bimestre).map(m => (
                             <>
@@ -395,10 +395,10 @@ export default () => {
                   <Divider my="sm"/>
                   <Group position="center">
                     {axiosFailed
-                      ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Link href="mailto:luizhenrique.xinaider.ifmt@gmail.com" passHref><Text variant="link" component="a">luizhenrique.xinaider.ifmt@gmail.com</Text></Link></Text>
+                      ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
                       : !data
                         ? <Skeleton className={classes.skeleton} radius="md"/>
-                        : !data.data || data.data.materias_bimestral.length <= 0
+                        : !data.data || (data.data && data.data.materias_bimestral && data.data.materias_bimestral.length <= 0)
                           ? <Text>Você não tem notas salvas</Text>
                           : data.data.materias_bimestral.sort((a, b) => a.nome.localeCompare(b.nome)).map(m => (
                             <>

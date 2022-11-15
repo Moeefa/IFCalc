@@ -8,7 +8,7 @@ import {
   useMantineTheme
 } from '@mantine/core';
 
-export default () => {
+export default function DMCA() {
   const theme = useMantineTheme();
 
   return (

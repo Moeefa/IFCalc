@@ -69,7 +69,7 @@ function Card({ image, title, desc }) {
   );
 }
 
-export default () => {
+export default function CarouselCard() {
   const [ads, setAds] = useState([{ title: "Obtendo informações...", desc: "" }]);
   const autoplay = useRef(Autoplay({ delay: 2000 }));
   const theme = useMantineTheme();
