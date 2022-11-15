@@ -16,8 +16,8 @@ export default async (req, res) => {
       res.json({ success: true, data: user });
       break;
     case "PUT":
-      if (!req.query.nome) return res.status(400).json({ success: false, message: "Missing name query" });
-      if (!req.query.type) return res.status(400).json({ success: false, message: "Missing type query" });
+      if (!req.query.nome) return res.status(202).json({ success: false, data: user, message: "Missing name query" });
+      if (!req.query.type) return res.status(202).json({ success: false, data: user, message: "Missing type query" });
 
       req.query.nome = req.query.nome.trim();
       if (!user) {
@@ -95,8 +95,8 @@ export default async (req, res) => {
       break;
     case "DELETE":
       if (!user) return res.json({ success: false, data: null });
-      if (!req.query.nome) return res.status(400).json({ success: false, message: "Missing name query" });
-      if (!req.query.type) return res.status(400).json({ success: false, message: "Missing type query" });
+      if (!req.query.nome) return res.status(202).json({ success: false, data: user, message: "Missing name query" });
+      if (!req.query.type) return res.status(202).json({ success: false, data: user, message: "Missing type query" });
 
       switch (req.query.type) {
         case "0":
