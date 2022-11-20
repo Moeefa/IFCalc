@@ -182,7 +182,7 @@ const Page = () => {
           <Carousel/>
         </Group>
 
-        <Tabs style={{ padding: 25 }} variant="outline" defaultValue="anual">
+        <Tabs variant="outline" radius="md" style={{ padding: 25 }} defaultValue="anual">
           <Tabs.List>
             <Tabs.Tab value="anual">Média anual</Tabs.Tab>
             <Tabs.Tab value="bimestral">Média bimestral</Tabs.Tab>
@@ -203,6 +203,7 @@ const Page = () => {
             <Group position="center" spacing="lg">
               {[...Array(4)].map((_, i) => (
                 <NumberInput
+                  key={i + 1}
                   label={`Média do ${i + 1}º bimestre`}
                   max={10}
                   min={0}
