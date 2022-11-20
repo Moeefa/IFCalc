@@ -1,6 +1,7 @@
 import '../shared/styles/global.css';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -14,7 +15,8 @@ export default function App({ Component, pageProps }) {
         <meta content="#000000" data-react-helmet="true" name="theme-color" />
       </Head>
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
-        <Component {...pageProps} />
+        <Component {...pageProps}/>
+        <Analytics/>
       </MantineProvider>
     </>
   );
