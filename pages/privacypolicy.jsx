@@ -7,7 +7,7 @@ import {
   Text
 } from '@mantine/core';
 
-export default function PrivacyPolicy() {
+const Privacy = () => {
   return (
     <>
       <AppShell header={<Header/>} footer={<Footer/>}>
@@ -39,3 +39,5 @@ export default function PrivacyPolicy() {
     </>
   );
 };
+
+export default Privacy;

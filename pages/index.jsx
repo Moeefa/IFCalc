@@ -94,7 +94,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
 }));
 
-export default function Page() {
+const Page = () => {
   const { classes } = useStyles();
   const router = useRouter();
   const theme = useMantineTheme();
@@ -170,7 +170,7 @@ export default function Page() {
         break;
     }
   };
-
+  
   return (
     <>
       {/*hasCookie("suapObj") 
@@ -201,53 +201,19 @@ export default function Page() {
                 </Group>
               : <></>}
             <Group position="center" spacing="lg">
-              <NumberInput
-                label="Média do 1º bimestre"
-                max={10}
-                min={0}
-                defaultValue={0.0}
-                precision={1}
-                step={0.5}
-                decimalSeparator=","
-                onChange={(value) => setYear({...year, '1': value })}
-                className={classes.numinput}
-              />
-
-              <NumberInput
-                label="Média do 2º bimestre"
-                max={10}
-                min={0}
-                defaultValue={0.0}
-                precision={1}
-                step={0.5}
-                decimalSeparator=","
-                onChange={(value) => setYear({...year, '2': value })}
-                className={classes.numinput}
-              />
-
-              <NumberInput
-                label="Média do 3º bimestre"
-                max={10}
-                min={0}
-                precision={1}
-                step={0.50}
-                defaultValue={0.0}
-                decimalSeparator=","
-                onChange={(value) => setYear({...year, '3': value })}
-                className={classes.numinput}
-              />
-
-              <NumberInput
-                label="Média do 4º bimestre"
-                max={10}
-                min={0}
-                defaultValue={0.0}
-                precision={1}
-                step={0.5}
-                decimalSeparator=","
-                onChange={(value) => setYear({...year, '4': value })}
-                className={classes.numinput}
-              />
+              {[...Array(4)].map((_, i) => (
+                <NumberInput
+                  label={`Média do ${i + 1}º bimestre`}
+                  max={10}
+                  min={0}
+                  defaultValue={0.0}
+                  precision={1}
+                  step={0.5}
+                  decimalSeparator=","
+                  onChange={(value) => setYear({...year, [`${i + 1}`]: value })}
+                  className={classes.numinput}
+                />
+              ))}
             </Group>
 
             <Group position="center">
@@ -440,3 +406,5 @@ export default function Page() {
     </>
   );
 };
+
+export default Page;
