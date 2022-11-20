@@ -1,9 +1,18 @@
 import { useRef, useState, useEffect } from 'react';
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
-import { createStyles, Paper, Text, Title, Button, useMantineTheme } from '@mantine/core';
+import { 
+  createStyles, 
+  Paper, 
+  Text, 
+  Title, 
+  Button, 
+  useMantineTheme 
+} from '@mantine/core';
+
 import Autoplay from 'embla-carousel-autoplay';
 import axios from 'axios';
+import Image from 'next/image';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -12,7 +21,13 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
+    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.dark[9],
+  },
+
+  image: {
     filter: 'brightness(0.5)',
+    borderRadius: theme.radius.md,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundColor: 'rgb(16, 17, 19, 0.5)',
@@ -43,28 +58,54 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+const shimmer = (w, h) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#333" offset="20%" />
+      <stop stop-color="#222" offset="50%" />
+      <stop stop-color="#333" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#333" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`
+
+const toBase64 = (str) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str)
+
 function Card({ image, title, desc }) {
   const { classes } = useStyles();
+  const theme = useMantineTheme();
 
   return (
     <Paper
       shadow="md"
       p="xl"
       radius="md"
-      sx={{ backgroundImage: `url(${image})` }}
       className={classes.card}
     >
-      <div style={{ paddingLeft: 15 }}>
+      {image 
+        ? <Image 
+            alt="ad"
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 120))}`}
+            src={image} 
+            fill
+            className={classes.image}
+          />
+        : <></>}
+      <div style={{ paddingLeft: 15, zIndex: 1 }}>
         <Text className={classes.category} size="xs">
-          {title}
+          {title} 
         </Text>
         <Title order={3} className={classes.title}>
           {desc}
         </Title>
       </div>
-      {/*<Button variant="white" color="dark">
-        Read article
-      </Button>*/}
     </Paper>
   );
 }
@@ -107,6 +148,8 @@ export default function CarouselCard() {
       onMouseLeave={autoplay.current.reset}
       controlSize={10}
       slidesToScroll={1}
+      previousControlLabel="Anúncio anterior"
+      nextControlLabel="Próximo anúncio"
     >
       {slides}
     </Carousel>
