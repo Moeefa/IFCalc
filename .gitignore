@@ -1,5 +1,7 @@
 /node_modules
 /analyze
+/public/sitemap.xml
+/public/sitemap-0.xml
 package-lock.json
 replit.nix
 .replit
