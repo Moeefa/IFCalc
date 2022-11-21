@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
         <meta content="IFCalc" property="og:title" />
         <meta content="Com o nosso site, você poderá calcular a sua média anual e bimestral!" name="description"/>
         <meta content="Com o nosso site, você poderá calcular a sua média anual e bimestral!" property="og:description" />
-        <meta content={process.env.NEXT_PUBLIC_URL} property="og:url" />
+        <meta content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/`} property="og:url" />
         <meta content="#000000" data-react-helmet="true" name="theme-color" />
       </Head>
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
