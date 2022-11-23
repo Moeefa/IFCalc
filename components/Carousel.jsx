@@ -115,7 +115,7 @@ function Card({ image, title, desc }) {
 
 export default function CarouselCard() {
   const [ads, setAds] = useState([{ title: "Obtendo informações...", desc: "" }]);
-  const autoplay = useRef(Autoplay({ delay: 2000 }));
+  const autoplay = useRef(Autoplay({ delay: 5000 }));
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
