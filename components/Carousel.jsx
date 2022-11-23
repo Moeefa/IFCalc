@@ -23,6 +23,10 @@ const useStyles = createStyles((theme) => ({
     alignItems: 'flex-start',
     borderRadius: theme.radius.md,
     backgroundColor: theme.colors.dark[9],
+    filter: 'brightness(0.5)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundColor: 'rgb(16, 17, 19, 0.5)',
   },
 
   image: {
@@ -86,18 +90,9 @@ function Card({ image, title, desc }) {
       shadow="md"
       p="xl"
       radius="md"
+      sx={{ backgroundImage: `url(${image})` }}
       className={classes.card}
     >
-      {image 
-        ? <Image 
-            alt="ad"
-            placeholder="blur"
-            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 120))}`}
-            src={image} 
-            fill
-            className={classes.image}
-          />
-        : <></>}
       <div style={{ paddingLeft: 15, zIndex: 1 }}>
         <Text className={classes.category} size="xs">
           {title} 
