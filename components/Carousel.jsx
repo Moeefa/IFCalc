@@ -23,10 +23,6 @@ const useStyles = createStyles((theme) => ({
     alignItems: 'flex-start',
     borderRadius: theme.radius.md,
     backgroundColor: theme.colors.dark[9],
-    filter: 'brightness(0.5)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundColor: 'rgb(16, 17, 19, 0.5)',
   },
 
   image: {
@@ -34,7 +30,7 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.md,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundColor: 'rgb(16, 17, 19, 0.5)',
+    backgroundColor: theme.colors.dark[9],
   },
 
   title: {
