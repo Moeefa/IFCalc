@@ -30,7 +30,7 @@ export default function HeaderPage() {
   };
 
   const handleLogin = () => {
-    router.push(`https://suap.ifmt.edu.br/o/authorize/?response_type=token&grant_type=implicit&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&scope=identificacao%20email&redirect_uri=${process.env.NEXT_PUBLIC_URL}`);
+    router.push(`https://suap.ifmt.edu.br/o/authorize/?response_type=token&grant_type=implicit&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&scope=identificacao&redirect_uri=${process.env.NEXT_PUBLIC_URL}`);
   };
 
   return (
