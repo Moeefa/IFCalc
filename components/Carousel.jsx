@@ -90,9 +90,22 @@ function Card({ image, title, desc }) {
       shadow="md"
       p="xl"
       radius="md"
-      sx={{ backgroundImage: `url(${image})` }}
       className={classes.card}
     >
+      {image 
+        ? <Image 
+            alt="ad"
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 120))}`}
+            src={image} 
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'cover',
+            }}
+            className={classes.image}
+          />
+        : <></>}
       <div style={{ paddingLeft: 15, zIndex: 1 }}>
         <Text className={classes.category} size="xs">
           {title} 
