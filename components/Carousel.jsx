@@ -30,7 +30,6 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.md,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundColor: theme.colors.dark[9],
   },
 
   title: {
