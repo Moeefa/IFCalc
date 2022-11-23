@@ -207,7 +207,7 @@ const Page = () => {
                   label={`Média do ${i + 1}º bimestre`}
                   max={10}
                   min={0}
-                  defaultValue={0.0}
+                  defaultValue={0}
                   precision={1}
                   step={0.5}
                   decimalSeparator=","
