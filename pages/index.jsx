@@ -207,7 +207,7 @@ const Page = () => {
                   label={`Média do ${i + 1}º bimestre`}
                   max={10}
                   min={0}
-                  defaultValue={0}
+                  placeholder="0,0"
                   precision={1}
                   step={0.5}
                   decimalSeparator=","
@@ -305,7 +305,7 @@ const Page = () => {
                     description="Insira o bimestre da matéria"
                     max={4}
                     min={1}
-                    defaultValue={1}
+                    placeholder="1"
                     step={1}
                     style={{
                       width: 150,
@@ -319,7 +319,7 @@ const Page = () => {
                 label="Nota da avaliação"
                 max={10}
                 min={0}
-                defaultValue={0.0}
+                placeholder="0,0"
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
@@ -331,7 +331,7 @@ const Page = () => {
                 label="Conceito"
                 max={2}
                 min={0}
-                defaultValue={0.0}
+                placeholder="0,0"
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
