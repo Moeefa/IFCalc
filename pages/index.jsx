@@ -225,9 +225,9 @@ const Page = () => {
             
             <Group position="center">
               <Box className={classes.average}>
-                <Text size="xl">Média final: {Number(year.avg.toFixed(1)).toLocaleString("pt-BR")}</Text>
+                <Text size="xl">Média final: {Number(year.avg.toFixed(2)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
-                {year.avg.toFixed(1) >= 6
+                {year.avg.toFixed(2) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                   : <>
                       <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>
@@ -348,9 +348,9 @@ const Page = () => {
 
             <Group position="center">
               <Box className={classes.average}>
-                <Text size="xl">Média do bimestre: {Number(bim.avg.toFixed(1)).toLocaleString("pt-BR")}</Text>
+                <Text size="xl">Média do bimestre: {Number(bim.avg.toFixed(2)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
-                {bim.avg.toFixed(1) >= 6
+                {bim.avg.toFixed(2) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                   : <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>}
               </Box>
