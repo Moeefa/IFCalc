@@ -233,8 +233,8 @@ const Page = () => {
                       <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>
                       <Text size="sm">
                         {(year['1'] === 0 || year['2'] === 0)
-                          ? <>Nota necessária no 1° ou 2° bimestre: {Number((((6 - year.avg) / 2) * 10).toFixed(1)).toLocaleString("pt-BR")}</>
-                          : <>Nota necessária no 3° ou 4° bimestre: {Number((((6 - year.avg) / 3) * 10).toFixed(1)).toLocaleString("pt-BR")}</>}
+                          ? <>Nota necessária no 1° ou 2° bimestre: {Number((((6 - year.avg) / 2) * 10).toFixed(2)).toLocaleString("pt-BR")}</>
+                          : <>Nota necessária no 3° ou 4° bimestre: {Number((((6 - year.avg) / 3) * 10).toFixed(2)).toLocaleString("pt-BR")}</>}
                       </Text>
                     </>}
               </Box>
