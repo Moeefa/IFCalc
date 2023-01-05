@@ -1,4 +1,4 @@
-O IFCalc foi feito em React (Next.js) no intuito de auxiliar os alunos a visualizarem suas notas.  
+O IFCalc foi feito em Next.js no intuito de auxiliar os alunos a visualizarem suas notas.  
 Os alunos podem salvar, editar e excluir suas notas no banco de dados.
 
 ## Autenticação/OAuth
