@@ -30,7 +30,6 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.md,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundColor: 'rgb(16, 17, 19, 0.5)',
   },
 
   title: {
@@ -95,6 +94,10 @@ function Card({ image, title, desc }) {
             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 120))}`}
             src={image} 
             fill
+            sizes="100vw"
+            style={{
+              objectFit: 'cover',
+            }}
             className={classes.image}
           />
         : <></>}
@@ -112,7 +115,7 @@ function Card({ image, title, desc }) {
 
 export default function CarouselCard() {
   const [ads, setAds] = useState([{ title: "Obtendo informações...", desc: "" }]);
-  const autoplay = useRef(Autoplay({ delay: 2000 }));
+  const autoplay = useRef(Autoplay({ delay: 8000 }));
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 

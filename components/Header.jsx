@@ -25,7 +25,7 @@ export default function HeaderPage() {
         token: JSON.parse(getCookie("suapObj")).token
       });
     deleteCookie("suapObj");
-    setData(null);
+    //setData(null);
     router.push("/");
   };
 

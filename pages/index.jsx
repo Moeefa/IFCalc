@@ -207,7 +207,7 @@ const Page = () => {
                   label={`Média do ${i + 1}º bimestre`}
                   max={10}
                   min={0}
-                  defaultValue={0.0}
+                  placeholder="0,0"
                   precision={1}
                   step={0.5}
                   decimalSeparator=","
@@ -225,16 +225,16 @@ const Page = () => {
             
             <Group position="center">
               <Box className={classes.average}>
-                <Text size="xl">Média final: {Number(year.avg.toFixed(1)).toLocaleString("pt-BR")}</Text>
+                <Text size="xl">Média final: {Number(year.avg.toFixed(2)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
-                {year.avg.toFixed(1) >= 6
+                {year.avg.toFixed(2) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                   : <>
                       <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>
                       <Text size="sm">
                         {(year['1'] === 0 || year['2'] === 0)
-                          ? <>Nota necessária no 1° ou 2° bimestre: {Number((((6 - year.avg) / 2) * 10).toFixed(1)).toLocaleString("pt-BR")}</>
-                          : <>Nota necessária no 3° ou 4° bimestre: {Number((((6 - year.avg) / 3) * 10).toFixed(1)).toLocaleString("pt-BR")}</>}
+                          ? <>Nota necessária no 1° ou 2° bimestre: {Number((((6 - year.avg) / 2) * 10).toFixed(2)).toLocaleString("pt-BR")}</>
+                          : <>Nota necessária no 3° ou 4° bimestre: {Number((((6 - year.avg) / 3) * 10).toFixed(2)).toLocaleString("pt-BR")}</>}
                       </Text>
                     </>}
               </Box>
@@ -305,7 +305,7 @@ const Page = () => {
                     description="Insira o bimestre da matéria"
                     max={4}
                     min={1}
-                    defaultValue={1}
+                    placeholder="1"
                     step={1}
                     style={{
                       width: 150,
@@ -319,7 +319,7 @@ const Page = () => {
                 label="Nota da avaliação"
                 max={10}
                 min={0}
-                defaultValue={0.0}
+                placeholder="0,0"
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
@@ -331,7 +331,7 @@ const Page = () => {
                 label="Conceito"
                 max={2}
                 min={0}
-                defaultValue={0.0}
+                placeholder="0,0"
                 precision={1}
                 step={0.5}
                 decimalSeparator=","
@@ -348,9 +348,9 @@ const Page = () => {
 
             <Group position="center">
               <Box className={classes.average}>
-                <Text size="xl">Média do bimestre: {Number(bim.avg.toFixed(1)).toLocaleString("pt-BR")}</Text>
+                <Text size="xl">Média do bimestre: {Number(bim.avg.toFixed(2)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
-                {bim.avg.toFixed(1) >= 6
+                {bim.avg.toFixed(2) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                   : <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>}
               </Box>
