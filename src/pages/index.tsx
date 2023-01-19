@@ -146,13 +146,13 @@ const Page = () => {
     switch (type) {
       case 0:
         axios
-          .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj") as string).token, nome: year.nome, type: 0 } })
+          .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome: year.nome, type: 0 } })
           .then((res) => setData(res.data))
           .catch(() => setAxiosFailed(true));
         break;
       case 1:
         axios
-          .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
+          .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
           .then((res) => setData(res.data))
           .catch(() => setAxiosFailed(true));
         break;
