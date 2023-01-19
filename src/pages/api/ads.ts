@@ -1,7 +1,14 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import mongodb from "../../shared/libs/database";
 import Ads from "../../shared/models/Ads";
 
-export default async function handler(req, res) {
+type Data = {
+  success: boolean;
+  data?: unknown;
+  message?: string;
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   await mongodb();
   let ads = await Ads.find({});
 

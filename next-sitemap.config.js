@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_URL || 'https://ifcalc.vercel.app',
+  siteUrl: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/` || 'https://ifcalc.vercel.app',
   generateRobotsTxt: false,
   generateIndexSitemap: false
 }

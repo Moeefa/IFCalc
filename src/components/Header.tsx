@@ -1,12 +1,9 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IconCookie } from '@tabler/icons';
 import { useRouter } from 'next/router';
-import { setCookie, hasCookie, getCookie, deleteCookie } from 'cookies-next';
+import { hasCookie, getCookie, deleteCookie } from 'cookies-next';
 import {
-  UnstyledButton,
   Header,
   Button,
   Modal,
@@ -22,15 +19,15 @@ export default function HeaderPage() {
     axios
       .post("https://suap.ifmt.edu.br/o/revoke_token/", {
         client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
-        token: JSON.parse(getCookie("suapObj")).token
+        token: JSON.parse(getCookie("suapObj").toString()).token
       });
+    
     deleteCookie("suapObj");
-    //setData(null);
     router.push("/");
   };
 
   const handleLogin = () => {
-    router.push(`https://suap.ifmt.edu.br/o/authorize/?response_type=token&grant_type=implicit&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&scope=identificacao%20email&redirect_uri=${process.env.NEXT_PUBLIC_URL}`);
+    router.push(`https://suap.ifmt.edu.br/o/authorize/?response_type=token&grant_type=implicit&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&scope=identificacao%20email&redirect_uri=https://${process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ? "ifcalc.vercel.app" : "ifcalc-git-preview-moeefa.vercel.app"}/`);
   };
 
   return (

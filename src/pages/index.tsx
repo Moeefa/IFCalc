@@ -94,6 +94,12 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
 }));
 
+interface Opened {
+  type: number;
+  bimestre?: number;
+  nome?: string;
+}
+
 const Page = () => {
   const { classes } = useStyles();
   const router = useRouter();
@@ -109,12 +115,12 @@ const Page = () => {
   const [year, setYear] = useState({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
   const [bim, setBim] = useState({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
   
-  const [opened, setOpened] = useState({ type: -1 });
+  const [opened, setOpened] = useState<Opened>({ type: -1, bimestre: -1, nome: "" });
   
   useEffect(() => {
     if (!window.location.hash) return;
     let urlParams = new URLSearchParams(window.location.hash.slice(1));
-    if (!hasCookie("suapObj") && urlParams.get('access_token')) setCookie("suapObj", JSON.stringify({ message: "Não mostre o seu token a ninguém! Ele dá acesso tanto a sua conta do SUAP quanto do IFCalc.", token: urlParams.get('access_token') }, { maxAge: urlParams.get('expires_in') }));
+    if (!hasCookie("suapObj") && urlParams.get('access_token')) setCookie("suapObj", JSON.stringify({ message: "Não mostre o seu token a ninguém! Ele dá acesso tanto a sua conta do SUAP quanto do IFCalc.", token: urlParams.get('access_token') }), { maxAge: Number(urlParams.get('expires_in')) });
     
     router.push('/', undefined, { shallow: true });
   }, []);
@@ -122,9 +128,9 @@ const Page = () => {
   useEffect(() => {
     if (!hasCookie("suapObj")) return;
     axios
-      .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token } })
+      .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token } })
       .then((res) => setData(res.data))
-      .catch((error) => setAxiosFailed(true));
+      .catch(() => setAxiosFailed(true));
   }, []);
 
   useEffect(() => {
@@ -140,33 +146,33 @@ const Page = () => {
     switch (type) {
       case 0:
         axios
-          .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: year.nome, type: 0 } })
+          .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome: year.nome, type: 0 } })
           .then((res) => setData(res.data))
-          .catch((error) => setAxiosFailed(true));
+          .catch(() => setAxiosFailed(true));
         break;
       case 1:
         axios
-          .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
+          .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
           .then((res) => setData(res.data))
-          .catch((error) => setAxiosFailed(true));
+          .catch(() => setAxiosFailed(true));
         break;
     }
   }; 
 
-  const deleteData = (type, name, bimestre) => {
+  const deleteData = (type: number, nome: string, bimestre?: number) => {
     setData(null);
     switch (type) {
       case 0:
         axios
-          .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token, nome: name, type: 0 } })
+          .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome, type } })
           .then((res) => setData(res.data))
-          .catch((error) => setAxiosFailed(true));
+          .catch(() => setAxiosFailed(true));
         break;
       case 1:
         axios
-          .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj")).token, nome: name, bimestre: bimestre, type: 1 } })
+          .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome, bimestre, type } })
           .then((res) => setData(res.data))
-          .catch((error) => setAxiosFailed(true));
+          .catch(() => setAxiosFailed(true));
         break;
     }
   };
@@ -227,7 +233,7 @@ const Page = () => {
               <Box className={classes.average}>
                 <Text size="xl">Média final: {Number(year.avg.toFixed(2)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
-                {year.avg.toFixed(2) >= 6
+                {Number(year.avg.toFixed(2)) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                   : <>
                       <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>
@@ -266,7 +272,7 @@ const Page = () => {
                                 <Text align="center"><Text weight={700} span color="dimmed">4° bimestre: </Text> {Number(m.notas[4]).toLocaleString('pt-BR')}</Text>
                                 <Divider my="sm"/>
                                 <Text align="center" size="xl">Média final: {Number(((((m.notas[1] || 0) * 2) + ((m.notas[2] || 0) * 2) + ((m.notas[3] || 0) * 3) +  ((m.notas[4] || 0) * 3)) / (2 + 2 + 3 + 3)).toFixed(2)).toLocaleString("pt-BR")}</Text>
-                                {Number((((m.notas[1] || 0) * 2) + ((m.notas[2] || 0) * 2) + ((m.notas[3] || 0) * 3) +  ((m.notas[4] || 0) * 3)) / (2 + 2 + 3 + 3)).toFixed(2) >= 6
+                                {Number(((((m.notas[1] || 0) * 2) + ((m.notas[2] || 0) * 2) + ((m.notas[3] || 0) * 3) +  ((m.notas[4] || 0) * 3)) / (2 + 2 + 3 + 3)).toFixed(2)) >= 6
                                   ? <Text align="center" variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                                   : <Text align="center" variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>}
                               </Modal>
@@ -350,7 +356,7 @@ const Page = () => {
               <Box className={classes.average}>
                 <Text size="xl">Média do bimestre: {Number(bim.avg.toFixed(2)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
-                {bim.avg.toFixed(2) >= 6
+                {Number(bim.avg.toFixed(2)) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                   : <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>}
               </Box>
@@ -382,7 +388,7 @@ const Page = () => {
                                 <Text align="center"><Text weight={700} span color="dimmed">Conceito: </Text> {Number(m.notas.conceito).toLocaleString('pt-BR')}</Text>
                                 <Divider my="sm"/>
                                 <Text align="center" size="xl">Média bimestral: {Number((((m.notas.nota || 0) * 0.8) + (m.notas.conceito || 0)).toFixed(2)).toLocaleString("pt-BR")}</Text>
-                                {Number(((m.notas.nota || 0) * 0.8) + (m.notas.conceito || 0)).toFixed(2) >= 6
+                                {Number(((m.notas.nota || 0) * 0.8) + (m.notas.conceito || 0).toFixed(2)) >= 6
                                   ? <Text align="center" variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
                                   : <Text align="center" variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>}
                               </Modal>

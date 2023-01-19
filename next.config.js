@@ -1,18 +1,20 @@
-import bundleAnalyzer from '@next/bundle-analyzer';
+const bundleAnalyzer = require('@next/bundle-analyzer');
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
+// @ts-check
+
 /**
  * @type {import('next').NextConfig}
- */
-const nextConfig = withBundleAnalyzer({
+ **/
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["media.discordapp.net"]
+    domains: ["media.discordapp.net"],
   },
-});
+};
 
-export default nextConfig;
+module.exports = nextConfig;

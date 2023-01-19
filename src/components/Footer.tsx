@@ -24,7 +24,7 @@ export default function FooterPage() {
       <Group position="center">
         <Text href="/privacypolicy" size="sm" color="dimmed" variant="link" component={Link}>Política de privacidade</Text>
         <Text href="/dmca" size="sm" color="dimmed" variant="link" component={Link}>DMCA</Text>
-        <Text href={`https://github.com/Moeefa/IFCalc/tree/${process.env.NEXT_PUBLIC_URL === "https://ifcalc.vercel.app/" ? "main" : "preview"}`} size="sm" color="dimmed" variant="link" component={Link}>Repositório</Text>
+        <Text href={`https://github.com/Moeefa/IFCalc/tree/${process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ? "main" : "preview"}`} size="sm" color="dimmed" variant="link" component={Link}>Repositório</Text>
       </Group>
     </Footer>
   );
