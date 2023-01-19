@@ -146,7 +146,7 @@ const Page = () => {
     switch (type) {
       case 0:
         axios
-          .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj")).token, nome: year.nome, type: 0 } })
+          .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj") as string).token, nome: year.nome, type: 0 } })
           .then((res) => setData(res.data))
           .catch(() => setAxiosFailed(true));
         break;
