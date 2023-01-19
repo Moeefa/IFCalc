@@ -11,8 +11,7 @@ type Data = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (!req.query.token) return res.status(400).json({ success: false, message: "Missing id query" });
-  if (req.query.nome) req.query.nome = req.query.nome.toString().trim();
-
+  
   const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { headers: { Authorization: "Bearer " + req.query.token } });
   
   await mongodb();
@@ -32,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           _id: resp.data.identificacao,
           materias_anual: req.query.type === "0"
             ? [{
-                nome: req.query.nome, 
+                nome: req.query.nome.toString(), 
                 notas: { 
                   1: req.body.notas?.[1] ?? 0, 
                   2: req.body.notas?.[2] ?? 0, 
@@ -42,8 +41,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
               }] : [],
           materias_bimestral: req.body.type === "1"
             ? [{
-                nome: req.query.nome,
-                bimestre: req.query.bimestre,
+                nome: req.query.nome.toString(),
+                bimestre: Number(req.query.bimestre),
                 notas: { 
                   nota: req.body?.notas?.nota ?? 0, 
                   conceito: req.body?.notas?.conceito ?? 0
@@ -65,7 +64,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
               };
             } else {
               user.materias_anual.push({
-                nome: req.query.nome,
+                nome: req.query.nome.toString(),
                 notas: {
                   1: req.body.notas?.[1] ?? 0, 
                   2: req.body.notas?.[2] ?? 0, 
@@ -85,8 +84,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
               };
             } else {
               user.materias_bimestral.push({
-                nome: req.query.nome,
-                bimestre: req.query.bimestre,
+                nome: req.query.nome.toString(),
+                bimestre: Number(req.query.bimestre),
                 notas: {
                   nota: req.body.notas?.nota ?? 0, 
                   conceito: req.body.notas?.conceito ?? 0
