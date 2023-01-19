@@ -9,6 +9,11 @@ type Data = {
   message?: string;
 };
 
+enum Type {
+  Anual = "0",
+  Bimestral = "1",
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (!req.query.token) return res.status(400).json({ success: false, message: "Missing id query" });
   
@@ -53,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         res.status(201).json({ success: true, data: u });
       } else {
         switch (req.query.type) {
-          case "0":
+          case Type.Anual:
             if (user.materias_anual.length >= 19) return res.status(400).json({ success: false, message: "Exceeded subjects limit" });
             if (user.materias_anual.some(m => m.nome.toLowerCase() === req.query.nome)) {
               user.materias_anual[user.materias_anual.findIndex(m => m.nome.toLowerCase() === req.query.nome)].notas = {
@@ -75,10 +80,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             };
             user.markModified("materias_anual");
             break;
-          case "1":
+          case Type.Bimestral:
             if (user.materias_bimestral.length >= 19) return res.status(400).json({ success: false, message: "Exceeded subjects limit" });
             if (user.materias_bimestral.some(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase() && Number(m.bimestre) === Number(req.query.bimestre))) {
-              user.materias_bimestral[user.materias_bimestral.findIndex(m => m.nome === req.query.nome && m.bimestre === req.query.bimestre)].notas = {
+              user.materias_bimestral[user.materias_bimestral.findIndex(m => m.nome === req.query.nome.toString().trim() && m.bimestre === Number(req.query.bimestre))].notas = {
                 nota: req.body.notas?.nota ?? 0, 
                 conceito: req.body.notas?.conceito ?? 0
               };
@@ -105,7 +110,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       if (!req.query.type) return res.status(202).json({ success: false, data: user, message: "Missing type query" });
 
       switch (req.query.type) {
-        case "0":
+        case Type.Anual:
           if (user.materias_anual.some(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase())) {
             user.materias_anual.splice(user.materias_anual.findIndex(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase()), 1);
             user.markModified("materias_anual");
@@ -115,8 +120,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             res.status(304).json({ success: false, data: user });
           } 
           break;
-        case "1":
-          if (user.materias_bimestral.some(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase() && Number(m.bimestre) === Number(req.query.bimestre))) {
+        case Type.Bimestral:
+          if (user.materias_bimestral.some(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase() && m.bimestre === Number(req.query.bimestre))) {
             user.materias_bimestral.splice(user.materias_bimestral.findIndex(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase()), 1);
             user.markModified("materias_bimestral");
             await user.save();
