@@ -1,12 +1,9 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IconCookie } from '@tabler/icons';
 import { useRouter } from 'next/router';
-import { setCookie, hasCookie, getCookie, deleteCookie } from 'cookies-next';
+import { hasCookie, getCookie, deleteCookie } from 'cookies-next';
 import {
-  UnstyledButton,
   Header,
   Button,
   Modal,
@@ -22,10 +19,10 @@ export default function HeaderPage() {
     axios
       .post("https://suap.ifmt.edu.br/o/revoke_token/", {
         client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
-        token: JSON.parse(getCookie("suapObj")).token
+        token: JSON.parse(getCookie("suapObj").toString()).token
       });
+    
     deleteCookie("suapObj");
-    //setData(null);
     router.push("/");
   };
 

@@ -21,9 +21,7 @@ const DMCA = () => {
             textJustify: "inter-word"
           }}
         >
-          <Link href="mailto:luizhenrique.xinaider.ifmt@gmail.com" passHref>
-            <Text variant="link" component="a">luizhenrique.xinaider.ifmt@gmail.com</Text>
-          </Link>
+          <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" passHref variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text>
           <br/>
           Se o proprietário dos direitos autorais acreditar que sua obra foi copiada sem permissão, você deverá especificar as informações a seguir. Seu aviso de retirada deve conter as seguintes informações:
           <br/>

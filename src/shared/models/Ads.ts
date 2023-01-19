@@ -1,6 +1,14 @@
 import mongoose from "mongoose";
 
-const adsSchema = mongoose.Schema({
+interface IAds {
+  _id: string;
+  image: string;
+  title: string;
+  desc: string;
+  expire: Date;
+}
+
+const adsSchema = new mongoose.Schema<IAds>({
   _id: String,
   image: String,
   title: String,

@@ -114,7 +114,7 @@ function Card({ image, title, desc }) {
 }
 
 export default function CarouselCard() {
-  const [ads, setAds] = useState([{ title: "Obtendo informações...", desc: "" }]);
+  const [ads, setAds] = useState([{ title: "Obtendo informações...", desc: "", image: "" }]);
   const autoplay = useRef(Autoplay({ delay: 8000 }));
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
@@ -125,7 +125,7 @@ export default function CarouselCard() {
       .then((res) => {
         res.data.data.length > 0
           ? setAds(res.data.data)
-          : setAds([{ title: "Nenhuma informação disponível", desc: "" }]);
+          : setAds([{ title: "Nenhuma informação disponível", desc: "", image: "" }]);
       });
   }, []);
 
