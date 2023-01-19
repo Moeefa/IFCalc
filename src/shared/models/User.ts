@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface IUser {
+interface IUsers {
   _id: string;
   materias_anual: {
     nome: string;
@@ -18,10 +18,10 @@ interface IUser {
   }[];
 };
 
-const usersSchema = new mongoose.Schema<IUser>({
+const usersSchema = new mongoose.Schema<IUsers>({
   _id: String,
   materias_anual: Array,
   materias_bimestral: Array
 });
 
-export default mongoose.models.Users || mongoose.model("Users", usersSchema);
+export default mongoose.model<IUsers>("Users", usersSchema);

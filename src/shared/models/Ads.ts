@@ -16,4 +16,4 @@ const adsSchema = new mongoose.Schema<IAds>({
   expire: Date
 });
 
-export default mongoose.models.Ads || mongoose.model("Ads", adsSchema);
+export default mongoose.model<IAds>("Ads", adsSchema);

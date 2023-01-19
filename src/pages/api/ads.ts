@@ -10,7 +10,7 @@ type Data = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   await mongodb();
-  let ads = await Ads.find();
+  let ads = await Ads.find({});
 
   switch (req.method) {
     case "GET":
