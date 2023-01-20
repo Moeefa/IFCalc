@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import '../utils/styles/global.css';
 import Head from 'next/head';
+import Script from 'next/script';
 import { MantineProvider } from '@mantine/core';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -48,6 +49,14 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         }}
       >
+        <Script>
+          {`;(function () {
+            var src = '//cdn.jsdelivr.net/npm/eruda';
+            if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+            document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+            document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+          })();`}
+        </Script>
         <Component {...pageProps}/>
         <Analytics/>
       </MantineProvider>
