@@ -361,7 +361,7 @@ const Page = () => {
                         {(bim.nota === 0)
                           ? <>Nota necessária na avaliação: {Number(((6 - (bim.nota || 0)) / 0.8).toFixed(2)).toLocaleString("pt-BR")}</>
                           : Number(6 - bim.avg) > 2
-                            ? <>Nota necessária na avaliação: {Number(((6 - (bim.nota || 0)) / 0.8).toFixed(2)).toLocaleString("pt-BR")} + {(bim.nota || 0)}</>
+                            ? <>Nota necessária na avaliação: {Number(((6 - (bim.nota || 0)) / 0.8).toFixed(2)).toLocaleString("pt-BR")}</>
                             : <>Nota necessária no conceito: {Number((6 - bim.avg).toFixed(2)).toLocaleString("pt-BR")}</>}
                       </Text>
                     </>}
