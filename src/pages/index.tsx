@@ -316,6 +316,7 @@ const Page = () => {
               : <></>}
             <Group position="center" spacing="lg">
               <NumberInput
+                radius="md"
                 label="Nota da avaliação"
                 max={10}
                 min={0}
