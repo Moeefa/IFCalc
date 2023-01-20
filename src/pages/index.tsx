@@ -165,11 +165,11 @@ const Page = () => {
   
   return (
     <>
-      {/*hasCookie("suapObj") 
+      {hasCookie("suapObj") 
         ? <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>{JSON.stringify(data, null, 2)}</pre>
-        : <></>*/}
+        : <></>}
 
-      <AppShell header={<Header/>} footer={<Footer/>}>
+      {/*<AppShell header={<Header/>} footer={<Footer/>}>
         <Group position="center">
           <Carousel/>
         </Group>
@@ -414,7 +414,7 @@ const Page = () => {
               : <></>}
           </Tabs.Panel>
         </Tabs>
-      </AppShell>
+      </AppShell>*/}
     </>
   );
 };
