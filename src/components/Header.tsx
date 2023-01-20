@@ -50,8 +50,8 @@ export default function HeaderPage() {
       >
         <Group sx={{ height: '100%' }} px={20} position="right">
           {!hasCookie("suapObj")
-            ? <Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} onClick={() => setOpened(true)}>Login</Button>
-            : <Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'red', to: 'crimson' }} onClick={handleLogout}>Logout</Button>}
+            ? <Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} onClick={() => setOpened(true)}>Entrar</Button>
+            : <Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'red', to: 'crimson' }} onClick={handleLogout}>Sair</Button>}
         </Group>
       </Header>
     </>
