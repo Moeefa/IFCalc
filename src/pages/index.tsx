@@ -106,6 +106,8 @@ const Page = () => {
   const [bim, setBim] = useState<IBim>({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
   const [opened, setOpened] = useState<IOpenState | undefined>(undefined);
   
+  console.log(data)
+
   useEffect(() => {
     if (!window.location.hash) return;
     let urlParams = new URLSearchParams(window.location.hash.slice(1));
