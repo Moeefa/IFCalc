@@ -51,7 +51,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     flexDirection: "column",
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     padding: theme.spacing.xl,
-    borderRadius: theme.radius.md,
+    borderRadius: theme.radius.sm,
     marginTop: 5,
     width: "95%",
     height: 97,
