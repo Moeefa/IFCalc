@@ -22,7 +22,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     borderRadius: '14px',
-    backgroundImage: `linear-gradient(135deg, ${theme.colors.blue[9]} 0%, ${theme.colors.cyan[6]} 100%)`,
+    backgroundImage: `linear-gradient(135deg, indigo 0%, cyan 100%)`,
     //backgroundColor: theme.colors.dark[6],
   },
 
