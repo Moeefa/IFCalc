@@ -16,8 +16,8 @@ enum Type {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (!req.query.token) return res.status(400).json({ success: false, message: "Missing token query" });
-  
-  const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { headers: { Authorization: "Bearer " + req.query.token } });
+
+  const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
   
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
