@@ -115,7 +115,7 @@ const Page = () => {
     if (!hasCookie("suapObj")) return;
     axios
       .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token } })
-      .then((res) => setData(res.data))
+      .then((res) => setData(res.data.data))
       .catch(() => setData("failed"));
   }, []);
 
@@ -133,13 +133,13 @@ const Page = () => {
       case 0:
         axios
           .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome: year.nome, type: 0 } })
-          .then((res) => setData(res.data))
+          .then((res) => setData(res.data.data))
           .catch(() => setData("failed"));
         break;
       case 1:
         axios
           .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
-          .then((res) => setData(res.data))
+          .then((res) => setData(res.data.data))
           .catch(() => setData("failed"));
         break;
     }
@@ -151,13 +151,13 @@ const Page = () => {
       case 0:
         axios
           .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome, type } })
-          .then((res) => setData(res.data))
+          .then((res) => setData(res.data.data))
           .catch(() => setData("failed"));
         break;
       case 1:
         axios
           .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome, bimestre, type } })
-          .then((res) => setData(res.data))
+          .then((res) => setData(res.data.data))
           .catch(() => setData("failed"));
         break;
     }
@@ -169,7 +169,7 @@ const Page = () => {
         ? <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>{JSON.stringify(data, null, 2)}</pre>
         : <></>}
 
-      {/*<AppShell header={<Header/>} footer={<Footer/>}>
+      <AppShell header={<Header/>} footer={<Footer/>}>
         <Group position="center">
           <Carousel/>
         </Group>
@@ -414,7 +414,7 @@ const Page = () => {
               : <></>}
           </Tabs.Panel>
         </Tabs>
-      </AppShell>*/}
+      </AppShell>
     </>
   );
 };
