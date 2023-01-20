@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
 import mongodb from "../../utils/libs/database";
-import Users from "../../utils/schemas/Users";
+import Users, { IUsers } from "../../utils/schemas/Users";
 import axios from "axios";
 
 type Data = {
   success: boolean;
-  data?: unknown;
+  data?: IUsers | null;
   message?: string;
 };
 
@@ -49,8 +49,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
                 nome: req.query.nome.toString(),
                 bimestre: Number(req.query.bimestre),
                 notas: { 
-                  nota: req.body?.notas?.nota ?? 0, 
-                  conceito: req.body?.notas?.conceito ?? 0
+                  nota: req.body.notas?.nota ?? 0, 
+                  conceito: req.body.notas?.conceito ?? 0
                 }
               }] : []
         });
