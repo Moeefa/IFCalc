@@ -359,9 +359,9 @@ const Page = () => {
                       <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>
                       <Text size="sm">
                         {(bim.nota === 0)
-                          ? <>Nota necessária no bimestre: {Number(((6 - bim.nota) / 0.8).toFixed(2)).toLocaleString("pt-BR")}</>
+                          ? <>Nota necessária na avaliação: {Number(((6 - (bim.nota || 0)) / 0.8).toFixed(2)).toLocaleString("pt-BR")}</>
                           : Number(6 - bim.avg) > 2
-                            ? <>Nota necessária no bimestre: {Number(((6 - bim.nota) / 0.8).toFixed(2)).toLocaleString("pt-BR")}</>
+                            ? <>Nota necessária na avaliação: {Number(((6 - (bim.nota || 0)) / 0.8).toFixed(2)).toLocaleString("pt-BR")} + {(bim.nota || 0)}</>
                             : <>Nota necessária no conceito: {Number((6 - bim.avg).toFixed(2)).toLocaleString("pt-BR")}</>}
                       </Text>
                     </>}
