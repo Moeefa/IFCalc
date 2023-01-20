@@ -41,15 +41,17 @@ export default function HeaderPage() {
       </Modal>
       <Header
         height={60}
+        withBorder={false}
         sx={(theme) => ({
-          backgroundColor: theme.colors.dark[9]
+          backgroundColor: "rgba(0,0,0,0.4)",
+          backdropFilter: "blur(10px)",
         })}
         p="xs"
       >
         <Group sx={{ height: '100%' }} px={20} position="apart">
           {!hasCookie("suapObj")
-            ? <div style={{ float: "right" }}><Button radius="lg" size="xs" variant="default" color="dark" onClick={() => setOpened(true)}>Login</Button></div>
-            : <div style={{ float: "right" }}><Button radius="lg" size="xs" variant="default" color="dark" onClick={handleLogout}>Logout</Button></div>}
+            ? <div style={{ float: "right" }}><Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} onClick={() => setOpened(true)}>Login</Button></div>
+            : <div style={{ float: "right" }}><Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'red', to: 'crimson' }} onClick={handleLogout}>Logout</Button></div>}
         </Group>
       </Header>
     </>

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import mongodb from "../../shared/libs/database";
-import Users from "../../shared/models/User";
+import mongodb from "../../utils/libs/database";
+import Users from "../../utils/schemas/Users";
 import axios from "axios";
 
 type Data = {
@@ -15,7 +15,7 @@ enum Type {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  if (!req.query.token) return res.status(400).json({ success: false, message: "Missing id query" });
+  if (!req.query.token) return res.status(400).json({ success: false, message: "Missing token query" });
   
   const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { headers: { Authorization: "Bearer " + req.query.token } });
   

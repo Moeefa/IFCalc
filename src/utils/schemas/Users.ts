@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface IUsers {
+export interface IUsers {
   _id: string;
   materias_anual: {
     nome: string;
