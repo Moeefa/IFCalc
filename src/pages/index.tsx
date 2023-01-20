@@ -360,7 +360,7 @@ const Page = () => {
                       <Text size="sm">
                         {(bim.nota === 0)
                           ? <>Nota necessária no bimestre: {Number(((6 - bim.nota) / 0.8).toFixed(2)).toLocaleString("pt-BR")}</>
-                          : Number((6 - bim.avg) > 2
+                          : Number(6 - bim.avg) > 2
                             ? <>Nota necessária no bimestre: {Number(((6 - bim.nota) / 0.8).toFixed(2)).toLocaleString("pt-BR")}</>
                             : <>Nota necessária no conceito: {Number((6 - bim.avg).toFixed(2)).toLocaleString("pt-BR")}</>}
                       </Text>
