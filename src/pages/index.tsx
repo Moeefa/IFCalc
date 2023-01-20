@@ -5,8 +5,7 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { setCookie, hasCookie, getCookie, deleteCookie } from 'cookies-next';
-import { useMediaQuery } from '@mantine/hooks';
+import { setCookie, hasCookie, getCookie } from 'cookies-next';
 import { IconTrash } from '@tabler/icons';
 import { IYear, IBim, IOpenState } from '../interfaces';
 import { IUsers } from '../utils/schemas/Users';
@@ -18,13 +17,11 @@ import {
   Skeleton,
   Divider,
   Button,
-  Loader,
   Group,
   Modal,
   Tabs,
   Text,
   Box,
-  useMantineTheme
 } from '@mantine/core';
 
 import { createStyles } from '@mantine/core';
@@ -104,9 +101,7 @@ const Page = () => {
   const [data, setData] = useState<IUsers | "loading" | "failed">("loading");
   const [year, setYear] = useState<IYear>({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
   const [bim, setBim] = useState<IBim>({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
-  const [opened, setOpened] = useState<IOpenState | undefined>(undefined);
-  
-  console.log(data)
+  const [opened, setOpened] = useState<IOpenState | undefined>({ type: -1 });
 
   useEffect(() => {
     if (!window.location.hash) return;
@@ -249,7 +244,7 @@ const Page = () => {
                       ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
                       : data === "loading"
                         ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="md"/>
-                        : data.materias_anual.length <= 0
+                        : data.materias_anual?.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
                           : data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome)).map(m => (
                             <>
@@ -381,7 +376,7 @@ const Page = () => {
                       ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
                       : data === "loading"
                         ? <Skeleton className={classes.skeleton} radius="md"/>
-                        : data.materias_bimestral.length <= 0
+                        : data.materias_bimestral?.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
                           : data.materias_bimestral.sort((a, b) => a.nome.localeCompare(b.nome) || a.bimestre - b.bimestre).map(m => (
                             <>
