@@ -243,7 +243,7 @@ const Page = () => {
                     {data === "failed"
                       ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
                       : data === "loading"
-                        ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="md"/>
+                        ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="sm"/>
                         : data.materias_anual.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
                           : data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome)).map(m => (
@@ -376,7 +376,7 @@ const Page = () => {
                     {data === "failed"
                       ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
                       : data === "loading"
-                        ? <Skeleton className={classes.skeleton} radius="md"/>
+                        ? <Skeleton className={classes.skeleton} radius="sm"/>
                         : data.materias_bimestral?.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
                           : data.materias_bimestral.sort((a, b) => a.nome.localeCompare(b.nome) || a.bimestre - b.bimestre).map(m => (
