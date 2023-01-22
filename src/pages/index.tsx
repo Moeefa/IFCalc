@@ -62,10 +62,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
 
   subjectModal: {
-    padding: 0,
-    backgroundColor: theme.colors.dark[6],
-
-    modal: {
+    '.mantine-Modal-modal': {
       padding: 0,
       paddingTop: 15,
       paddingBottom: 15,
@@ -75,9 +72,6 @@ const useStyles = createStyles((theme, _params, getRef) => ({
         width: "75%",
       },
     },
-    inner: {
-      padding: 0,
-    }
   },
 
   skeleton: {
