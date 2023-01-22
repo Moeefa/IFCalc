@@ -63,6 +63,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
   subjectModal: {
     padding: 0,
+    backgroundColor: theme.colors.dark[6],
 
     modal: {
       padding: 0,
