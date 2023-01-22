@@ -25,10 +25,10 @@ const useStyles = createStyles((theme, _params, getRef) => ({
       },
     },
     '.mantine-Modal-title': {
-      marginLeft: 25,
+      marginLeft: 35,
     },
     '.mantine-Modal-close': {
-      marginRight: 25,
+      marginRight: 35,
     },
     '.mantine-Modal-body': {
       textAlign: "justify",
