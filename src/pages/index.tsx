@@ -61,6 +61,25 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     },
   },
 
+  subjectModal: {
+    '.mantine-Modal-modal': {
+      padding: 0,
+      paddingTop: 15,
+      paddingBottom: 15,
+      backgroundColor: theme.colors.dark[6],
+      width: "25%",
+      '@media (max-width: 768px)': {
+        width: "85%",
+      },
+    },
+    '.mantine-Modal-title': {
+      marginLeft: 25,
+    },
+    '.mantine-Modal-close': {
+      marginRight: 25,
+    },
+  },
+
   skeleton: {
     marginTop: 5,
     width: "95%",
@@ -248,19 +267,9 @@ const Page = () => {
                           ? <Text>Você não tem notas salvas</Text>
                           : data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome)).map(m => (
                             <>
-                              <Modal styles={(theme) => ({
-                                modal: {
-                                  backgroundColor: theme.colors.dark[6],
-                                  width: "25%",
-                                  '@media (max-width: 768px)': {
-                                    width: "75%",
-                                  },
-                                } 
-                              })} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
-                                <Text align="center"><Text weight={700} span color="dimmed">1° bimestre: </Text> {Number(m.notas[1]).toLocaleString('pt-BR')}</Text>
-                                <Text align="center"><Text weight={700} span color="dimmed">2° bimestre: </Text> {Number(m.notas[2]).toLocaleString('pt-BR')}</Text>
-                                <Text align="center"><Text weight={700} span color="dimmed">3° bimestre: </Text> {Number(m.notas[3]).toLocaleString('pt-BR')}</Text>
-                                <Text align="center"><Text weight={700} span color="dimmed">4° bimestre: </Text> {Number(m.notas[4]).toLocaleString('pt-BR')}</Text>
+                              <Modal className={classes.subjectModal} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
+                                <Text align="center"><Text weight={700} span color="dimmed">1° bimestre: </Text> {Number(m.notas[1]).toLocaleString('pt-BR')} <Text ml={15} weight={700} span color="dimmed">2° bimestre: </Text> {Number(m.notas[2]).toLocaleString('pt-BR')}</Text>
+                                <Text align="center"><Text weight={700} span color="dimmed">3° bimestre: </Text> {Number(m.notas[3]).toLocaleString('pt-BR')} <Text ml={15} weight={700} span color="dimmed">4° bimestre: </Text> {Number(m.notas[4]).toLocaleString('pt-BR')}</Text>
                                 <Divider my="sm"/>
                                 <Text align="center" size="xl">Média final: {Number(((((m.notas[1] || 0) * 2) + ((m.notas[2] || 0) * 2) + ((m.notas[3] || 0) * 3) +  ((m.notas[4] || 0) * 3)) / (2 + 2 + 3 + 3)).toFixed(2)).toLocaleString("pt-BR")}</Text>
                                 {Number(((((m.notas[1] || 0) * 2) + ((m.notas[2] || 0) * 2) + ((m.notas[3] || 0) * 3) +  ((m.notas[4] || 0) * 3)) / (2 + 2 + 3 + 3)).toFixed(2)) >= 6
@@ -382,15 +391,7 @@ const Page = () => {
                           ? <Text>Você não tem notas salvas</Text>
                           : data.materias_bimestral.sort((a, b) => a.nome.localeCompare(b.nome) || a.bimestre - b.bimestre).map(m => (
                             <>
-                              <Modal styles={(theme) => ({
-                                modal: {
-                                  backgroundColor: theme.colors.dark[6],
-                                  width: "25%",
-                                  '@media (max-width: 768px)': {
-                                    width: "75%",
-                                  },
-                                } 
-                              })} radius="sm" title={m.nome} centered opened={opened.type === 1 && opened.nome === m.nome && opened.bimestre === m.bimestre} onClose={() => setOpened({ type: -1 })}>
+                              <Modal className={classes.subjectModal} radius="sm" title={m.nome} centered opened={opened.type === 1 && opened.nome === m.nome && opened.bimestre === m.bimestre} onClose={() => setOpened({ type: -1 })}>
                                 <Text align="center"><Text weight={700} span color="dimmed">Nota do bimestre: </Text> {Number(m.notas.nota).toLocaleString('pt-BR')}</Text>
                                 <Text align="center"><Text weight={700} span color="dimmed">Conceito: </Text> {Number(m.notas.conceito).toLocaleString('pt-BR')}</Text>
                                 <Divider my="sm"/>

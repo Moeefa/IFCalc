@@ -7,10 +7,39 @@ import {
   Header,
   Button,
   Modal,
-  Group
+  Group,
+  Text,
 } from '@mantine/core';
 
+import { createStyles } from '@mantine/core';
+
+const useStyles = createStyles((theme, _params, getRef) => ({
+  loginModal: {
+    '.mantine-Modal-modal': {
+      padding: 0,
+      paddingTop: 15,
+      paddingBottom: 15,
+      backgroundColor: theme.colors.dark[6],
+      width: "25%",
+      '@media (max-width: 768px)': {
+        width: "95%",
+      },
+    },
+    '.mantine-Modal-title': {
+      marginLeft: 25,
+    },
+    '.mantine-Modal-close': {
+      marginRight: 25,
+    },
+    '.mantine-Modal-body': {
+      textAlign: "justify",
+      textAlignLast: "center"
+    },
+  },
+}));
+
 export default function HeaderPage() {
+  const { classes } = useStyles();
   const router = useRouter();
 
   const [opened, setOpened] = useState(false);
@@ -33,11 +62,7 @@ export default function HeaderPage() {
   return (
     <>
       <Modal 
-        styles={(theme) => ({
-          modal: {
-            backgroundColor: theme.colors.dark[6],
-          }
-        })}
+        className={classes.loginModal}
         radius="sm" 
         lockScroll 
         opened={opened} 
@@ -46,8 +71,7 @@ export default function HeaderPage() {
         withCloseButton 
         title={[<IconCookie style={{ verticalAlign: "middle" }}/>, " Cookies"]}
       >
-        Usamos cookies para salvar o seu login! Ao logar com sua conta no SUAP, você estará nos autorizando a utilizar estes cookies.
-        <br/>
+        <Text ml={20} mr={20}>Usamos cookies para salvar o seu login! Ao logar com sua conta no SUAP, você estará nos autorizando a utilizar estes cookies.</Text>
         <Group position="center">
           <Button radius="lg" style={{ marginTop: 30 }} size="xs" variant="default" color="dark" onClick={handleLogin}>Continuar</Button>
         </Group>
