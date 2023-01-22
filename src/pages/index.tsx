@@ -64,19 +64,19 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   subjectModal: {
     '.mantine-Modal-modal': {
       padding: 0,
-      paddingTop: 25,
-      paddingBottom: 25,
+      paddingTop: 15,
+      paddingBottom: 15,
       backgroundColor: theme.colors.dark[6],
-      width: "50%",
+      width: "25%",
       '@media (max-width: 768px)': {
-        width: "75%",
+        width: "85%",
       },
     },
     '.mantine-Modal-title': {
-      marginLeft: 15,
+      marginLeft: 25,
     },
     '.mantine-Modal-close': {
-      marginRight: 15,
+      marginRight: 25,
     },
   },
 
