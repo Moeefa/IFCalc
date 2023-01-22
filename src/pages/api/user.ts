@@ -60,8 +60,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         switch (req.query.type) {
           case Type.Anual:
             if (user.materias_anual.length >= 19) return res.status(400).json({ success: false, message: "Exceeded subjects limit" });
-            if (user.materias_anual.some(m => m.nome.toLowerCase() === req.query.nome)) {
-              user.materias_anual[user.materias_anual.findIndex(m => m.nome.toLowerCase() === req.query.nome)].notas = {
+            if (user.materias_anual.some(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase().trim())) {
+              user.materias_anual[user.materias_anual.findIndex(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase().trim())].notas = {
                 1: req.body.notas?.[1] ?? 0, 
                 2: req.body.notas?.[2] ?? 0, 
                 3: req.body.notas?.[3] ?? 0,
@@ -69,7 +69,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
               };
             } else {
               user.materias_anual.push({
-                nome: req.query.nome.toString(),
+                nome: req.query.nome.toString().trim(),
                 notas: {
                   1: req.body.notas?.[1] ?? 0, 
                   2: req.body.notas?.[2] ?? 0, 
@@ -82,14 +82,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             break;
           case Type.Bimestral:
             if (user.materias_bimestral.length >= 19) return res.status(400).json({ success: false, message: "Exceeded subjects limit" });
-            if (user.materias_bimestral.some(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase() && Number(m.bimestre) === Number(req.query.bimestre))) {
-              user.materias_bimestral[user.materias_bimestral.findIndex(m => m.nome === req.query.nome.toString().trim() && m.bimestre === Number(req.query.bimestre))].notas = {
+            if (user.materias_bimestral.some(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase().trim() && Number(m.bimestre) === Number(req.query.bimestre))) {
+              user.materias_bimestral[user.materias_bimestral.findIndex(m => m.nome === req.query.nome.toString().toLowerCase().trim() && m.bimestre === Number(req.query.bimestre))].notas = {
                 nota: req.body.notas?.nota ?? 0, 
                 conceito: req.body.notas?.conceito ?? 0
               };
             } else {
               user.materias_bimestral.push({
-                nome: req.query.nome.toString(),
+                nome: req.query.nome.toString().trim(),
                 bimestre: Number(req.query.bimestre),
                 notas: {
                   nota: req.body.notas?.nota ?? 0, 
