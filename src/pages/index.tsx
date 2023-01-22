@@ -258,8 +258,11 @@ const Page = () => {
                                   '@media (max-width: 768px)': {
                                     width: "75%",
                                   },
-                                } 
-                              })} padding={0} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
+                                },
+                                inner: {
+                                  padding: 0,
+                                }
+                              })} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
                                 <Text align="center"><Text weight={700} span color="dimmed">1° bimestre: </Text> {Number(m.notas[1]).toLocaleString('pt-BR')} <Text weight={700} span color="dimmed">2° bimestre: </Text> {Number(m.notas[2]).toLocaleString('pt-BR')}</Text>
                                 <Text align="center"><Text weight={700} span color="dimmed">3° bimestre: </Text> {Number(m.notas[3]).toLocaleString('pt-BR')} <Text weight={700} span color="dimmed">4° bimestre: </Text> {Number(m.notas[4]).toLocaleString('pt-BR')}</Text>
                                 <Divider my="sm"/>
