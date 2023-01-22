@@ -7,7 +7,8 @@ import {
   Header,
   Button,
   Modal,
-  Group
+  Group,
+  Text,
 } from '@mantine/core';
 
 import { createStyles } from '@mantine/core';
@@ -32,8 +33,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     },
     '.mantine-Modal-body': {
       textAlign: "justify",
-      textAlignLast: "center",
-      width: "90%",
+      textAlignLast: "center"
     },
   },
 }));
@@ -71,8 +71,7 @@ export default function HeaderPage() {
         withCloseButton 
         title={[<IconCookie style={{ verticalAlign: "middle" }}/>, " Cookies"]}
       >
-        Usamos cookies para salvar o seu login! Ao logar com sua conta no SUAP, você estará nos autorizando a utilizar estes cookies.
-        <br/>
+        <Text ml={20} mr={20}>Usamos cookies para salvar o seu login! Ao logar com sua conta no SUAP, você estará nos autorizando a utilizar estes cookies.</Text>
         <Group position="center">
           <Button radius="lg" style={{ marginTop: 30 }} size="xs" variant="default" color="dark" onClick={handleLogin}>Continuar</Button>
         </Group>
