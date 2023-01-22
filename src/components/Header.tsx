@@ -32,7 +32,8 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     },
     '.mantine-Modal-body': {
       textAlign: "justify",
-      maxWidth: "90%",
+      textAlignLast: "center",
+      width: "90%",
     },
   },
 }));
