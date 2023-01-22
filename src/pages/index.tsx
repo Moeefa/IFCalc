@@ -259,11 +259,9 @@ const Page = () => {
                                     width: "75%",
                                   },
                                 } 
-                              })} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
-                                <Text align="center"><Text weight={700} span color="dimmed">1° bimestre: </Text> {Number(m.notas[1]).toLocaleString('pt-BR')}</Text>
-                                <Text align="center"><Text weight={700} span color="dimmed">2° bimestre: </Text> {Number(m.notas[2]).toLocaleString('pt-BR')}</Text>
-                                <Text align="center"><Text weight={700} span color="dimmed">3° bimestre: </Text> {Number(m.notas[3]).toLocaleString('pt-BR')}</Text>
-                                <Text align="center"><Text weight={700} span color="dimmed">4° bimestre: </Text> {Number(m.notas[4]).toLocaleString('pt-BR')}</Text>
+                              })} padding={0} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
+                                <Text align="center"><Text weight={700} span color="dimmed">1° bimestre: </Text> {Number(m.notas[1]).toLocaleString('pt-BR')} <Text weight={700} span color="dimmed">2° bimestre: </Text> {Number(m.notas[2]).toLocaleString('pt-BR')}</Text>
+                                <Text align="center"><Text weight={700} span color="dimmed">3° bimestre: </Text> {Number(m.notas[3]).toLocaleString('pt-BR')} <Text weight={700} span color="dimmed">4° bimestre: </Text> {Number(m.notas[4]).toLocaleString('pt-BR')}</Text>
                                 <Divider my="sm"/>
                                 <Text align="center" size="xl">Média final: {Number(((((m.notas[1] || 0) * 2) + ((m.notas[2] || 0) * 2) + ((m.notas[3] || 0) * 3) +  ((m.notas[4] || 0) * 3)) / (2 + 2 + 3 + 3)).toFixed(2)).toLocaleString("pt-BR")}</Text>
                                 {Number(((((m.notas[1] || 0) * 2) + ((m.notas[2] || 0) * 2) + ((m.notas[3] || 0) * 3) +  ((m.notas[4] || 0) * 3)) / (2 + 2 + 3 + 3)).toFixed(2)) >= 6
