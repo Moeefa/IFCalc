@@ -21,7 +21,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
       backgroundColor: theme.colors.dark[6],
       width: "25%",
       '@media (max-width: 768px)': {
-        width: "85%",
+        width: "95%",
       },
     },
     '.mantine-Modal-title': {
@@ -32,6 +32,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     },
     '.mantine-Modal-body': {
       textAlign: "justify",
+      maxWidth: "90%",
     },
   },
 }));
