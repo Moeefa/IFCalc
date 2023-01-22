@@ -25,16 +25,16 @@ const useStyles = createStyles((theme, _params, getRef) => ({
       },
     },
     '.mantine-Modal-title': {
-      marginLeft: 35,
+      marginLeft: 25,
     },
     '.mantine-Modal-close': {
-      marginRight: 35,
+      marginRight: 25,
     },
     '.mantine-Modal-body': {
       textAlign: "justify",
-    }
+    },
   },
-});
+}));
 
 export default function HeaderPage() {
   const { classes } = useStyles();
