@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
-import '../shared/styles/global.css';
+import '../utils/styles/global.css';
 import Head from 'next/head';
+import Script from 'next/script';
 import { MantineProvider } from '@mantine/core';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -21,7 +22,41 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#2d89ef" />
       </Head>
-      <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        withGlobalStyles 
+        withNormalizeCSS
+        theme={{ 
+          colorScheme: 'dark',
+          defaultRadius: 'sm',
+          radius: {
+            sm: 14,
+          },
+          fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;",
+          fontFamilyMonospace: "Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono'",
+          colors: {
+            dark: [
+              '#ecedee',
+              '#acaebf',
+              '#8c8fa3',
+              '#5c5f66',
+              'RGBA(255, 255, 255, 0.15)',
+              '#16181a',
+              '#16181a',
+              '#000000', // default: #1d1e30
+              '#0c0d21',
+              '#01010a',
+            ],
+          }
+        }}
+      >
+        <Script>
+          {`;(function () {
+            var src = '//cdn.jsdelivr.net/npm/eruda';
+            if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+            document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+            document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+          })();`}
+        </Script>
         <Component {...pageProps}/>
         <Analytics/>
       </MantineProvider>

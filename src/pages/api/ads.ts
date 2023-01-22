@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import mongodb from "../../shared/libs/database";
-import Ads from "../../shared/models/Ads";
+import mongodb from "../../utils/libs/database";
+import Ads from "../../utils/schemas/Ads";
 
 type Data = {
   success: boolean;

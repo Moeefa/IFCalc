@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Carousel from '../components/Carousel';
 import Header from '../components/Header';
@@ -6,9 +5,10 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { setCookie, hasCookie, getCookie, deleteCookie } from 'cookies-next';
-import { useMediaQuery } from '@mantine/hooks';
+import { setCookie, hasCookie, getCookie } from 'cookies-next';
 import { IconTrash } from '@tabler/icons';
+import { IYear, IBim, IOpenState } from '../interfaces';
+import { IUsers } from '../utils/schemas/Users';
 import {
   NumberInput,
   ActionIcon,
@@ -17,13 +17,11 @@ import {
   Skeleton,
   Divider,
   Button,
-  Loader,
   Group,
   Modal,
   Tabs,
   Text,
   Box,
-  useMantineTheme
 } from '@mantine/core';
 
 import { createStyles } from '@mantine/core';
@@ -36,8 +34,10 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   average: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     textAlign: 'center',
-    padding: theme.spacing.xl,
-    borderRadius: theme.radius.md,
+    padding: 0,
+    paddingTop: 15,
+    paddingBottom: 15,
+    borderRadius: theme.radius.sm,
     marginTop: 15,
     width: "95%",
     minWidth: "5%",
@@ -51,7 +51,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     flexDirection: "column",
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     padding: theme.spacing.xl,
-    borderRadius: theme.radius.md,
+    borderRadius: theme.radius.sm,
     marginTop: 5,
     width: "95%",
     height: 97,
@@ -94,29 +94,15 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
 }));
 
-interface Opened {
-  type: number;
-  bimestre?: number;
-  nome?: string;
-}
-
 const Page = () => {
   const { classes } = useStyles();
   const router = useRouter();
-  const theme = useMantineTheme();
-  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
+  
+  const [data, setData] = useState<IUsers | "loading" | "failed">("loading");
+  const [year, setYear] = useState<IYear>({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
+  const [bim, setBim] = useState<IBim>({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
+  const [opened, setOpened] = useState<IOpenState | undefined>({ type: -1 });
 
-  const [data, setData] = useState(null);
-  const [ads, setAds] = useState(null);
-
-  /* if data var fetch fail */
-  const [axiosFailed, setAxiosFailed] = useState(false);
-  
-  const [year, setYear] = useState({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
-  const [bim, setBim] = useState({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
-  
-  const [opened, setOpened] = useState<Opened>({ type: -1, bimestre: -1, nome: "" });
-  
   useEffect(() => {
     if (!window.location.hash) return;
     let urlParams = new URLSearchParams(window.location.hash.slice(1));
@@ -129,8 +115,8 @@ const Page = () => {
     if (!hasCookie("suapObj")) return;
     axios
       .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token } })
-      .then((res) => setData(res.data))
-      .catch(() => setAxiosFailed(true));
+      .then((res) => setData(res.data.data))
+      .catch(() => setData("failed"));
   }, []);
 
   useEffect(() => {
@@ -141,38 +127,38 @@ const Page = () => {
     setYear({...year, avg: ((((year['1'] || 0) * 2) + ((year['2'] || 0) * 2) + ((year['3'] || 0) * 3) +  ((year['4'] || 0) * 3)) / (2 + 2 + 3 + 3)) });
   }, [year['1'], year['2'], year['3'], year['4']]);
 
-  const saveData = (type) => {
-    setData(null);
+  const saveData = (type: number) => {
+    setData("loading");
     switch (type) {
       case 0:
         axios
           .put('/api/user', { notas: year }, { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome: year.nome, type: 0 } })
-          .then((res) => setData(res.data))
-          .catch(() => setAxiosFailed(true));
+          .then((res) => setData(res.data.data))
+          .catch(() => setData("failed"));
         break;
       case 1:
         axios
           .put('/api/user', { notas: { nota: bim.nota, conceito: bim.conceito } }, { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome: bim.nome, bimestre: bim.bimestre, type: 1 } })
-          .then((res) => setData(res.data))
-          .catch(() => setAxiosFailed(true));
+          .then((res) => setData(res.data.data))
+          .catch(() => setData("failed"));
         break;
     }
   }; 
 
   const deleteData = (type: number, nome: string, bimestre?: number) => {
-    setData(null);
+    setData("loading");
     switch (type) {
       case 0:
         axios
           .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome, type } })
-          .then((res) => setData(res.data))
-          .catch(() => setAxiosFailed(true));
+          .then((res) => setData(res.data.data))
+          .catch(() => setData("failed"));
         break;
       case 1:
         axios
           .delete('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token, nome, bimestre, type } })
-          .then((res) => setData(res.data))
-          .catch(() => setAxiosFailed(true));
+          .then((res) => setData(res.data.data))
+          .catch(() => setData("failed"));
         break;
     }
   };
@@ -203,12 +189,15 @@ const Page = () => {
                     label="Nome da matéria"
                     description="Insira o nome da matéria para salvar a sua nota na sua conta"
                     className={classes.nameinput}
+                    variant="filled"
+                    radius="md"
                   />
                 </Group>
               : <></>}
             <Group position="center" spacing="lg">
               {[...Array(4)].map((_, i) => (
                 <NumberInput
+                  radius="md"
                   key={i + 1}
                   label={`Média do ${i + 1}º bimestre`}
                   max={10}
@@ -219,6 +208,7 @@ const Page = () => {
                   decimalSeparator=","
                   onChange={(value) => setYear({...year, [`${i + 1}`]: value })}
                   className={classes.numinput}
+                  variant="filled"
                 />
               ))}
             </Group>
@@ -250,13 +240,13 @@ const Page = () => {
               ? <>
                   <Divider my="sm"/>
                   <Group position="center">
-                    {axiosFailed
+                    {data === "failed"
                       ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
-                      : !data
-                        ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="md"/>
-                        : !data.data || (data.data && data.data.materias_anual && data.data.materias_anual.length <= 0)
+                      : data === "loading"
+                        ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="sm"/>
+                        : data.materias_anual.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
-                          : data.data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome) || a.bimestre - b.bimestre).map(m => (
+                          : data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome)).map(m => (
                             <>
                               <Modal styles={(theme) => ({
                                 modal: {
@@ -295,17 +285,20 @@ const Page = () => {
             {hasCookie("suapObj")
               ? <Group style={{ marginBottom: 30 }} position="center">
                   <TextInput
+                    radius="md"
                     value={bim.nome}
                     onChange={(event) => setBim({...bim, nome: event.currentTarget.value})}
                     placeholder="Matemática"
                     label="Nome da matéria"
                     description="Insira o nome da matéria"
+                    variant="filled"
                     style={{
                       display: "inline-block",
                     }}
                   />
 
                   <NumberInput
+                    radius="md"
                     onChange={(value) => setBim({...bim, bimestre: value})}
                     label="Bimestre"
                     description="Insira o bimestre da matéria"
@@ -313,6 +306,7 @@ const Page = () => {
                     min={1}
                     placeholder="1"
                     step={1}
+                    variant="filled"
                     style={{
                       width: 150,
                       display: "inline-block",
@@ -322,6 +316,7 @@ const Page = () => {
               : <></>}
             <Group position="center" spacing="lg">
               <NumberInput
+                radius="md"
                 label="Nota da avaliação"
                 max={10}
                 min={0}
@@ -331,9 +326,11 @@ const Page = () => {
                 decimalSeparator=","
                 onChange={(value) => setBim({...bim, nota: value})}
                 className={classes.numinput}
+                variant="filled"
               />
 
               <NumberInput
+                radius="md"
                 label="Conceito"
                 max={2}
                 min={0}
@@ -343,6 +340,7 @@ const Page = () => {
                 decimalSeparator=","
                 onChange={(value) => setBim({...bim, conceito: value})}
                 className={classes.numinput}
+                variant="filled"
               />
             </Group>
 
@@ -354,11 +352,18 @@ const Page = () => {
 
             <Group position="center">
               <Box className={classes.average}>
-                <Text size="xl">Média do bimestre: {Number(bim.avg.toFixed(2)).toLocaleString("pt-BR")}</Text>
+                <Text size="xl">Média bimestral: {Number(bim.avg.toFixed(2)).toLocaleString("pt-BR")}</Text>
                 <Divider my="sm"/>
                 {Number(bim.avg.toFixed(2)) >= 6
                   ? <Text variant="gradient" size="xl" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>Aprovado</Text> 
-                  : <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>}
+                  : <>
+                      <Text variant="gradient" size="xl" gradient={{ from: 'red', to: 'pink', deg: 45 }}>Reprovado</Text>
+                      <Text size="sm">
+                        {(bim.nota === 0 || Number((6 - bim.avg).toFixed(2)) > 2)
+                          ? <>Nota necessária na avaliação: {Number(((6 - ((bim.nota || 0) * 0.8)) / 0.8).toFixed(2)).toLocaleString("pt-BR")}</>
+                          : <>Nota necessária no conceito: {Number((6 - bim.avg).toFixed(2)).toLocaleString("pt-BR")}</>}
+                      </Text>
+                    </>}
               </Box>
               <br/>
               <Text size="xs" className={classes.warntext}>Se houver mais de 1 avaliação, some as notas e divida o resultado pela quantia de avaliações</Text>
@@ -368,13 +373,13 @@ const Page = () => {
               ? <>
                   <Divider my="sm"/>
                   <Group position="center">
-                    {axiosFailed
+                    {data === "failed"
                       ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
-                      : !data
-                        ? <Skeleton className={classes.skeleton} radius="md"/>
-                        : !data.data || (data.data && data.data.materias_bimestral && data.data.materias_bimestral.length <= 0)
+                      : data === "loading"
+                        ? <Skeleton className={classes.skeleton} radius="sm"/>
+                        : data.materias_bimestral?.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
-                          : data.data.materias_bimestral.sort((a, b) => a.nome.localeCompare(b.nome)).map(m => (
+                          : data.materias_bimestral.sort((a, b) => a.nome.localeCompare(b.nome) || a.bimestre - b.bimestre).map(m => (
                             <>
                               <Modal styles={(theme) => ({
                                 modal: {

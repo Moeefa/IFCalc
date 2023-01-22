@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import mongodb from "../../shared/libs/database";
-import Users from "../../shared/models/User";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import mongodb from "../../utils/libs/database";
+import Users, { IUsers } from "../../utils/schemas/Users";
 import axios from "axios";
 
 type Data = {
   success: boolean;
-  data?: unknown;
+  data?: IUsers | null;
   message?: string;
 };
 
@@ -15,9 +15,9 @@ enum Type {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  if (!req.query.token) return res.status(400).json({ success: false, message: "Missing id query" });
-  
-  const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { headers: { Authorization: "Bearer " + req.query.token } });
+  if (!req.query.token) return res.status(400).json({ success: false, message: "Missing token query" });
+
+  const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
   
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
@@ -49,8 +49,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
                 nome: req.query.nome.toString(),
                 bimestre: Number(req.query.bimestre),
                 notas: { 
-                  nota: req.body?.notas?.nota ?? 0, 
-                  conceito: req.body?.notas?.conceito ?? 0
+                  nota: req.body.notas?.nota ?? 0, 
+                  conceito: req.body.notas?.conceito ?? 0
                 }
               }] : []
         });

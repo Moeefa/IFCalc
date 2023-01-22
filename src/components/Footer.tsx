@@ -12,7 +12,7 @@ export default function FooterPage() {
     <Footer 
       height={65}
       sx={(theme) => ({
-        backgroundColor: theme.colors.dark[9]
+        backgroundColor: "#141517"
       })}
       p="xs"
     >

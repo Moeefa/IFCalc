@@ -21,13 +21,14 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    borderRadius: theme.radius.md,
-    backgroundColor: theme.colors.dark[9],
+    borderRadius: '14px',
+    backgroundImage: `linear-gradient(135deg, indigo 0%, cyan 100%)`,
+    //backgroundColor: theme.colors.dark[6],
   },
 
   image: {
     filter: 'brightness(0.5)',
-    borderRadius: theme.radius.md,
+    borderRadius: '14px',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
