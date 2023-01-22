@@ -250,12 +250,13 @@ const Page = () => {
                             <>
                               <Modal styles={(theme) => ({
                                 modal: {
+                                  backgroundColor: theme.colors.dark[6],
                                   width: "25%",
                                   '@media (max-width: 768px)': {
                                     width: "75%",
                                   },
                                 } 
-                              })} radius="md" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
+                              })} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
                                 <Text align="center"><Text weight={700} span color="dimmed">1° bimestre: </Text> {Number(m.notas[1]).toLocaleString('pt-BR')}</Text>
                                 <Text align="center"><Text weight={700} span color="dimmed">2° bimestre: </Text> {Number(m.notas[2]).toLocaleString('pt-BR')}</Text>
                                 <Text align="center"><Text weight={700} span color="dimmed">3° bimestre: </Text> {Number(m.notas[3]).toLocaleString('pt-BR')}</Text>
@@ -383,12 +384,13 @@ const Page = () => {
                             <>
                               <Modal styles={(theme) => ({
                                 modal: {
+                                  backgroundColor: theme.colors.dark[6],
                                   width: "25%",
                                   '@media (max-width: 768px)': {
                                     width: "75%",
                                   },
                                 } 
-                              })} radius="md" title={m.nome} centered opened={opened.type === 1 && opened.nome === m.nome && opened.bimestre === m.bimestre} onClose={() => setOpened({ type: -1 })}>
+                              })} radius="sm" title={m.nome} centered opened={opened.type === 1 && opened.nome === m.nome && opened.bimestre === m.bimestre} onClose={() => setOpened({ type: -1 })}>
                                 <Text align="center"><Text weight={700} span color="dimmed">Nota do bimestre: </Text> {Number(m.notas.nota).toLocaleString('pt-BR')}</Text>
                                 <Text align="center"><Text weight={700} span color="dimmed">Conceito: </Text> {Number(m.notas.conceito).toLocaleString('pt-BR')}</Text>
                                 <Divider my="sm"/>
