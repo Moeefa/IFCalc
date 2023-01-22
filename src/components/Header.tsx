@@ -32,7 +32,20 @@ export default function HeaderPage() {
 
   return (
     <>
-      <Modal radius="md" lockScroll opened={opened} onClose={() => setOpened(false)} centered withCloseButton title={[<IconCookie style={{ verticalAlign: "middle" }}/>, " Cookies"]}>
+      <Modal 
+        styles={(theme) => ({
+          modal: {
+            backgroundColor: theme.colors.dark[6],
+          }
+        })}
+        radius="sm" 
+        lockScroll 
+        opened={opened} 
+        onClose={() => setOpened(false)} 
+        centered 
+        withCloseButton 
+        title={[<IconCookie style={{ verticalAlign: "middle" }}/>, " Cookies"]}
+      >
         Usamos cookies para salvar o seu login! Ao logar com sua conta no SUAP, você estará nos autorizando a utilizar estes cookies.
         <br/>
         <Group position="center">
@@ -50,7 +63,7 @@ export default function HeaderPage() {
       >
         <Group sx={{ height: '100%' }} px={20} position="right">
           {!hasCookie("suapObj")
-            ? <Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} onClick={() => setOpened(true)}>Entrar</Button>
+            ? <Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} onClick={() => setOpened(true)}>Entrar com SUAP</Button>
             : <Button radius="lg" size="xs" variant="gradient" gradient={{ from: 'red', to: 'crimson' }} onClick={handleLogout}>Sair</Button>}
         </Group>
       </Header>
