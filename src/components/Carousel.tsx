@@ -21,14 +21,14 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    borderRadius: '14px',
+    borderRadius: theme.radius.sm,
     backgroundImage: `linear-gradient(135deg, indigo 0%, cyan 100%)`,
     //backgroundColor: theme.colors.dark[6],
   },
 
   image: {
     filter: 'brightness(0.5)',
-    borderRadius: '14px',
+    borderRadius: theme.radius.sm,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -85,7 +85,7 @@ function Card({ image, title, desc }) {
     <Paper
       shadow="md"
       p="xl"
-      radius="md"
+      radius="sm"
       className={classes.card}
     >
       {image 

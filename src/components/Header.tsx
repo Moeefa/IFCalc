@@ -35,6 +35,9 @@ export default function HeaderPage() {
       <Modal 
         styles={(theme) => ({
           modal: {
+            padding: 0,
+            paddingTop: 15,
+            paddingBottom: 15,
             backgroundColor: theme.colors.dark[6],
           }
         })}

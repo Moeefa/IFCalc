@@ -250,6 +250,9 @@ const Page = () => {
                             <>
                               <Modal styles={(theme) => ({
                                 modal: {
+                                  padding: 0,
+                                  paddingTop: 15,
+                                  paddingBottom: 15,
                                   backgroundColor: theme.colors.dark[6],
                                   width: "25%",
                                   '@media (max-width: 768px)': {
@@ -384,6 +387,9 @@ const Page = () => {
                             <>
                               <Modal styles={(theme) => ({
                                 modal: {
+                                  padding: 0,
+                                  paddingTop: 15,
+                                  paddingBottom: 15,
                                   backgroundColor: theme.colors.dark[6],
                                   width: "25%",
                                   '@media (max-width: 768px)': {
