@@ -134,7 +134,7 @@ const Page = () => {
     if (!hasCookie("suapObj")) return;
     axios
       .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token } })
-      .then((res) => setData(res.data.data))
+      .then((res) => setData({ ...res.data.data, ...res.admin }))
       .catch(() => setData("failed"));
   }, []);
 
@@ -184,9 +184,9 @@ const Page = () => {
   
   return (
     <>
-      {/*hasCookie("suapObj") 
+      {hasCookie("suapObj") && data.admin
         ? <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>{JSON.stringify(data, null, 2)}</pre>
-        : <></>*/}
+        : <></>}
 
       <AppShell header={<Header/>} footer={<Footer/>}>
         <Group position="center">
