@@ -1,9 +1,6 @@
 O IFCalc foi feito em Next.js no intuito de auxiliar os alunos a visualizarem suas notas.  
 Os alunos podem salvar, editar e excluir suas notas no banco de dados.
 
-Este é o branch de preview, aonde serão feitos testes e novas funcionalidades antes de 
-irem oficialmente ao branch principal.
-
 ## Autenticação/OAuth
 O Oauth do SUAP só funciona em campus de MT.  
 Pois cada IF possui SUAPs diferentes, utilizando OAuths diferentes.  
