@@ -117,7 +117,7 @@ const Page = () => {
   const { classes } = useStyles();
   const router = useRouter();
   
-  const [data, setData] = useState<IUsers & { admin?: boolean } | "loading" | "failed">("loading");
+  const [data, setData] = useState<IUsers | "loading" | "failed">("loading");
   const [year, setYear] = useState<IYear>({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
   const [bim, setBim] = useState<IBim>({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
   const [opened, setOpened] = useState<IOpenState | undefined>({ type: -1 });
@@ -134,7 +134,7 @@ const Page = () => {
     if (!hasCookie("suapObj")) return;
     axios
       .get('/api/user', { params: { token: JSON.parse(getCookie("suapObj").toString()).token } })
-      .then((res) => setData({ ...res.data.data, ...res.admin }))
+      .then((res) => setData(res.data.data))
       .catch(() => setData("failed"));
   }, []);
 
@@ -184,9 +184,9 @@ const Page = () => {
   
   return (
     <>
-      {hasCookie("suapObj") && data.admin
+      {/*hasCookie("suapObj")
         ? <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>{JSON.stringify(data, null, 2)}</pre>
-        : <></>}
+        : <></>*/}
 
       <AppShell header={<Header/>} footer={<Footer/>}>
         <Group position="center">
