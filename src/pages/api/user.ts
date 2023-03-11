@@ -3,13 +3,10 @@ import mongodb from "../../utils/libs/database";
 import Users, { IUsers } from "../../utils/schemas/Users";
 import axios from "axios";
 
-const ADMINS = ["2021171310652"];
-
 type Data = {
   success: boolean;
   data?: IUsers | null;
   message?: string;
-  admin?: boolean;
 };
 
 enum Type {
@@ -28,11 +25,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: null });
-      res.json({ success: true, admin: ADMINS.includes(resp.data.identificacao), data: user });
+      res.json({ success: true, data: user });
       break;
     case "PUT":
-      if (!req.query.nome) return res.status(202).json({ success: false, admin: ADMINS.includes(resp.data.identificacao), data: user, message: "Missing name query" });
-      if (!req.query.type) return res.status(202).json({ success: false, admin: ADMINS.includes(resp.data.identificacao), data: user, message: "Missing type query" });
+      if (!req.query.nome) return res.status(202).json({ success: false, data: user, message: "Missing name query" });
+      if (!req.query.type) return res.status(202).json({ success: false, data: user, message: "Missing type query" });
 
       if (!user) {
         const u = new Users({
@@ -58,7 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
               }] : []
         });
         await u.save();
-        res.status(201).json({ success: true, admin: ADMINS.includes(resp.data.identificacao), data: u });
+        res.status(201).json({ success: true, data: u });
       } else {
         switch (req.query.type) {
           case Type.Anual:
@@ -104,7 +101,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             break;
         };
         await user.save();
-        res.status(201).json({ success: true, admin: ADMINS.includes(resp.data.identificacao), data: user });
+        res.status(201).json({ success: true, data: user });
       };
       break;
     case "DELETE":
@@ -118,9 +115,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             user.materias_anual.splice(user.materias_anual.findIndex(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase()), 1);
             user.markModified("materias_anual");
             await user.save();
-            res.status(201).json({ success: true, admin: ADMINS.includes(resp.data.identificacao), data: user });
+            res.status(201).json({ success: true, data: user });
           } else {
-            res.status(304).json({ success: false, admin: ADMINS.includes(resp.data.identificacao), data: user });
+            res.status(304).json({ success: false, data: user });
           } 
           break;
         case Type.Bimestral:
@@ -128,9 +125,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             user.materias_bimestral.splice(user.materias_bimestral.findIndex(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase()), 1);
             user.markModified("materias_bimestral");
             await user.save();
-            res.status(201).json({ success: true, admin: ADMINS.includes(resp.data.identificacao), data: user });
+            res.status(201).json({ success: true, data: user });
           } else {
-            res.status(304).json({ success: false, admin: ADMINS.includes(resp.data.identificacao), data: user });
+            res.status(304).json({ success: false, data: user });
           }
           break;
       }
