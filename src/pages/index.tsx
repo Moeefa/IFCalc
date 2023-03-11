@@ -117,7 +117,7 @@ const Page = () => {
   const { classes } = useStyles();
   const router = useRouter();
   
-  const [data, setData] = useState<IUsers | "loading" | "failed">("loading");
+  const [data, setData] = useState<IUsers & { admin?: boolean } | "loading" | "failed">("loading");
   const [year, setYear] = useState<IYear>({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
   const [bim, setBim] = useState<IBim>({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
   const [opened, setOpened] = useState<IOpenState | undefined>({ type: -1 });
