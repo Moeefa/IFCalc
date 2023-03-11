@@ -9,6 +9,7 @@ type Data = {
   success: boolean;
   data?: IUsers | null;
   message?: string;
+  admin?: boolean;
 };
 
 enum Type {
