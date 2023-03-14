@@ -18,6 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (!req.query.token) return res.status(400).json({ success: false, message: "Missing token query" });
 
   const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
+  const mat = await axios.get(`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
   
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
@@ -25,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: null });
-      res.json({ success: true, data: user });
+      res.json({ success: true, data: { ...mat, ...user });
       break;
     case "PUT":
       if (!req.query.nome) return res.status(202).json({ success: false, data: user, message: "Missing name query" });
