@@ -40,14 +40,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
 
-  user.materias_anual = Array.from([...mat.data, ...user.materias_anual]
-    .reduce((acc, item) => acc.set(item.nome, item), new Map())
-    .values());
-
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: null });
-      res.json({ success: true, data: user });
+      res.json({ success: true, data: { ...user, materias_suap: mat.data } });
       break;
     case "PUT":
       if (!req.query.nome) return res.status(202).json({ success: false, data: user, message: "Missing name query" });
