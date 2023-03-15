@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 export interface IUsers {
   _id: string;
   materias_anual: {
+    suap: boolean;
     nome: string;
     notas: {
       [index: number]: number;
