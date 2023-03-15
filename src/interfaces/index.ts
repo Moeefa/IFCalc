@@ -18,3 +18,13 @@ export interface IOpenState {
   bimestre?: number;
   nome?: string;
 }
+
+/* Schemas interfaces */
+export interface ISuap {
+  materias_suap: {
+    nome: string;
+    notas: {
+      [index: number]: number;
+    };
+  }[];
+};
