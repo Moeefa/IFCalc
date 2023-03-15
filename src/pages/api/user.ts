@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return [ 
       ...a, 
       { 
+        suap: true,
         nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).trim(), 
         notas: {
           0: Number(b.nota_etapa_1.nota),
