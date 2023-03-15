@@ -2,12 +2,17 @@ import mongoose from "mongoose";
 
 export interface IUsers {
   _id: string;
+  materias_suap: {
+    nome: string;
+    notas: {
+      [index: number]: number;
+    };
+  }[];
   materias_anual: {
     nome: string;
     notas: {
       [index: number]: number;
     };
-    suap?: boolean;
   }[];
   materias_bimestral: {
     nome: string;
