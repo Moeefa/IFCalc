@@ -36,14 +36,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       },
     ];
   }, []);
-
+  
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
+  let mat_transform = Array.from(
+    [...mat.data, ...user?.materias_anual || []]
+      .reduce((acc, item) => acc.set(item._id, item), new Map())
+       .values());
 
   switch (req.method) {
     case "GET":
-      if (!user) return res.json({ success: false, data: null });
-      res.json({ success: true, data: { ...user, materias_suap: mat.data } });
+      if (!user) return res.json({ success: false, data: mat.data });
+
+      user.materias_anual = mat_transform;
+      res.json({ success: true, data: user });
       break;
     case "PUT":
       if (!req.query.nome) return res.status(202).json({ success: false, data: user, message: "Missing name query" });
@@ -73,6 +79,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
               }] : []
         });
         await u.save();
+
+        u.materias_anual = mat_transform;
         res.status(201).json({ success: true, data: u });
       } else {
         switch (req.query.type) {
@@ -119,6 +127,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             break;
         };
         await user.save();
+
+        user.materias_anual = mat_transform;
         res.status(201).json({ success: true, data: user });
       };
       break;
@@ -133,8 +143,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             user.materias_anual.splice(user.materias_anual.findIndex(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase()), 1);
             user.markModified("materias_anual");
             await user.save();
+
+            user.materias_anual = mat_transform;
             res.status(201).json({ success: true, data: user });
           } else {
+            user.materias_anual = mat_transform;
             res.status(304).json({ success: false, data: user });
           } 
           break;
@@ -143,8 +156,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             user.materias_bimestral.splice(user.materias_bimestral.findIndex(m => m.nome.toLowerCase() === req.query.nome.toString().toLowerCase()), 1);
             user.markModified("materias_bimestral");
             await user.save();
+
+            user.materias_anual = mat_transform;
             res.status(201).json({ success: true, data: user });
           } else {
+            user.materias_anual = mat_transform;
             res.status(304).json({ success: false, data: user });
           }
           break;
