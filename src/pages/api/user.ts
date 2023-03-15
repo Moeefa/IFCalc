@@ -22,6 +22,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
+  if (!user) {
+    user = {
+      materias_anuais: data.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
+        return [ 
+          ...a, 
+          { 
+            nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).trim(), 
+            notas: {
+              0: Number(b.nota_etapa_1.nota),
+              1: Number(b.nota_etapa_2.nota),
+              2: Number(b.nota_etapa_3.nota),
+              3: Number(b.nota_etapa_4.nota),
+            },
+          },
+        ];
+      }, []),
+    };
+  } else {
+    user.materias_anuais = [ ...mat, ...user.materias_anuais ];
+  };
 
   switch (req.method) {
     case "GET":
