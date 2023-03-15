@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
   let mat = await axios.get(`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
-  mat = mat.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
+  mat = mat.data.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
     return [ 
       ...a, 
       { 
