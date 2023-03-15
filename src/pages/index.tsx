@@ -265,7 +265,7 @@ const Page = () => {
                         ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="sm"/>
                         : data.materias_anual.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
-                          : data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome)).map(m => (
+                          : data.materias_anual.sort((a, b) => a.suap === b.suap ? 0 : a.suap ? 1 : -1 || a.nome.localeCompare(b.nome)).map(m => (
                             <>
                               <Modal className={classes.subjectModal} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
                                 <Text align="center"><Text weight={700} span color="dimmed">1° bimestre: </Text> {Number(m.notas[1]).toLocaleString('pt-BR')} <Text ml={15} weight={700} span color="dimmed">2° bimestre: </Text> {Number(m.notas[2]).toLocaleString('pt-BR')}</Text>
