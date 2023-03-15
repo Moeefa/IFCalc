@@ -40,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
   let mat_transform = Array.from(
-    [...mat.data, ...user?.materias_anual || []]
+    [...mat.data, ...user.materias_anual]
       .reduce((acc, item) => acc.set(item.nome, item), new Map())
        .values());
 
