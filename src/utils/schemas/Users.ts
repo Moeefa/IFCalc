@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
-import { ISuap } from "../../interfaces";
 
-export interface IUsers extends ISuap {
+export interface IUsers {
   _id: string;
   materias_anual: {
     nome: string;
     notas: {
       [index: number]: number;
     };
+    suap: boolean;
   }[];
   materias_bimestral: {
     nome: string;
