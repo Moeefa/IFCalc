@@ -39,16 +39,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
-  let mat_transform = Array.from(
-    [...mat.data, ...user.materias_anual]
-      .reduce((acc, item) => acc.set(item.nome, item), new Map())
-       .values());
-
+  
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: mat.data });
 
-      user.materias_anual = mat_transform;
+      user.materias_anual = Array.from(
+        [...mat.data, ...user.materias_anual]
+          .reduce((acc, item) => acc.set(item.nome, item), new Map())
+          .values());
       res.json({ success: true, data: user });
       break;
     case "PUT":
@@ -80,7 +79,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         });
         await u.save();
 
-        u.materias_anual = mat_transform;
+        u.materias_anual = Array.from(
+          [...mat.data, ...user.materias_anual]
+            .reduce((acc, item) => acc.set(item.nome, item), new Map())
+            .values());
         res.status(201).json({ success: true, data: u });
       } else {
         switch (req.query.type) {
@@ -128,7 +130,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         };
         await user.save();
 
-        user.materias_anual = mat_transform;
+        user.materias_anual = Array.from(
+          [...mat.data, ...user.materias_anual]
+            .reduce((acc, item) => acc.set(item.nome, item), new Map())
+            .values());
         res.status(201).json({ success: true, data: user });
       };
       break;
@@ -144,10 +149,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             user.markModified("materias_anual");
             await user.save();
 
-            user.materias_anual = mat_transform;
+            user.materias_anual = Array.from(
+              [...mat.data, ...user.materias_anual]
+                .reduce((acc, item) => acc.set(item.nome, item), new Map())
+                .values());
             res.status(201).json({ success: true, data: user });
           } else {
-            user.materias_anual = mat_transform;
+            user.materias_anual = Array.from(
+              [...mat.data, ...user.materias_anual]
+                .reduce((acc, item) => acc.set(item.nome, item), new Map())
+                .values());
             res.status(304).json({ success: false, data: user });
           } 
           break;
@@ -157,10 +168,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             user.markModified("materias_bimestral");
             await user.save();
 
-            user.materias_anual = mat_transform;
+            user.materias_anual = Array.from(
+              [...mat.data, ...user.materias_anual]
+                .reduce((acc, item) => acc.set(item.nome, item), new Map())
+                .values());
             res.status(201).json({ success: true, data: user });
           } else {
-            user.materias_anual = mat_transform;
+            user.materias_anual = Array.from(
+              [...mat.data, ...user.materias_anual]
+                .reduce((acc, item) => acc.set(item.nome, item), new Map())
+                .values());
             res.status(304).json({ success: false, data: user });
           }
           break;
