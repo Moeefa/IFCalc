@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
-  user.materias_anuais = [ ...mat, ...user.materias_anuais ];
+  user.materias_anual = [ ...mat, ...user.materias_anuais ];
 
   switch (req.method) {
     case "GET":
