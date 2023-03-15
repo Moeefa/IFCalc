@@ -7,7 +7,7 @@ export interface IUsers {
     notas: {
       [index: number]: number;
     };
-    suap: boolean;
+    suap?: boolean;
   }[];
   materias_bimestral: {
     nome: string;
