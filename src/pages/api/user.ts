@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
   let mat = await axios.get(`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
-  mat = mat.data.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
+  mat.data = mat.data.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
     return [ 
       ...a, 
       { 
@@ -40,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: null });
-      user.materias_anual = [ ...mat, ...user.materias_anual ];
+      user.materias_anual = [ ...mat.data, ...user.materias_anual ];
       res.json({ success: true, data: user });
       break;
     case "PUT":
