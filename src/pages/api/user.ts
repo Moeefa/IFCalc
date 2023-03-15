@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       ...a, 
       { 
         suap: true,
-        nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).trim(), 
+        nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).replace(/(III|II)/g, "").trim(), 
         notas: {
           0: Number(b.nota_etapa_1.nota),
           1: Number(b.nota_etapa_2.nota),
@@ -41,7 +41,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: null });
-      user.materias_anual = [ ...mat.data, ...user.materias_anual ];
+      user.materias_anual = Array.from([...mat.data, ...user.materias_anual]
+        .reduce((acc, item) => acc.set(item._id, item), new Map())
+        .values());
       res.json({ success: true, data: user });
       break;
     case "PUT":
