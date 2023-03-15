@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   let user = await Users.findOne({ _id: resp.data.identificacao });
   let mat_transform = Array.from(
     [...mat.data, ...user?.materias_anual || []]
-      .reduce((acc, item) => acc.set(item._id, item), new Map())
+      .reduce((acc, item) => acc.set(item.nome, item), new Map())
        .values());
 
   switch (req.method) {
