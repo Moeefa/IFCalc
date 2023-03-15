@@ -280,7 +280,7 @@ const Page = () => {
                                 <div style={{ flex: 1, display: "flex" }}>
                                   <Text className={classes.wraptext}>{m.nome}</Text>
                                   <div style={{ display: "flex", gap: 12, marginLeft: 4 }}>
-                                    <ActionIcon onClick={() => deleteData(0, m.nome)} color="red" radius="xl" variant="light"><IconTrash size={18}/></ActionIcon>
+                                    {m.suap ? <></> : <ActionIcon onClick={() => deleteData(0, m.nome)} color="red" radius="xl" variant="light"><IconTrash size={18}/></ActionIcon>}
                                     <Button onClick={() => setOpened({ nome: m.nome, type: 0 })} radius="lg" size="xs" variant="default" color="dark">Ver nota</Button>
                                   </div>
                                 </div>
