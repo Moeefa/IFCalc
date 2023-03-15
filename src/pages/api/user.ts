@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     case "GET":
       if (!user) return res.json({ success: false, data: null });
       user.materias_anual = Array.from([...mat.data, ...user.materias_anual]
-        .reduce((acc, item) => acc.set(item._id, item), new Map())
+        .reduce((acc, item) => acc.set(item.nome, item), new Map())
         .values());
       res.json({ success: true, data: user });
       break;
