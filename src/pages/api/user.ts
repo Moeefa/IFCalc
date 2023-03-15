@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   let user = await Users.findOne({ _id: resp.data.identificacao });
   if (!user) {
     user = {
-      materias_anuais: data.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
+      materias_anual: data.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
         return [ 
           ...a, 
           { 
