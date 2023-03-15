@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: null });
-      user.materias_anual = [ ...mat, ...user.materias_anuais ];
+      user.materias_anual = [ ...mat, ...user.materias_anual ];
       res.json({ success: true, data: user });
       break;
     case "PUT":
