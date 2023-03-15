@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: null });
-      res.json({ success: true, data: { ...mat, ...user } });
+      res.json({ success: true, data: user });
       break;
     case "PUT":
       if (!req.query.nome) return res.status(202).json({ success: false, data: user, message: "Missing name query" });
