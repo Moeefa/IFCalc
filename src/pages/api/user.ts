@@ -18,8 +18,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (!req.query.token) return res.status(400).json({ success: false, message: "Missing token query" });
 
   const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
-  const mat = await axios.get(`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
-  
+  let mat = await axios.get(`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
+  mat = mat.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
+    return [ 
+      ...a, 
+      { 
+        nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).trim(), 
+        notas: {
+          0: Number(b.nota_etapa_1.nota),
+          1: Number(b.nota_etapa_2.nota),
+          2: Number(b.nota_etapa_3.nota),
+          3: Number(b.nota_etapa_4.nota),
+        },
+      },
+    ];
+  }, []);
+
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
   
