@@ -22,11 +22,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   
   await mongodb();
   let user = await Users.findOne({ _id: resp.data.identificacao });
-  user.materias_anual = [ ...mat, ...user.materias_anuais ];
-
+  
   switch (req.method) {
     case "GET":
       if (!user) return res.json({ success: false, data: null });
+      user.materias_anual = [ ...mat, ...user.materias_anuais ];
       res.json({ success: true, data: user });
       break;
     case "PUT":
