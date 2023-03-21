@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   
   switch (req.method) {
     case "GET":
-      if (!user) return res.json({ success: false, data: mat.data });
+      if (!user) return res.json({ success: false, data: { _id: resp.data.identificacao, materias_anual: mat?.data || [] });
 
       user.materias_anual = Array.from(
         [...mat.data, ...user.materias_anual]
