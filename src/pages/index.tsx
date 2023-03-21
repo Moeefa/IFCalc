@@ -184,7 +184,7 @@ const Page = () => {
   
   return (
     <>
-      {/*hasCookie("suapObj") 
+      {/*hasCookie("suapObj")
         ? <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>{JSON.stringify(data, null, 2)}</pre>
         : <></>*/}
 
@@ -263,9 +263,9 @@ const Page = () => {
                       ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
                       : data === "loading"
                         ? <Skeleton style={{ height: 75 }} className={classes.skeleton} radius="sm"/>
-                        : data.materias_anual.length <= 0
+                        : !!data?.materias_anual && data.materias_anual.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
-                          : data.materias_anual.sort((a, b) => a.nome.localeCompare(b.nome)).map(m => (
+                          : data.materias_anual.sort((a, b) => a.suap === b.suap ? 0 : a.suap ? 1 : -1 || a.nome.localeCompare(b.nome)).map(m => (
                             <>
                               <Modal className={classes.subjectModal} radius="sm" title={m.nome} centered opened={opened.type === 0 && opened.nome === m.nome} onClose={() => setOpened({ type: -1 })}>
                                 <Text align="center"><Text weight={700} span color="dimmed">1° bimestre: </Text> {Number(m.notas[1]).toLocaleString('pt-BR')} <Text ml={15} weight={700} span color="dimmed">2° bimestre: </Text> {Number(m.notas[2]).toLocaleString('pt-BR')}</Text>
@@ -280,7 +280,7 @@ const Page = () => {
                                 <div style={{ flex: 1, display: "flex" }}>
                                   <Text className={classes.wraptext}>{m.nome}</Text>
                                   <div style={{ display: "flex", gap: 12, marginLeft: 4 }}>
-                                    <ActionIcon onClick={() => deleteData(0, m.nome)} color="red" radius="xl" variant="light"><IconTrash size={18}/></ActionIcon>
+                                    {m.suap ? <></> : <ActionIcon onClick={() => deleteData(0, m.nome)} color="red" radius="xl" variant="light"><IconTrash size={18}/></ActionIcon>}
                                     <Button onClick={() => setOpened({ nome: m.nome, type: 0 })} radius="lg" size="xs" variant="default" color="dark">Ver nota</Button>
                                   </div>
                                 </div>
@@ -387,7 +387,7 @@ const Page = () => {
                       ? <Text>Não consegui obter os dados, recarregue a página para tentar novamente, se persistir entre em contato: <Text href="mailto:luizhenrique.xinaider.ifmt@gmail.com" variant="link" component={Link}>luizhenrique.xinaider.ifmt@gmail.com</Text></Text>
                       : data === "loading"
                         ? <Skeleton className={classes.skeleton} radius="sm"/>
-                        : data.materias_bimestral?.length <= 0
+                        : !!data?.materias_bimestral && data.materias_bimestral.length <= 0
                           ? <Text>Você não tem notas salvas</Text>
                           : data.materias_bimestral.sort((a, b) => a.nome.localeCompare(b.nome) || a.bimestre - b.bimestre).map(m => (
                             <>

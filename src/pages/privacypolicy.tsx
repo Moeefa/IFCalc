@@ -29,7 +29,7 @@ const Privacy = () => {
           <br/><br/>
           <Title order={3} align="center">Coleta e uso de dados do usuário</Title>
           Ao iniciar uma sessão com o SUAP em nosso site, coletamos apenas 
-          informações básicas, como o número de matrícula para podermos identificar 
+          informações básicas, como suas matérias e as respectivas notas bimestrais, o número de matrícula para podermos identificar 
           o usuário e procurar por notas salvas em nosso banco de dados para facilitar a utilização.
           <br/><br/>
           Ao clicar no botão de salvar quando estiver iniciado uma sessão com o SUAP, as notas do usuário 

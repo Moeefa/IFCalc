@@ -6,7 +6,8 @@ export interface IUsers {
     nome: string;
     notas: {
       [index: number]: number;
-    }
+    };
+    suap?: boolean;
   }[];
   materias_bimestral: {
     nome: string;
