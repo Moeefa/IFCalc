@@ -1,37 +1,14 @@
-import Link from 'next/link';
-import Carousel from '../components/Carousel';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { setCookie, hasCookie, getCookie } from 'cookies-next';
-import { IconTrash } from '@tabler/icons';
-import { IYear, IBim, IOpenState } from '../interfaces';
 import { IUsers } from '../utils/schemas/Users';
-import {
-  NumberInput,
-  ActionIcon,
-  TextInput,
-  AppShell,
-  Skeleton,
-  Divider,
-  Button,
-  Group,
-  Modal,
-  Tabs,
-  Text,
-  Box,
-} from '@mantine/core';
 
 const Page = () => {
   const router = useRouter();
   
   const [data, setData] = useState<IUsers | "loading" | "failed">("loading");
-  const [year, setYear] = useState<IYear>({ nome: '', '1': 0, '2': 0, '3': 0, '4': 0, avg: 0 });
-  const [bim, setBim] = useState<IBim>({ nome: '', bimestre: 1, nota: 0, conceito: 0, avg: 0 });
-  const [opened, setOpened] = useState<IOpenState | undefined>({ type: -1 });
-
+  
   useEffect(() => {
     if (!window.location.hash) return;
     let urlParams = new URLSearchParams(window.location.hash.slice(1));
