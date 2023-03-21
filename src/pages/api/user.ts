@@ -14,15 +14,23 @@ enum Type {
   BIMESTRAL = "1",
 }
 
+function removeRedundance(a: any[], b: any[]) {
+  return Array.from(
+    [...a, ...b]
+      .reduce((acc, item) => acc.set(item.nome, item), new Map())
+      .values());
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   const { token, nome, type, bimestre } = req.query;
 
   if (!token) return res.status(400).json({ success: false, message: "Missing token query" });
 
-  const resp = await axios.get('https://suap.ifmt.edu.br/api/eu/', { timeout: 10_000, headers: { Authorization: "Bearer " + token } });
+  const [resp, mat] = await Promise.all([
+    axios.get(`https://suap.ifmt.edu.br/api/eu/`, { timeout: 10_000, headers: { Authorization: "Bearer " + token } }),
+    axios.get(`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, { timeout: 10_000, headers: { Authorization: "Bearer " + token } })
+  ]);
 
-  /* Pega informações das matérias através do SUAP e transforma os objetos para serem compatíveis */
-  let mat = await axios.get(`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, { timeout: 10_000, headers: { Authorization: "Bearer " + req.query.token } });
   mat.data = mat.data.filter(a => a.situacao !== "Transferido").reduce((a, b) => {
     return [ 
       ...a, 
@@ -44,12 +52,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   
   switch (req.method) {
     case "GET":
-      if (!user) return res.json({ success: false, data: { _id: resp.data.identificacao, materias_anual: mat?.data || [], materias_bimestral: [] } });
+      if (!user) return res.json({ 
+        success: false, 
+        data: {
+          _id: resp.data.identificacao, 
+          materias_anual: mat?.data || [], 
+          materias_bimestral: [] 
+        } 
+      });
 
-      user.materias_anual = Array.from(
-        [...mat.data, ...user.materias_anual]
-          .reduce((acc, item) => acc.set(item.nome, item), new Map())
-          .values());
+      user.materias_anual = removeRedundance(mat.data, user.materias_anual);
       res.json({ success: true, data: user });
       break;
     case "PUT":
@@ -81,10 +93,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         });
         await u.save();
 
-        u.materias_anual = Array.from(
-          [...mat.data, ...user.materias_anual]
-            .reduce((acc, item) => acc.set(item.nome, item), new Map())
-            .values());
+        u.materias_anual = removeRedundance(mat.data, user.materias_anual);
         res.status(201).json({ success: true, data: u });
       } else {
         switch (type) {
@@ -132,10 +141,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         };
         await user.save();
 
-        user.materias_anual = Array.from(
-          [...mat.data, ...user.materias_anual]
-            .reduce((acc, item) => acc.set(item.nome, item), new Map())
-            .values());
+        user.materias_anual = removeRedundance(mat.data, user.materias_anual);
         res.status(201).json({ success: true, data: user });
       };
       break;
@@ -151,16 +157,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             user.markModified("materias_anual");
             await user.save();
 
-            user.materias_anual = Array.from(
-              [...mat.data, ...user.materias_anual]
-                .reduce((acc, item) => acc.set(item.nome, item), new Map())
-                .values());
+            user.materias_anual = removeRedundance(mat.data, user.materias_anual);
             res.status(201).json({ success: true, data: user });
           } else {
-            user.materias_anual = Array.from(
-              [...mat.data, ...user.materias_anual]
-                .reduce((acc, item) => acc.set(item.nome, item), new Map())
-                .values());
+            user.materias_anual = removeRedundance(mat.data, user.materias_anual);
             res.status(304).json({ success: false, data: user });
           } 
           break;
@@ -170,16 +170,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             user.markModified("materias_bimestral");
             await user.save();
 
-            user.materias_anual = Array.from(
-              [...mat.data, ...user.materias_anual]
-                .reduce((acc, item) => acc.set(item.nome, item), new Map())
-                .values());
+            user.materias_anual = removeRedundance(mat.data, user.materias_anual);
             res.status(201).json({ success: true, data: user });
           } else {
-            user.materias_anual = Array.from(
-              [...mat.data, ...user.materias_anual]
-                .reduce((acc, item) => acc.set(item.nome, item), new Map())
-                .values());
+            user.materias_anual = removeRedundance(mat.data, user.materias_anual);
             res.status(304).json({ success: false, data: user });
           }
           break;
