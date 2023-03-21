@@ -14,7 +14,7 @@ enum Type {
   BIMESTRAL = "1",
 }
 
-function removeRedundance(a: any[], b: any[]) {
+function removeRedundance(a: IUsers['materias_anual'], b: IUsers['materias_anual']) {
   return Array.from(
     [...a, ...b]
       .reduce((acc, item) => acc.set(item.nome, item), new Map())
