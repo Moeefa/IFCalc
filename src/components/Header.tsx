@@ -71,7 +71,7 @@ export default function HeaderPage() {
         withCloseButton 
         title={[<IconCookie style={{ verticalAlign: "middle" }}/>, " Cookies"]}
       >
-        <Text ml={20} mr={20}>Usamos cookies para salvar o seu login! Ao logar com sua conta no SUAP, você estará nos autorizando a utilizar estes cookies.</Text>
+        <Text ml={20} mr={20}>Usamos cookies para salvar o seu login! Ao logar com sua conta no SUAP, você estará nos autorizando a utilizar estes cookies e a nossa política de privacidade.</Text>
         <Group position="center">
           <Button radius="lg" style={{ marginTop: 30 }} size="xs" variant="default" color="dark" onClick={handleLogin}>Continuar</Button>
         </Group>
