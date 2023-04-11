@@ -38,10 +38,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         suap: true,
         nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).replace(/(III|II)/g, "").trim(), 
         notas: {
-          1: Number(b.nota_etapa_1.nota.replace(",", ".")),
-          2: Number(b.nota_etapa_2.nota.replace(",", ".")),
-          3: Number(b.nota_etapa_3.nota.replace(",", ".")),
-          4: Number(b.nota_etapa_4.nota.replace(",", ".")),
+          1: Number(b.nota_etapa_1.nota?.replace(",", ".")),
+          2: Number(b.nota_etapa_2.nota?.replace(",", ".")),
+          3: Number(b.nota_etapa_3.nota?.replace(",", ".")),
+          4: Number(b.nota_etapa_4.nota?.replace(",", ".")),
         },
       },
     ];
