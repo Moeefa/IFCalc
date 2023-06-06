@@ -4,8 +4,8 @@ import { Roboto } from 'next/font/google'
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
 export const metadata = {
-  title: 'Portfolio',
-  description: 'Welcome to my beautiful portfolio!',
+  title: 'IFCalc',
+  description: 'O IFCalc foi criado no intuito de auxiliar os alunos a visualizarem suas notas e aprovações. Os alunos podem salvar, editar e excluir suas notas no banco de dados.',
 }
 
 export default function RootLayout({
