@@ -11,6 +11,9 @@ export default async function Header() {
   return (
     <>
       <h2>Teste2!</h2>
+      
+      {!!session ? <h1>Teste3</h1> : <h1>Teste3</h1>}
+
       <header className="fixed w-full h-5 top-full bg-blue-200 backdrop-blur">
         <div className="float-right">
           {!!session ? <h1>Teste3</h1> : <h1>Teste3</h1>}
