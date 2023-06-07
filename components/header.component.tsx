@@ -11,7 +11,7 @@ export default async function Header() {
   return (
     <>      
       <header className="fixed w-full h-10 top-0 bg-blue-100 backdrop-blur">
-        <div className="flex justify-center">
+        <div className="flex items-center">
           <div className="float-right">
             {!!session ? <LogoutButton/> : <LoginButton/>}
           </div>
