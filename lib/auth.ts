@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
       return baseUrl
     },
     async session({ session, token, user }) {
-      session.user?.id = token.sub;
+      if (session.user) session.user.id = token.sub;
       session.accessToken = token.accessToken;
       
       return session
