@@ -9,10 +9,13 @@ export default async function Header() {
   const session = await getServerSession(authOptions);
 
   return (
-    <header className="fixed w-full h-5 top-full bg-blue-200 backdrop-blur">
-      <div className="float-right">
-        {!!session ? <LogoutButton/> : <LoginButton/>}
-      </div>
-    </header>
+    <>
+      <h2>Teste2!</h2>
+      <header className="fixed w-full h-5 top-full bg-blue-200 backdrop-blur">
+        <div className="float-right">
+          {!!session ? <LogoutButton/> : <LoginButton/>}
+        </div>
+      </header>
+    </>
   );
 }
