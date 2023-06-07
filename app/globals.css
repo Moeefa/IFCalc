@@ -16,9 +16,11 @@
   }
 }
 
-body {
+body, html {
   height: 100%;
   width: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
