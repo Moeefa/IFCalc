@@ -10,7 +10,7 @@ export default async function Header() {
 
   return (
     <>      
-      <header className="fixed items-center w-full h-10 top-0 bg-transparent backdrop-blur">
+      <header className="fixed self-center content-center items-center w-full h-10 top-0 bg-transparent backdrop-blur">
         <div className="float-right">
           {!!session ? <LogoutButton/> : <LoginButton/>}
         </div>
