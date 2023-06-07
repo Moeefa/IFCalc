@@ -14,7 +14,7 @@ export default async function Header() {
       
       {!!session ? <LogoutButton/> : <LoginButton/>}
 
-      <header className="fixed w-full h-5 top-full bg-blue-200 backdrop-blur">
+      <header className="fixed w-full h-10 top-0 bg-blue-200 backdrop-blur">
         <div className="float-right">
           {!!session ? <h1>Teste3</h1> : <h1>Teste3</h1>}
         </div>
