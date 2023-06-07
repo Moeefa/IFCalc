@@ -9,7 +9,7 @@ export default async function Header() {
   const session = await getServerSession(authOptions);
 
   return (
-    <header className="fixed w-full top-full bg-transparent backdrop-blur">
+    <header className="fixed w-full top-full bg-blue-200 backdrop-blur">
       <div className="float-right">
         {!!session ? <LogoutButton/> : <LoginButton/>}
       </div>
