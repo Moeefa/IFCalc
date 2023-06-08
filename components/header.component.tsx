@@ -1,7 +1,7 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/react';
+import { Navbar, NavbarContent, NavbarItem, Skeleton } from '@nextui-org/react';
 import { 
   LoginButton,
   LogoutButton,
@@ -15,7 +15,7 @@ export default function Header() {
       <Navbar position="sticky">
         <NavbarContent justify="end">
           <NavbarItem>
-            {status === "authenticated" ? <LogoutButton/> : <LoginButton/>}
+            {status === "authenticated" ? <LogoutButton/> : <Skeleton isLoaded={status !== "loading"}><LoginButton/></Skeleton>}
           </NavbarItem>
         </NavbarContent>
       </Navbar>
