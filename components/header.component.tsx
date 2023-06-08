@@ -7,7 +7,7 @@ import {
   LogoutButton,
 } from '@/components/buttons.component';
 
-const Header = () => {
+export default function Header() {
   const { data: session, status } = useSession();
   
   return (
