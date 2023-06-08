@@ -5,7 +5,7 @@ import { Input } from '@nextui-org/react';
 export default async function Home() {
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex flex-col justify-center">
         {[...Array(4)].map((_, i) => (
           <Input type="number" label={`${i+1}° bimestre`}/>
         ))}
