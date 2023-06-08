@@ -2,6 +2,8 @@ import './globals.css'
 import Header from '@/components/header.component';
 import { Providers } from './providers';
 import { Roboto } from 'next/font/google'
+import { authOptions } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
 
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
@@ -15,10 +17,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en" className={`dark ${roboto.className}`}>
       <body>
         <Providers>
+          <Header>
+            {!!session ? <LogoutButton/> : <LoginButton/>}
           <Header/>
           <main>
             {children}
