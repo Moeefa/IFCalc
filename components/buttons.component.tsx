@@ -5,7 +5,7 @@ import { Button } from '@nextui-org/react';
 
 export const LoginButton = () => {
   return (
-    <Button variant="shadow" color="primary" size="xs" onPress={() => signIn("suap")} radius="full">
+    <Button variant="shadow" color="primary" size="sm" onPress={() => signIn("suap")} radius="full">
       Entrar com SUAP
     </Button>
   );
@@ -13,7 +13,7 @@ export const LoginButton = () => {
 
 export const LogoutButton = () => {
   return (
-    <Button variant="shadow" color="warning" size="xs" onPress={() => signOut()} radius="full" className="bg-gradient-to-tr from-yellow-500 to-red-200 text-white shadow-lg">
+    <Button variant="shadow" color="warning" size="sm" onPress={() => signOut()} radius="full">
       Encerrar sessão 
     </Button>
   );
