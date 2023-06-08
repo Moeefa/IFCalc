@@ -5,7 +5,7 @@ import { User, Link } from '@nextui-org/react';
 export default function Footer() {
   return (
     <>
-      <footer className="wbg-gradient-to-b from-background to-transparent before:bg-background/50 before:backdrop-saturate-150 before:backdrop-blur w-full h-16 absolute bottom-0 border-t border-default-200 dark:border-default-100">
+      <footer className="bg-gradient-to-b from-background to-transparent before:bg-background/50 before:backdrop-saturate-150 before:backdrop-blur w-full h-16 absolute bottom-0 border-t border-default-200 dark:border-default-100">
         <div className="flex w-full justify-center items-center">
           <User
             name="Luiz H. da Silva Xinaider"
