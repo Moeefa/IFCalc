@@ -1,7 +1,13 @@
+import { Input } from '@nextui-org/react';
+
 export default async function Home() {
   return (
     <>
-      <h3>Teste!</h3>
+      <div className="flex justify-center">
+        {[...Array(4)].map((_, i) => (
+          <Input type="number" label={`${i+1}° bimestre`}/>
+        ))}
+      </div>
     </>
   );
 }
