@@ -1,5 +1,6 @@
 import { authOptions } from '@/lib/auth';
-import { getServerSession } from "next-auth";
+import { getServerSession } from 'next-auth';
+import { Navbar } from '@nextui-org/react';
 import { 
   LoginButton,
   LogoutButton,
@@ -10,13 +11,11 @@ export default async function Header() {
 
   return (
     <>      
-      <header className="fixed w-full h-10 top-0 bg-slate-500 backdrop-blur">
-        <div className="flex items-center">
-          <div className="float-right">
-            {!!session ? <LogoutButton/> : <LoginButton/>}
-          </div>
-        </div>
-      </header>
+      <Navbar>
+        {/*<div className="float-right">*/}
+          {!!session ? <LogoutButton/> : <LoginButton/>}
+        {/*</div>*/}
+      </Navbar>
     </>
   );
 }
