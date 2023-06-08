@@ -1,3 +1,5 @@
+'use client';
+
 import { User, Link } from '@nextui-org/react';
 
 export default function Footer() {
