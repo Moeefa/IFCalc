@@ -1,17 +1,25 @@
 'use client';
 
-import { authOptions } from '@/lib/auth';
-import { getServerSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
 import { Navbar } from '@nextui-org/react';
+import { 
+  LoginButton,
+  LogoutButton,
+} from '@/components/buttons.component';
 
-export default async function Header({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession(authOptions);
-
+const Header = () => {
+  const { data: session, status } = useSession();
+  
   return (
-    <>      
-      <Navbar>
-        {children}
+    <>
+      <Navbar variant="sticky" isBordered>
+        <Navbar.Content>
+          <Navbar.Item>
+            {status === "authenticated" ? <LogoutButton/> : <LoginButton/>}
+          </Navbar.Item>
+        </Navbar.Content>
       </Navbar>
     </>
   );
 }
+
