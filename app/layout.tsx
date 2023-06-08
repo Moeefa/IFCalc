@@ -25,7 +25,7 @@ export default async function RootLayout({
         <Providers>
           <Header>
             {!!session ? <LogoutButton/> : <LoginButton/>}
-          <Header/>
+          </Header>
           <main>
             {children}
           </main>
