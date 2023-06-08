@@ -27,9 +27,7 @@ export default async function RootLayout({
     <html lang="en" className={`dark ${roboto.className}`}>
       <body>
         <Providers>
-          <Header>
-            {!!session ? <LogoutButton/> : <LoginButton/>}
-          </Header>
+          <Header/>
           <main>
             {children}
           </main>
