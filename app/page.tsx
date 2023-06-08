@@ -7,7 +7,7 @@ export default async function Home() {
     <>
       <div className="flex flex-col justify-center">
         {[...Array(4)].map((_, i) => (
-          <Input  tclassName="basis-44" type="number" label={`${i+1}° bimestre`}/>
+          <Input className="basis-44" type="number" label={`${i+1}° bimestre`}/>
         ))}
       </div>
     </>
