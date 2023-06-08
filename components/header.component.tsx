@@ -15,7 +15,7 @@ export default function Header() {
       <Navbar position="sticky">
         <NavbarContent justify="end">
           <NavbarItem>
-            {status === "authenticated" ? <LogoutButton/> : <Skeleton isLoaded={status !== "loading"} className="rounded-full"/><LoginButton/></Skeleton>}
+            {status === "authenticated" ? <LogoutButton/> : <Skeleton isLoaded={status !== "loading"} className="rounded-full"><LoginButton/></Skeleton>}
           </NavbarItem>
         </NavbarContent>
       </Navbar>
