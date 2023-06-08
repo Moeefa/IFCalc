@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background: #F4F6F6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,19 +14,21 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 10, 10, 10;
     --background-end-rgb: 28, 28, 28;
+    --background: #F4F6F6;
   }
 }
 
 body, html {
   height: 100%;
   width: 100%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-repeat: no-repeat;
+  background-attachment: fixed; */
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  background-color: var(--background);
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
