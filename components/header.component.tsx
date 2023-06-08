@@ -12,7 +12,7 @@ export default function Header() {
   
   return (
     <>
-      <Navbar variant="sticky" isBordered>
+      <Navbar>
         <Navbar.Content>
           <Navbar.Item>
             {status === "authenticated" ? <LogoutButton/> : <LoginButton/>}
