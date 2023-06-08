@@ -1,19 +1,20 @@
 'use client';
 
 import { signIn, signOut } from 'next-auth/react';
+import { Button } from '@nextui-org/react';
 
 export const LoginButton = () => {
   return (
-    <button onClick={() => signIn("suap")}>
+    <Button onPress={() => signIn("suap")} radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg">
       Entrar com SUAP
-    </button>
+    </Button>
   );
 };
 
 export const LogoutButton = () => {
   return (
-    <button onClick={() => signOut()}>
+    <Button onPress={() => signOut()} radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg">
       Sair
-    </button>
+    </Button>
   );
 };
