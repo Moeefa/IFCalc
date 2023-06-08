@@ -1,5 +1,6 @@
 import './globals.css'
 import Header from '@/components/header.component';
+import { Providers } from './providers';
 import { Roboto } from 'next/font/google'
 
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
@@ -15,12 +16,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={roboto.className}>
+    <html lang="en" className={`dark ${roboto.className}`}>
       <body>
-        <Header/>
-        <main>
-          {children}
-        </main>
+        <Providers>
+          <Header/>
+          <main>
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   )
