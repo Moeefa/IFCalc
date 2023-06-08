@@ -12,8 +12,8 @@ export default function Header() {
   
   return (
     <>
-      <Navbar>
-        <NavbarContent>
+      <Navbar position="sticky">
+        <NavbarContent justify="end">
           <NavbarItem>
             {status === "authenticated" ? <LogoutButton/> : <LoginButton/>}
           </NavbarItem>
