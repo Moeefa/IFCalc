@@ -6,15 +6,13 @@ import {
   LogoutButton,
 } from '@/components/buttons.component';
 
-export default async function Header() {
+export default async function Header({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
 
   return (
     <>      
       <Navbar>
-        {/*<div className="float-right">*/}
-          {!!session ? <LogoutButton/> : <LoginButton/>}
-        {/*</div>*/}
+        {children}
       </Navbar>
     </>
   );
