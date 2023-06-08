@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^0.0.0-dev-v2-20230607013542",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
@@ -16,6 +17,7 @@
     "axios": "1.4.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
+    "framer-motion": "^10.12.16",
     "next": "13.4.4",
     "next-auth": "4.22.1",
     "postcss": "8.4.24",
