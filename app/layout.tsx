@@ -4,6 +4,10 @@ import { Providers } from './providers';
 import { Roboto } from 'next/font/google'
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
+import { 
+  LoginButton,
+  LogoutButton,
+} from '@/components/buttons.component';
 
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
