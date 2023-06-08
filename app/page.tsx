@@ -8,7 +8,7 @@ export default async function Home() {
       <div className="flex justify-center">
         <div>
           {[...Array(4)].map((_, i) => (
-            <Input className="m-4 w-20" type="number" label={`${i+1}° bimestre`}/>
+            <Input className="m-4 w-35" type="number" label={`${i+1}° bimestre`}/>
           ))}
         </div>
       </div>
