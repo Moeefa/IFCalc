@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Input } from '@nextui-org/react';
 import { FinalGrade as GradeCard } from '@/components/cards.component';
 
-export default async function Home() {
+export default function Home() {
   const [grade, setGrade] = useState({ 
     "1": 0,
     "2": 0,
