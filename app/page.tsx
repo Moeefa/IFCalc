@@ -22,7 +22,9 @@ export default function Home() {
                 id={`${i+1}_bim`}
                 size="sm" 
                 className="m-4 w-35" 
-                type="number" 
+                type="number"
+                max="10"
+                min="0"
                 label={`${i+1}° bimestre`}
                 onChange={(event) => setGrade({ ...grade, [`${i+1}`]: event.target.value as unknown as number })}
               />
