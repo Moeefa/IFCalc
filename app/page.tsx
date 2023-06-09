@@ -24,7 +24,7 @@ export default function Home() {
                 className="m-4 w-35" 
                 type="number" 
                 label={`${i+1}° bimestre`}
-                value={grade}
+                value={grade[`${i+1}`]}
                 onValueChange={(value) => setGrade({ ...grade, [`${i+1}`]: Number(value) })}
               />
             ))}
