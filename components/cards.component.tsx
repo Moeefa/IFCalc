@@ -4,7 +4,7 @@ export function GradeYear({ grade = { 1: 0, 2: 0, 3: 0, 4: 0 } }: { grade?: { [i
   const final = ((((grade[1] || 0) * 2) + ((grade[2] || 0) * 2) + ((grade[3] || 0) * 3) +  ((grade[4] || 0) * 3)) / (2 + 2 + 3 + 3));
 
   return (
-    <Card className="max-w-[250px]">
+    <Card className="max-w-[280px]">
       <CardHeader className="flex gap-3">
         <div className="flex flex-col">
           <p className="text-md">{final >= 6 ? "Aprovado" : "Reprovado"}</p>
