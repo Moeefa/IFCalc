@@ -11,6 +11,7 @@ export default async function Home() {
     "3": 0,
     "4": 0,
   });
+  const [value, setValue] = useState("");
   
   return (
     <>
