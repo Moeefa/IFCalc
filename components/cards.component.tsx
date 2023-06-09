@@ -1,4 +1,12 @@
-import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody, 
+  CardFooter, 
+  Divider, 
+  Link, 
+  Image
+} from "@nextui-org/react";
 
 export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grade?: { [index: string]: number } }) {
   const final = ((((grade["1"] || 0) * 2) + ((grade["2"] || 0) * 2) + ((grade["3"] || 0) * 3) +  ((grade["4"] || 0) * 3)) / (2 + 2 + 3 + 3));
