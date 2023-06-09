@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Input } from '@nextui-org/react';
 import { FinalGrade as GradeCard } from '@/components/cards.component';
 
@@ -19,11 +19,12 @@ export default async function Home() {
           <div className="lg:flex">
             {[...Array(4)].map((_, i) => (
               <Input 
+                id={`${i+1}`}
                 size="sm" 
                 className="m-4 w-35" 
                 type="number" 
                 label={`${i+1}° bimestre`}
-                onChange={(event) => setGrade({ ...grade, [`${i+1}`]: event.target.value })}
+                onChange={(event) => setGrade({ ...grade, [`${i+1}`]: event.currentTarget.value })}
               />
             ))}
           </div>
