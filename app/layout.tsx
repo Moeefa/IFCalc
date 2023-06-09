@@ -21,7 +21,7 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="en" className={`dark ${roboto.className}`}>
+    <html lang="pt-BR" className={`dark ${roboto.className}`}>
       <body>
         <Providers>
           <Header/>
