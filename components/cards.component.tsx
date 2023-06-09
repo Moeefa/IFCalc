@@ -1,6 +1,6 @@
 import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
 
-export function GradeYear({ grade }) {
+export function GradeYear({ grade }: { [index: number]: number }) {
   const final = ((((grade[1] || 0) * 2) + ((grade[2] || 0) * 2) + ((grade[3] || 0) * 3) +  ((grade[4] || 0) * 3)) / (2 + 2 + 3 + 3));
 
   return (
