@@ -6,10 +6,10 @@ import { GradeYear as GradeCard } from '@/components/cards.component';
 
 export default async function Home() {
   const [grade, setGrade] = useState({ 
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
   });
   
   return (
@@ -23,11 +23,11 @@ export default async function Home() {
                 className="m-4 w-35" 
                 type="number" 
                 label={`${i+1}° bimestre`}
-                onChange={(event) => setGrade({ ...grade, [i+1]: event.target.value })}
+                onChange={(event) => setGrade({ ...grade, `${i+1}`: event.target.value })}
               />
             ))}
           </div>
-          <GradeCard/>
+          <GradeCard grade={grade}/>
         </div>
       </div>
     </>
