@@ -19,12 +19,12 @@ export default function Home() {
           <div className="lg:flex">
             {[...Array(4)].map((_, i) => (
               <Input 
-                id={`${i+1}`}
+                id={`${i+1}_bim`}
                 size="sm" 
                 className="m-4 w-35" 
                 type="number" 
                 label={`${i+1}° bimestre`}
-                value={grade[(Number(i+1).toString()) as keyof typeof grade]}
+                value={grade[(`${i+1}`) as keyof typeof grade] as string}
                 onValueChange={(value) => setGrade({ ...grade, [`${i+1}`]: Number(value) })}
               />
             ))}
