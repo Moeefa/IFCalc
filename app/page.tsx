@@ -29,7 +29,7 @@ export default function Home() {
               />
             ))}
           </div>
-          <GradeCard/>
+          <GradeCard grade={grade}/>
         </div>
       </div>
     </>
