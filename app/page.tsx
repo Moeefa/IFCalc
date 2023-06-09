@@ -26,7 +26,7 @@ export default async function Home() {
                 type="number" 
                 label={`${i+1}° bimestre`}
                 value={"0"}
-                onValueChange={setGrade}
+                onValueChange={setValue}
               />
             ))}
           </div>
