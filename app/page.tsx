@@ -12,8 +12,8 @@ export default async function Home() {
             <Input className="m-4 w-35" type="number" label={`${i+1}° bimestre`}/>
           ))}
         </div>
+        <GradeYear/>
       </div>
-      <GradeYear/>
     </>
   );
 }
