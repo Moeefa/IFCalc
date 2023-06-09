@@ -5,8 +5,8 @@ export function GradeYear({ grade = { 1: 0, 2: 0, 3: 0, 4: 0 } }: { grade?: { [i
 
   return (
     <Card className="max-w-[280px]">
-      <CardHeader>
-        <p className="text-xl text-center">{final >= 6 ? "Aprovado" : "Reprovado"}</p>
+      <CardHeader className="flex justify-center">
+        <p className="text-xl">{final >= 6 ? "Aprovado" : "Reprovado"}</p>
       </CardHeader>
       <Divider/>
       <CardBody>
