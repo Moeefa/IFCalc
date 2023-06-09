@@ -28,7 +28,7 @@ export default async function Home() {
               />
             ))}
           </div>
-          <GradeCard grade={grade}/>
+          <GradeCard/>
         </div>
       </div>
     </>
