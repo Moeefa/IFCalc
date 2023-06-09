@@ -1,6 +1,7 @@
 'use client';
 
 import { Input } from '@nextui-org/react';
+import { GradeYear } from '@/components/cards.component';
 
 export default async function Home() {
   return (
@@ -12,6 +13,7 @@ export default async function Home() {
           ))}
         </div>
       </div>
+      <GradeYear/>
     </>
   );
 }
