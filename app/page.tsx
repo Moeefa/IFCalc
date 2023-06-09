@@ -24,7 +24,8 @@ export default async function Home() {
                 className="m-4 w-35" 
                 type="number" 
                 label={`${i+1}° bimestre`}
-                onChange={(value) => setGrade({ ...grade, [`${i+1}`]: value })}
+                value={0}
+                onValueChange={(value) => setGrade({ ...grade, [`${i+1}`]: value })}
               />
             ))}
           </div>
