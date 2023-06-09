@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Input } from '@nextui-org/react';
-import { GradeYear as GradeCard } from '@/components/cards.component';
+import { FinalGrade as GradeCard } from '@/components/cards.component';
 
 export default async function Home() {
   const [grade, setGrade] = useState({ 
