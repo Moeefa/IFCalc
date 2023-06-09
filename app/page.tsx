@@ -25,7 +25,7 @@ export default async function Home() {
                 className="m-4 w-35" 
                 type="number" 
                 label={`${i+1}° bimestre`}
-                value={"0"}
+                value={value}
                 onValueChange={setValue}
               />
             ))}
