@@ -18,6 +18,15 @@ export default async function Home() {
       <div className="flex justify-center">
         <div className="flex flex-col">
           <div className="lg:flex">
+            <Input 
+              id="test"
+              size="sm" 
+              className="m-4 w-35" 
+              type="number" 
+              label="null"
+              value={value}
+              onValueChange={setValue}
+            />
             {[...Array(4)].map((_, i) => (
               <Input 
                 id={`${i+1}`}
