@@ -18,7 +18,7 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
       </CardHeader>
       <Divider/>
       <CardBody>
-        <p className="text-center">Nota final: {final}</p>
+        <p className="text-center">Nota final: {Number(final.toFixed(2)).toLocaleString("pt-BR")}</p>
       </CardBody>
       <Divider/>
       <CardFooter>
