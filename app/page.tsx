@@ -24,8 +24,8 @@ export default function Home() {
                 className="m-4 w-35" 
                 type="number" 
                 label={`${i+1}° bimestre`}
-                value={grade[(`${i+1}`) as keyof typeof grade] as string}
-                onValueChange={(value) => setGrade({ ...grade, [`${i+1}`]: Number(value) })}
+                value={grade[(`${i+1}`) as keyof typeof grade] as unknown as string}
+                onValueChange={(value) => setGrade({ ...grade, [`${i+1}`]: value as unknown as number })}
               />
             ))}
           </div>
