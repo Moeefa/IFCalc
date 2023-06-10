@@ -8,8 +8,8 @@ import {
   Image
 } from "@nextui-org/react";
 
-export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grade?: { [index: string]: number } }) {
-  const final = ((((grade["1"] || 0) * 2) + ((grade["2"] || 0) * 2) + ((grade["3"] || 0) * 3) +  ((grade["4"] || 0) * 3)) / (2 + 2 + 3 + 3));
+export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grade?: { [index: string]: number | string } }) {
+  const final = (((Number(grade["1"] || 0) * 2) + (Number(grade["2"] || 0) * 2) + (Number(grade["3"] || 0) * 3) +  (Number(grade["4"] || 0) * 3)) / (2 + 2 + 3 + 3));
 
   return (
     <Card className="max-w-[280px]">
@@ -26,8 +26,8 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
             <Divider/>
             <CardFooter>
               <p className="text-xs">
-                Nota necessária no {grade["1"] == 0 || grade["2"] == 0 ? "1° ou 2°" : "3° ou 4°"} bimestre:
-                {' '}{Number((((6 - final) / (grade["1"] == 0 || grade["2"] == 0 ? 2 : 3)) * 10).toFixed(2)).toLocaleString("pt-BR")}
+                Nota necessária no {grade["1"] == "0" || grade["2"] == "0" || grade[1] == "" || grade[2] == "" ? "1° ou 2°" : "3° ou 4°"} bimestre:
+                {' '}{Number((((6 - final) / (grade["1"] == "0" || grade["2"] == "0" || grade[1? 2 : 3)) * 10).toFixed(2)).toLocaleString("pt-BR")}
               </p>
             </CardFooter>
           </>}
