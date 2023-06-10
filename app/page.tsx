@@ -4,13 +4,6 @@ import React, { useState } from 'react';
 import { Input } from '@nextui-org/react';
 import { FinalGrade as GradeCard } from '@/components/cards.component';
 
-function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-  const { value, min, max } = event.target;
-  const newValue = Math.max(Number(min), Math.min(Number(max), Number(value)));
-
-  setGrade({ ...grade, [`${i+1}`]: newValue });
-};
-
 export default function Home() {
   const [grade, setGrade] = useState({ 
     "1": 0,
@@ -19,6 +12,13 @@ export default function Home() {
     "4": 0,
   });
   
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, min, max } = event.target;
+    const newValue = Math.max(Number(min), Math.min(Number(max), Number(value)));
+
+    setGrade({ ...grade, [`${i+1}`]: newValue });
+  };
+
   return (
     <>
       <div className="flex justify-center">
