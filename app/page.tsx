@@ -5,10 +5,10 @@ import { Input } from '@nextui-org/react';
 import { FinalGrade as GradeCard } from '@/components/cards.component';
 
 function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-  let { value, min, max } = event.target;
-  value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+  const { value, min, max } = event.target;
+  const newValue = Math.max(Number(min), Math.min(Number(max), Number(value)));
 
-  setGrade({ ...grade, [`${i+1}`]: event.target.value as unknown as number });
+  setGrade({ ...grade, [`${i+1}`]: newValue });
 };
 
 export default function Home() {
