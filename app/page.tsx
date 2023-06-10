@@ -14,7 +14,7 @@ export default function Home() {
   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>, i: number) => {
     const { value, min, max } = event.target;
-    const newValue = Math.max(Number(min), Math.min(Number(max), Number(value)));
+    const newValue = Math.max(Number(0), Math.min(Number(10), Number(value)));
 
     setGrade({ ...grade, [`${i+1}`]: newValue });
   };
