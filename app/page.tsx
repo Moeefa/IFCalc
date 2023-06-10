@@ -6,15 +6,15 @@ import { FinalGrade as GradeCard } from '@/components/cards.component';
 
 export default function Home() {
   const [grade, setGrade] = useState({ 
-    "1": 0,
-    "2": 0,
-    "3": 0,
-    "4": 0,
+    "1": null,
+    "2": null,
+    "3": null,
+    "4": null,
   });
   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>, i: number) => {
     const { value, min, max } = event.target;
-    const newValue = Math.max(Number(-1), Math.min(Number(10), Number(value)));
+    const newValue = Math.max(Number(0), Math.min(Number(10), Number(value)));
 
     setGrade({ ...grade, [`${i+1}`]: newValue });
   };
