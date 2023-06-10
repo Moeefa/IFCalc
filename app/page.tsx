@@ -26,7 +26,7 @@ export default function Home() {
                 max="10"
                 min="0"
                 label={`${i+1}° bimestre`}
-                value={grade[(i+1) as unknown as string]}
+                value={grade[(`${i+1}`) as keyof typeof grade] as unknown as string}
                 placeholder="Insira sua nota"
                 onChange={(event) => setGrade({ ...grade, [`${i+1}`]: event.target.value as unknown as number })}
               />
