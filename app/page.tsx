@@ -6,10 +6,10 @@ import { FinalGrade as GradeCard } from '@/components/cards.component';
 
 export default function Home() {
   const [grade, setGrade] = useState({ 
-    "1": 0,
-    "2": 0,
-    "3": 0,
-    "4": 0,
+    "1": "",
+    "2": "",
+    "3": "",
+    "4": "",
   });
   
   return (
@@ -26,6 +26,8 @@ export default function Home() {
                 max="10"
                 min="0"
                 label={`${i+1}° bimestre`}
+                value={grade[(i+1) as unknown as string]}
+                placeholder="Insira sua nota"
                 onChange={(event) => setGrade({ ...grade, [`${i+1}`]: event.target.value as unknown as number })}
               />
             ))}
