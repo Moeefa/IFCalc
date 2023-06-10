@@ -20,10 +20,10 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
       <CardBody>
         <p className="text-center">Nota final: {Number(final.toFixed(2)).toLocaleString("pt-BR")}</p>
       </CardBody>
-      <Divider/>
       {final >= 6 
         ? <></>
         : <>
+            <Divider/>
             <CardFooter>
               <p className="text-xs">
                 Nota necessária no {grade["1"] == 0 || grade["2"] == 0 ? "1° ou 2°" : "3° ou 4°"} bimestre:
