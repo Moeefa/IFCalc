@@ -27,7 +27,7 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
             <CardFooter>
               <p className="text-xs">
                 Nota necessária no {grade["1"] == "0" || grade["2"] == "0" || grade[1] == "" || grade[2] == "" ? "1° ou 2°" : "3° ou 4°"} bimestre:
-                {' '}{Number((((6 - final) / (grade["1"] == "0" || grade["2"] == "0" || grade[1? 2 : 3)) * 10).toFixed(2)).toLocaleString("pt-BR")}
+                {' '}{Number((((6 - final) / (grade["1"] == "0" || grade["2"] == "0" || grade["1"] == "" || grade["2"] == "" ? 2 : 3)) * 10).toFixed(2)).toLocaleString("pt-BR")}
               </p>
             </CardFooter>
           </>}
