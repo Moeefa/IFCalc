@@ -5,7 +5,6 @@ import { Input } from '@nextui-org/react';
 import { FinalGrade as GradeCard } from '@/components/cards.component';
 
 export default function Home() {
-  const [changed, setChanged] = useState(false);
   const [grade, setGrade] = useState({ 
     "1": 0,
     "2": 0,
@@ -17,7 +16,6 @@ export default function Home() {
     const { value, min, max } = event.target;
     const newValue = Math.max(Number(0), Math.min(Number(10), Number(value)));
 
-    setChanged(true);
     setGrade({ ...grade, [`${i+1}`]: newValue });
   };
 
@@ -35,7 +33,7 @@ export default function Home() {
                 max="10"
                 min="0"
                 label={`${i+1}° bimestre`}
-                value={grade[(`${i+1}`) as keyof typeof grade] === 0 && changed === false ? "" : grade[(`${i+1}`) as keyof typeof grade] as unknown as string}
+                value={grade[(`${i+1}`) as keyof typeof grade] === 0 ? "" : grade[(`${i+1}`) as keyof typeof grade] as unknown as string}
                 placeholder="Insira sua nota"
                 onChange={(e) => handleChange(e, i)}
               />
