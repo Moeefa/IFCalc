@@ -12,7 +12,7 @@ export default function Home() {
     "4": 0,
   });
   
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, i: number) => {
     const { value, min, max } = event.target;
     const newValue = Math.max(Number(min), Math.min(Number(max), Number(value)));
 
@@ -35,7 +35,7 @@ export default function Home() {
                 label={`${i+1}° bimestre`}
                 value={grade[(`${i+1}`) as keyof typeof grade] === 0 ? "" : grade[(`${i+1}`) as keyof typeof grade] as unknown as string}
                 placeholder="Insira sua nota"
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, i)}
               />
             ))}
           </div>
