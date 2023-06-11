@@ -2,10 +2,7 @@ import {
   Card,
   CardHeader,
   CardBody, 
-  CardFooter, 
-  Divider, 
-  Link, 
-  Image
+  CardFooter,
 } from "@nextui-org/react";
 
 export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grade?: { [index: string]: number | string } }) {
