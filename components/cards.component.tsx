@@ -18,7 +18,7 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
       <CardHeader className="flex justify-center">
         <p className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b from-red-600 to-red-800">Inválido</p>
       </CardHeader>
-      <CardBody>
+      <CardBody className="px-3 py-0">
         <p className="text-center text-default-400">A nota inserida é inválida!</p>
       </CardBody>
     </Card>
