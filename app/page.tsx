@@ -50,7 +50,7 @@ export default function Home() {
     <>
       <Tabs variant="underlined" radius="full" aria-label="Médias">
         <Tab key="anual" title="Média anual">
-          <FinalGradeTab>
+          <FinalGradeTab/>
         </Tab>
 
         <Tab key="bim" title="Média bimestral">
@@ -59,4 +59,3 @@ export default function Home() {
     </>
   );
 }
-          
