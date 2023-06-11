@@ -7,8 +7,15 @@ import SubjectCard from '@/components/subject.component';
 import useSWR from 'swr';
  
 export default function Home() {
+  const fetcher = (url: string, token: string) => fetch(url, { 
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then(r => r.json());
+  
   const { data: session, status } = useSession();
-  const { data, error, isLoading } = useSWR(status === "authenticated" ? [`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, session.accessToken] : null, (url: string, token: string) => fetch(url, { headers: { Authorization: "Bearer " + token } }))
+  const { data, error, isLoading } = useSWR(status === "authenticated" ? [`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, session.accessToken] : null, fetcher)
   
   return (
     <>
@@ -17,8 +24,8 @@ export default function Home() {
           <FinalTab/>
           {!isLoading &&
             <>
-              <Divider className="my-3"/>
-              <pre>{data}</pre>
+              <Divider/>
+              {session}
             </>}
         </Tab>
 
