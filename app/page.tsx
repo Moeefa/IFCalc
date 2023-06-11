@@ -36,7 +36,7 @@ export default function Home() {
                   max="10"
                   min="0"
                   label={`${i+1}° bimestre`}
-                  color={state === "valid" ? "default" : "warning"}
+                  color={state === "valid" ? "default" : "danger"}
                   validationState={state}
                   errorMessage={state === "invalid" && "Insira um número entre 0 e 10"}
                   value={value as unknown as string}
