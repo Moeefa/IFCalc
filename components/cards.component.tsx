@@ -29,7 +29,7 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
       <CardHeader className="flex justify-center">
         <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 ? "from-blue-600 to-blue-800" : "from-red-600 to-red-800"}`}>{final >= 6 ? "Aprovado" : "Reprovado"}</p>
       </CardHeader>
-      <CardBody>
+      <CardBody className="px-3 py-0">
         <p className="text-center text-default-400">Nota final: {Number(final.toFixed(2)).toLocaleString("pt-BR")}</p>
       </CardBody>
       {final >= 6 
