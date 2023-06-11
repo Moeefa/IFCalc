@@ -4,7 +4,7 @@ import { Tabs, Tab, Divider } from '@nextui-org/react';
 import { FinalTab } from '@/components/tabs.component';
 import SubjectCard from '@/components/subject.component';
 
-export default function Home() {
+export default async function Home() {
   const session = await getServerSession(authOptions);
   // const data = await 
   
