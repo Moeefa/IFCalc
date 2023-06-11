@@ -4,6 +4,33 @@ import React, { useState } from 'react';
 import { Input } from '@nextui-org/react';
 import { FinalGrade as GradeCard } from '@/components/cards.component';
 
+function GradeInput({ i }: { i: number }) {
+  const [value, setValue] = React.useState("");
+
+  const validateGrade = (value) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const validationState = React.useMemo(() => {
+    if (value === "") return undefined;
+
+    return validateEmail(value) ? "valid" : "invalid";
+  }, [value]);
+
+  return (
+    <Input 
+      id={`${i+1}_bim`}
+      size="sm" 
+      className="m-4 w-35" 
+      type="number"
+      max="10"
+      min="0"
+      label={`${i+1}° bimestre`}
+      value={grade[(`${i+1}`) as keyof typeof grade] as unknown as string}
+      placeholder="Insira sua nota"
+      onChange={(e) => handleChange(e, i)}
+    />
+  );
+}
+
 export default function Home() {
   const [grade, setGrade] = useState({ 
     "1": "",
