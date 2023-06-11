@@ -25,8 +25,8 @@ export default function Home() {
           {!isLoading &&
             <>
               <Divider/>
-              <pre>{session}</pre>
-              <pre>{data}</pre>
+              <pre>{JSON.stringify(session)}</pre>
+              <pre>{JSON.stringify(data)}</pre>
             </>}
         </Tab>
 
