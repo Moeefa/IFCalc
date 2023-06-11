@@ -8,7 +8,7 @@ import useSWR from 'swr';
  
 export default function Home() {
   const { data: session, status } = useSession();
-  const { data, error, isLoading } = useSWR(status === "authenticated" ? [`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, session.accessToken] : null, (url: string, token: string) => fetch(url, { headers: { Authorization: "Bearer " + token } }))
+  const { fetched, error, isLoading } = useSWR(status === "authenticated" ? [`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, session.accessToken] : null, (url: string, token: string) => fetch(url, { headers: { Authorization: "Bearer " + token } }))
   
   return (
     <>
@@ -17,8 +17,8 @@ export default function Home() {
           <FinalTab/>
           {!isLoading &&
             <>
-              <Divider/>
-              {session}
+              <Divider className="my-3"/>
+              <pre>{fetched}</pre>
             </>}
         </Tab>
 
