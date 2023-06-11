@@ -25,7 +25,8 @@ export default function Home() {
           {!isLoading &&
             <>
               <Divider/>
-              {session}
+              <pre>{session}</pre>
+              <pre>{data}</pre>
             </>}
         </Tab>
 
