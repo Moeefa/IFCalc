@@ -48,7 +48,7 @@ function FinalGradeTab() {
 export default function Home() {
   return (
     <>
-      <Tabs variant="underlined" radius="full" aria-label="Médias">
+      <Tabs fullWidth variant="underlined" radius="full" aria-label="Médias">
         <Tab key="anual" title="Média anual">
           <FinalGradeTab/>
         </Tab>
