@@ -16,7 +16,7 @@ export default function Home() {
   const { data: session, status } = useSession();
   const { data, error, isLoading } = useSWR(
     status === "authenticated" && !!session.accessToken
-      ? [`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, session.accessToken] 
+      ? [`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/2023/1/`, session.accessToken] 
       : null, 
     fetcher
   );
