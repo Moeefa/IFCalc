@@ -16,14 +16,14 @@ export default function Home() {
     .then(r => r.json());
   
   const { data: session, status } = useSession();
-  const { data, error, isLoading } = useSWR(status === "authenticated" ? [`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, session.accessToken] : null, fetcher)
+  const { data, error, isLoading } = useSWR(status === "authenticated" ? [`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`, session.accessToken] : null, fetcher);
   
   return (
     <>
       <Tabs fullWidth variant="underlined" radius="full" aria-label="Médias">
         <Tab key="anual" title="Média anual">
           <FinalTab/>
-          {error && <p>Error</p>}
+          {error && <p>{error}</p>}
           {!isLoading &&
             <>
               <Divider/>
