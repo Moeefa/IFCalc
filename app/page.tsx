@@ -8,7 +8,7 @@ import axios from 'axios';
 import useSWR from 'swr';
  
 export default function Home() {
-  const fetcher = (url, token) =>
+  const fetcher = (url: string, token: string) =>
     axios
       .get(url, { headers: { Authorization: "Bearer " + token } })
       .then((res) => res.data);
