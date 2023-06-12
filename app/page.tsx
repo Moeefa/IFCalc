@@ -30,7 +30,7 @@ export default function Home() {
           {!isLoading &&
             <>
               <Divider/>
-              <p>{`${session.accessToken}`}</p>
+              <p>{`${session?.accessToken}`}</p>
               <pre>{JSON.stringify(session)}</pre>
               <pre>{JSON.stringify(data)}</pre>
             </>}
