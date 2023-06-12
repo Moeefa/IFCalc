@@ -23,6 +23,7 @@ export default function Home() {
       <Tabs fullWidth variant="underlined" radius="full" aria-label="Médias">
         <Tab key="anual" title="Média anual">
           <FinalTab/>
+          {error && <p>Error</p>}
           {!isLoading &&
             <>
               <Divider/>
