@@ -9,7 +9,8 @@ import useSWR from 'swr';
 export default function Home() {
   const fetcher = (url: string, token: string) => fetch(url, { 
       headers: {
-        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,
       }
     })
     .then(r => r.json());
