@@ -48,7 +48,7 @@ export default function Home() {
               <Divider className="my-5"/>
 	      <div className="flex justify-center w-25">
 	        <Accordion variant="splitted">
-	      	  {data.map((e, i) => {
+	      	  {data.map((e: any, i: number) => {
 		    const final = (((Number(e.notas["1"] || 0) * 2) + (Number(e.notas["2"] || 0) * 2) + (Number(e.notas["3"] || 0) * 3) +  (Number(e.notas["4"] || 0) * 3)) / (2 + 2 + 3 + 3));
 
 		    return (
