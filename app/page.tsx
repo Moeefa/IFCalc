@@ -21,7 +21,7 @@ export default function Home() {
         Authorization: "Bearer " + session?.accessToken
       } 
     })
-    .then(res => setData(res.data.filter(a => a.situacao !== "Transferido").reduce((a: any, b: any) => {
+    .then(res => setData(res.data.filter((a: any) => a.situacao !== "Transferido").reduce((a: any, b: any) => {
       return [ 
         ...a, 
         { 
