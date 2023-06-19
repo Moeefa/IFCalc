@@ -12,7 +12,7 @@ export default function Header() {
   
   return (
     <>
-      <Navbar position="sticky">
+      <Navbar position="fixed">
         <NavbarContent justify="end">
           <NavbarItem>
             {status === "authenticated" ? <LogoutButton/> : <Skeleton isLoaded={status !== "loading"} className="rounded-full"><LoginButton/></Skeleton>}
