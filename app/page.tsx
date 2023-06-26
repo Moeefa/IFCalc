@@ -13,26 +13,8 @@ export default function Home() {
   useEffect(() => {
     if (status !== "authenticated") return;
 
-    axios.get("https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/2023/1/", {
-      timeout: 10_000,
-      headers: {
-        Authorization: "Bearer " + session?.accessToken
-      }
-    })
-      .then(res => setData(res.data.filter((a: any) => a.situacao !== "Transferido").reduce((a: any, b: any) => {
-        return [
-          ...a,
-          {
-            nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).replace(/(III|II)/g, "").trim(),
-            notas: {
-              "1": Number(b.nota_etapa_1.nota?.replace(",", ".")),
-              "2": Number(b.nota_etapa_2.nota?.replace(",", ".")),
-              "3": Number(b.nota_etapa_3.nota?.replace(",", ".")),
-              "4": Number(b.nota_etapa_4.nota?.replace(",", ".")),
-            },
-          },
-        ];
-      }, [])));
+    axios.get("/api/grade", { signal: AbortSignal.timeout(15_000) })
+      .then(res => setData(res.data));
   }, [status, session]);
 
   return (
@@ -53,7 +35,7 @@ export default function Home() {
                       <AccordionItem
                         key={i}
                         startContent={
-                          <div className="flex justify-center items-center h-10 w-10 p-5 bg-[#131313] rounded-full">
+                          <div className="flex justify-center items-center h-10 w-10 p-5 bg-[var(--background)] drop-shadow-lg rounded-full">
                             <p>
                               {final.toFixed(2)}
                             </p>

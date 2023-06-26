@@ -2,7 +2,7 @@ import './globals.css'
 import Header from '@/components/header.component';
 import Footer from '@/components/footer.component';
 import { Providers } from './providers';
-import { Roboto } from 'next/font/google'
+import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
@@ -13,14 +13,14 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${roboto.className}`}>
+    <html lang="pt-BR" className={roboto.className}>
       <body>
         <Providers>
-          <Header/>
+          <Header />
           <main>
             {children}
           </main>
-          <Footer/>
+          <Footer />
         </Providers>
       </body>
     </html>
