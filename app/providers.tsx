@@ -6,12 +6,12 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <SessionProvider>
-      <NextThemesProvider>
+    <NextThemesProvider>
+      <SessionProvider>
         <NextUIProvider>
           {children}
         </NextUIProvider>
-      </NextThemesProvider>
-    </SessionProvider>
+      </SessionProvider>
+    </NextThemesProvider>
   )
 }
