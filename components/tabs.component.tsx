@@ -15,7 +15,7 @@ export function FinalTab() {
   return (
     <>
       <div className="flex justify-center">
-        <div className="lg:flex">
+        <div className="w-11/12 sm:w-25 sm:flex grid grid-cols-2 grid-rows-2 gap-3 mb-2">
           {[...Array(4)].map((_, i) => {
             const value = grade[(`${i + 1}`) as keyof typeof grade];
             const state = Number(value) >= 0 && Number(value) <= 10 ? "valid" : "invalid";
@@ -25,11 +25,10 @@ export function FinalTab() {
                 key={`${i + 1}_bim`}
                 variant="bordered"
                 size="sm"
-                className="mb-4 w-35"
+                className="w-35"
                 classNames={{
                   inputWrapper: [
-                    "bg-white",
-                    "dark:bg-white",
+                    "bg-content1",
                     "box-border",
                     "border border-boundary"
                   ],

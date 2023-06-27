@@ -3,6 +3,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  Divider,
 } from "@nextui-org/react";
 
 export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grade?: { [index: string]: number | string } }) {
@@ -12,18 +13,19 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
 
   const isEmpty = grade["1"] == "0" || grade["2"] == "0" || grade["1"] == "" || grade["2"] == "";
   return (
-    <Card className="max-w-[280px] min-w-[180px]">
+    <Card className="w-11/12 sm:w-25">
       <CardHeader className="flex justify-center">
         <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 && !hasExceeded ? "from-blue-600 to-blue-800" : "from-red-600 to-red-800"}`}>{hasExceeded ? "Inválido" : final >= 6 ? "Aprovado" : "Reprovado"}</p>
       </CardHeader>
       <CardBody className="pt-0">
-        <p className="text-center text-default-400">{hasExceeded ? "Nota inválida" : `Nota final: ${Number(final.toFixed(2)).toLocaleString("pt-BR")}`}</p>
+        <p className="text-center">{hasExceeded ? "Nota inválida" : `Nota final: ${Number(final.toFixed(2)).toLocaleString("pt-BR")}`}</p>
       </CardBody>
       {final >= 6 || hasExceeded
         ? <></>
         : <>
-          <CardFooter className="pt-0">
-            <p className="text-xs text-default-400">
+          <Divider />
+          <CardFooter className="flex justify-center">
+            <p className="text-xs text-center text-default-400">
               Nota necessária no {isEmpty ? "1° ou 2°" : "3° ou 4°"} bimestre:
               {' '}{Number((((6 - final) / (isEmpty ? 2 : 3)) * 10).toFixed(2)).toLocaleString("pt-BR")}
             </p>
