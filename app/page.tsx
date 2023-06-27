@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import {
-  Tabs,
-  Tab,
-} from '@nextui-org/react';
+import { Tabs, Tab } from '@nextui-org/react';
 import { FinalTab } from '@/components/tabs.component';
 import axios from 'axios';
 import Subject from '@/components/subject.component';
@@ -23,15 +20,17 @@ export default function Home() {
 
   return (
     <>
-      <Tabs fullWidth variant="underlined" radius="full" aria-label="Médias">
-        <Tab key="anual" title="Média anual">
-          <FinalTab />
-          <Subject data={data} />
-        </Tab>
-
-        <Tab key="bim" title="Média bimestral">
-        </Tab>
-      </Tabs >
+      {/*<Tabs
+        variant="underlined"
+        aria-label="Médias"
+        shadowCursor="md"
+        fullWidth
+      >
+        <Tab title="Média anual">*/}
+      <FinalTab />
+      <Subject data={data} />
+      {/*</Tab>
+      </Tabs>*/}
     </>
   );
 }

@@ -27,7 +27,7 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
           <CardFooter className="flex justify-center">
             <p className="text-xs text-center text-default-400">
               Nota necessária no {isEmpty ? "1° ou 2°" : "3° ou 4°"} bimestre:
-              {' '}{Number((((6 - final) / (isEmpty ? 2 : 3)) * 10).toFixed(2)).toLocaleString("pt-BR")}
+              {' '}{Number((((6 - final) / (isEmpty ? 2 : 3)) * 10).toFixed(1)).toLocaleString("pt-BR")}
             </p>
           </CardFooter>
         </>}
