@@ -8,12 +8,6 @@ import {
   Divider,
   Accordion,
   AccordionItem,
-  Table,
-  TableRow,
-  TableHeader,
-  TableBody,
-  TableColumn,
-  TableCell,
 } from '@nextui-org/react';
 import { FinalTab } from '@/components/tabs.component';
 import axios from 'axios';
