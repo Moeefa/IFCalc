@@ -14,8 +14,8 @@ export function FinalTab() {
 
   return (
     <>
-      <div className="flex justify-center">
-        <div className="w-11/12 sm:w-25 sm:flex grid grid-cols-2 grid-rows-2 gap-3 mb-2">
+      <div className="flex justify-center w-full sm:w-auto">
+        <div className="w-11/12 sm:w-auto sm:flex grid grid-cols-2 grid-rows-2 gap-3 mb-2">
           {[...Array(4)].map((_, i) => {
             const value = grade[(`${i + 1}`) as keyof typeof grade];
             const state = Number(value) >= 0 && Number(value) <= 10 ? "valid" : "invalid";

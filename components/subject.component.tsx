@@ -12,10 +12,11 @@ export default function Subject({ data }: { data: any }) {
           <Divider className="my-5" />
           <Accordion
             variant="splitted"
-            className="justify-center items-center px-0"
+            className="sm:w-full sm:flex sm:flex-wrap sm:flex-row gap-2 justify-center items-center px-0"
             itemClasses={{
-              base: "w-11/12 sm:w-25",
+              base: "sm:w-72 sm:self-start w-11/12",
               startContent: "flex justify-center items-center h-10 w-10 p-5 bg-[var(--background)] drop-shadow-lg rounded-full",
+              title: "sm:truncate sm:w-44"
             }}
           >
             {data.map((e: any, i: number) => {
@@ -33,7 +34,7 @@ export default function Subject({ data }: { data: any }) {
                   <div className="flex justify-center">
                     <div className="grid grid-cols-2 grid-rows-2 gap-2">
                       {[...Array(4)].map((_, i) => (
-                        <p className="text-default-400">{i + 1}° BIMESTRE: <span className="text-black dark:text-white">{e.notas[`${i + 1}`]}</span></p>
+                        <p className="text-foreground-600 font-medium">{i + 1}° bimestre: <span className="dark:text-white text-black">{Number(e.notas[`${i + 1}`]).toLocaleString("pt-BR")}</span></p>
                       ))}
                     </div>
                   </div>

@@ -13,7 +13,7 @@ export function FinalGrade({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { gra
 
   const isEmpty = grade["1"] == "0" || grade["2"] == "0" || grade["1"] == "" || grade["2"] == "";
   return (
-    <Card className="w-11/12 sm:w-25">
+    <Card className="sm:w-72 w-11/12">
       <CardHeader className="flex justify-center">
         <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 && !hasExceeded ? "from-blue-600 to-blue-800" : "from-red-600 to-red-800"}`}>{hasExceeded ? "Inválido" : final >= 6 ? "Aprovado" : "Reprovado"}</p>
       </CardHeader>
