@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { Tabs, Tab } from '@nextui-org/react';
+import { Tabs, Tab, Skeleton } from '@nextui-org/react';
 import { FinalTab } from '@/components/tabs.component';
 import Subject from '@/components/subject.component';
 import useSWR from 'swr';
@@ -31,7 +30,15 @@ export default function Home() {
       >
         <Tab title="Média anual">*/}
       <FinalTab />
-      {(!isLoading && !error && data != undefined) && <Subject data={data} />}
+      {isLoading
+        ? <Skeleton>
+        </Skeleton>
+        : !!error
+          ? error.info
+          : data != undefined
+            ? <Subject data={data} />
+            : <></>
+      }
       {/*</Tab>
       </Tabs>*/}
     </>
