@@ -23,14 +23,13 @@ export function FinalTab() {
             return (
               <Input
                 key={`${i + 1}_bim`}
-                variant="bordered"
+                variant="flat"
                 size="sm"
                 className="w-35"
                 classNames={{
                   inputWrapper: [
                     "bg-content1",
-                    "box-border",
-                    "border border-boundary"
+                    "shadow-none"
                   ],
                 }}
                 type="number"
@@ -51,4 +50,11 @@ export function FinalTab() {
       </div>
     </>
   );
+}
+
+export function BimTab() {
+  return (
+    <>
+    </>
+  )
 }

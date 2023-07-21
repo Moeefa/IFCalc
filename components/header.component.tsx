@@ -10,11 +10,11 @@ import {
 } from '@/components/buttons.component';
 
 export default function Header() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   return (
     <>
-      <Navbar position="sticky" className="mb-2">
+      <Navbar isBordered position="sticky" className="mb-2">
         <NavbarBrand>
           <Image src={brand} width={50} priority alt="Brand Icon" />
         </NavbarBrand>

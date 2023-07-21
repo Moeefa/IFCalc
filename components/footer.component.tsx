@@ -11,21 +11,21 @@ export default function Footer() {
             <User
               name="Luiz Henrique da Silva Xinaider"
               description={(
-		<div className="flex gap-4">
-                  <Link href="https://github.com/Moeefa" size="xs" isExternal>
+                <div className="flex gap-4">
+                  <Link href="https://github.com/Moeefa" size="sm" isExternal>
                     Github
-		  </Link>
-		  <Link href="https://www.linkedin.com/in/xinaider" size="xs" isExternal>
+                  </Link>
+                  <Link href="https://www.linkedin.com/in/xinaider" size="sm" isExternal>
                     LinkedIn
-		  </Link>
-		</div>
+                  </Link>
+                </div>
               )}
               avatarProps={{
                 src: "https://avatars.githubusercontent.com/u/32604322?v=4"
               }}
             />
           </div>
-	</div>
+        </div>
       </footer>
     </>
   );

@@ -1,8 +1,8 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { Tabs, Tab, Skeleton } from '@nextui-org/react';
-import { FinalTab } from '@/components/tabs.component';
+import { Tabs, Tab, Skeleton, Divider } from '@nextui-org/react';
+import { FinalTab, BimTab } from '@/components/tabs.component';
 import Subject from '@/components/subject.component';
 import useSWR from 'swr';
 import axios from 'axios';
@@ -13,34 +13,32 @@ export default function Home() {
   const { status } = useSession();
   const { data, error, isLoading } = useSWR(() => status === "authenticated" ? "/api/grade" : null, fetcher);
 
-  /*useEffect(() => {
-    if (status !== "authenticated") return;
-
-    axios.get("/api/grade", { signal: AbortSignal.timeout(15_000) })
-      .then(res => setData(res.data));
-  }, [status, session]);*/
-
   return (
     <>
-      {/*<Tabs
+      <Tabs
         variant="underlined"
         aria-label="Médias"
-        shadowCursor="md"
         fullWidth
       >
-        <Tab title="Média anual">*/}
-      <FinalTab />
-      {isLoading
-        ? <Skeleton>
-        </Skeleton>
-        : !!error
-          ? error.info
-          : data != undefined
-            ? <Subject data={data} />
+        <Tab title="Média anual">
+          <FinalTab />
+          {status === "authenticated"
+            ? <>
+              <Divider className="my-5" />
+              {isLoading || data == undefined
+                ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div>
+                : !!error
+                  ? error.info
+                  : <Subject data={data} />}
+            </>
             : <></>
-      }
-      {/*</Tab>
-      </Tabs>*/}
+          }
+        </Tab>
+
+        <Tab title="Média bimestral">
+          <BimTab />
+        </Tab>
+      </Tabs>
     </>
   );
 }

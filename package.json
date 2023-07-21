@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "^0.0.0-dev-v2-20230625233448",
+    "@nextui-org/react": "^0.0.0-dev-v2-20230711220434",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
@@ -17,7 +17,7 @@
     "axios": "1.4.0",
     "eslint": "^8.42.0",
     "eslint-config-next": "^12.0.4",
-    "framer-motion": "^10.12.17",
+    "framer-motion": "^10.12.18",
     "next": "^13.4.7",
     "next-auth": "4.22.1",
     "next-themes": "^0.2.1",
