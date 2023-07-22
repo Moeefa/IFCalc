@@ -1,9 +1,8 @@
 /node_modules
-/analyze
-/public/sitemap.xml
-/public/sitemap-0.xml
 README.md
 package-lock.json
 replit.nix
+.vscode
 .replit
 .next
+.env

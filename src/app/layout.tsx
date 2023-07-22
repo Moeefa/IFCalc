@@ -1,6 +1,7 @@
-import './globals.css'
-import Header from '@/components/header.component';
-import Footer from '@/components/footer.component';
+import './globals.css';
+
+import Footer from '@/src/components/footer.component';
+import Header from '@/src/components/header.component';
 import { Providers } from './providers';
 import { Roboto } from 'next/font/google';
 

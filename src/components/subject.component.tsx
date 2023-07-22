@@ -2,11 +2,11 @@ import {
   Accordion,
   AccordionItem,
   Table,
-  TableHeader,
-  TableColumn,
-  TableRow,
+  TableBody,
   TableCell,
-  TableBody
+  TableColumn,
+  TableHeader,
+  TableRow
 } from "@nextui-org/react";
 
 type IData = {
