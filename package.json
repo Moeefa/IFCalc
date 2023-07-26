@@ -6,7 +6,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "^0.0.0-dev-v2-20230711220434",
+    "@nextui-org/react": "0.0.0-dev-v2-20230725193627",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
