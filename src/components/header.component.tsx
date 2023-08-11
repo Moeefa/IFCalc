@@ -1,6 +1,15 @@
 'use client';
 
-import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, Skeleton } from '@nextui-org/react';
+import { 
+  Link, 
+  Navbar, 
+  NavbarBrand, 
+  NavbarContent, 
+  NavbarItem, 
+  NavbarMenu, 
+  NavbarMenuItem, 
+  NavbarMenuToggle, 
+  Skeleton } from '@nextui-org/react';
 import {
   LoginButton,
   LogoutButton,
