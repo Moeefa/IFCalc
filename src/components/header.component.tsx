@@ -6,18 +6,24 @@ import {
   LogoutButton,
 } from '@/src/components/buttons.component';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import brand from '@/public/icon.svg';
 import { useSession } from 'next-auth/react';
 import { useTabContext } from '@/src/context/tab';
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { tab, setTab } = useTabContext();
   const { status } = useSession();
 
   return (
     <>
-      <Navbar isBordered position="sticky" className="mb-2">
+      <Navbar onMenuOpenChange={setIsMenuOpen} isBordered position="sticky" className="mb-2">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
         <NavbarBrand>
           <Image src={brand} width={50} priority alt="Ícone IFCalc" />
         </NavbarBrand>
