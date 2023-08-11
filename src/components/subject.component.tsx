@@ -41,7 +41,7 @@ export default function Subject({ data }: { data: IData[] }) {
                   <div className="flex justify-center">
                     <div>
                       <Table
-                        layout="fixed"
+                        layout={"fixed"}
                         fullWidth
                         removeWrapper
                         classNames={{
