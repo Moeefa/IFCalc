@@ -1,6 +1,7 @@
 /node_modules
 README.md
 package-lock.json
+next-env.d.ts
 replit.nix
 .vscode
 .replit

@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, Skeleton } from '@nextui-org/react';
+import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, Skeleton } from '@nextui-org/react';
 import {
   LoginButton,
   LogoutButton,
@@ -19,16 +19,16 @@ export default function Header() {
     <>
       <Navbar isBordered position="sticky" className="mb-2">
         <NavbarBrand>
-          <Image src={brand} width={50} priority alt="Brand Icon" />
+          <Image src={brand} width={50} priority alt="Ícone IFCalc" />
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarItem>
-            <Link color={tab == 'final' ? 'primary' : 'foreground'} className="cursor-pointer" onClick={() => setTab('final')}>
+            <Link color="foreground" isDisabled={tab === 'final'} className="cursor-pointer" onClick={() => setTab('final')}>
               Média final
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link color={tab == 'bimestral' ? 'primary' : 'foreground'} className="cursor-pointer" onClick={() => setTab('bimestral')}>
+            <Link color="foreground" isDisabled={tab === 'bimestral'} className="cursor-pointer" onClick={() => setTab('bimestral')}>
               Média bimestral
             </Link>
           </NavbarItem>
@@ -38,6 +38,18 @@ export default function Header() {
             {status === "authenticated" ? <LogoutButton /> : <Skeleton isLoaded={status !== "loading"} className="rounded-full"><LoginButton /></Skeleton>}
           </NavbarItem>
         </NavbarContent>
+        <NavbarMenu>
+          <NavbarMenuItem>
+            <Link color="foreground" isDisabled={tab === 'final'} className="cursor-pointer" onClick={() => setTab('final')}>
+              Média final
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link color="foreground" isDisabled={tab === 'bimestral'} className="cursor-pointer" onClick={() => setTab('bimestral')}>
+              Média bimestral
+            </Link>
+          </NavbarMenuItem>
+        </NavbarMenu>
       </Navbar>
     </>
   );

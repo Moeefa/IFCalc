@@ -41,6 +41,7 @@ export default function Subject({ data }: { data: IData[] }) {
                   <div className="flex justify-center">
                     <div>
                       <Table
+                        layout="fixed"
                         fullWidth
                         removeWrapper
                         classNames={{
@@ -49,9 +50,15 @@ export default function Subject({ data }: { data: IData[] }) {
                             "no-wrap",
                             "bg-[--background]",
                             "text-center",
+                            "px-0",
+                            "sm:px-3",
+                            "whitespace-normal"
                           ],
                           td: [
-                            "text-center"
+                            "break-words",
+                            "text-center",
+                            "px-0",
+                            "sm:px-3"
                           ],
                         }}
                       >
