@@ -2,6 +2,7 @@
 
 import { BimTab as Bimestral, FinalTab as Final } from '@/src/components/tabs.component';
 import { Divider, Skeleton, Tab, Tabs } from '@nextui-org/react';
+import { Type } from '@/types/index.d';
 
 import Subject from '@/src/components/subject.component';
 import useSWR from 'swr';
@@ -16,11 +17,11 @@ export default function Home() {
   const { tab, setTab } = useTabContext();
 
   switch (tab) {
-    case 'bimestral':
+    case Type.BIMESTRAL:
       return (
         <Bimestral />
       );
-    case 'final':
+    case Type.FINAL:
       return (
         <>
           <Final />

@@ -20,16 +20,12 @@ import Image from 'next/image';
 import brand from '@/public/icon.svg';
 import { useSession } from 'next-auth/react';
 import { useTabContext } from '@/src/context/tab';
+import { Type } from '@/types/index.d';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { active, setActive } = useTabContext();
   const { status } = useSession();
-
-  enum Type {
-    BIMESTRAL,
-    FINAL,
-  };
 
   const items = [{
     label: "Média final",
