@@ -16,7 +16,7 @@ export default function Home() {
   const { data, error, isLoading } = useSWR(() => status === "authenticated" ? "/api/grade" : null, fetcher);
   const { active, setActive } = useTabContext();
 
-  switch (tab) {
+  switch (active) {
     case Type.BIMESTRAL:
       return (
         <Bimestral />
