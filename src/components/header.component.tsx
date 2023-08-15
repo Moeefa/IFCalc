@@ -47,12 +47,10 @@ export default function Header() {
           <Image src={brand} width={50} priority alt="Ícone IFCalc" />
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          {items.map((item) => (
-            <>
-              <NavbarItem color="foreground" isDisabled={active === item.value} onClick={() => setActive(item.value)}>
-                <Link>{item.label}</Link>
-              </NavbarItem>
-            </>
+          {items.map(item => (
+            <NavbarItem color="foreground" isDisabled={active === item.value} onClick={() => setActive(item.value)}>
+              <Link>{item.label}</Link>
+            </NavbarItem>
           ))}
         </NavbarContent>
         <NavbarContent justify="end">
@@ -63,12 +61,10 @@ export default function Header() {
           </NavbarItem>
         </NavbarContent>
         <NavbarMenu>
-          {items.map((item) => (
-            <>
-              <NavbarMenuItem color="foreground" isDisabled={active === item.value} onClick={() => setActive(item.value)}>
-                <Link>{item.label}</Link>
-              </NavbarMenuItem>
-            </>
+          {items.map(item => (
+            <NavbarMenuItem color="foreground" isDisabled={active === item.value} onClick={() => setActive(item.value)}>
+              <Link>{item.label}</Link>
+            </NavbarMenuItem>
           ))}
         </NavbarMenu>
       </Navbar>
