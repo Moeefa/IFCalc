@@ -38,7 +38,28 @@ export default function Header() {
 
   return (
     <>
-      <Navbar onMenuOpenChange={setIsMenuOpen} isBordered position="sticky" className="mb-2">
+      <Navbar 
+        onMenuOpenChange={setIsMenuOpen} 
+        isBordered 
+        position="sticky" 
+        className="mb-2"
+        classNames={{
+          item: [
+            "flex",
+            "relative",
+            "h-full",
+            "items-center",
+            "data-[active=true]:after:content-['']",
+            "data-[active=true]:after:absolute",
+            "data-[active=true]:after:bottom-0",
+            "data-[active=true]:after:left-0",
+            "data-[active=true]:after:right-0",
+            "data-[active=true]:after:h-[2px]",
+            "data-[active=true]:after:rounded-[2px]",
+            "data-[active=true]:after:bg-primary",
+          ],
+        }}
+      >
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
@@ -48,8 +69,8 @@ export default function Header() {
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           {items.map(item => (
-            <NavbarItem color="foreground" isDisabled={active === item.value} onClick={() => setActive(item.value)}>
-              <Link>{item.label}</Link>
+            <NavbarItem isActive={active === item.value} onClick={() => setActive(item.value)}>
+              <Link color="foreground">{item.label}</Link>
             </NavbarItem>
           ))}
         </NavbarContent>
@@ -62,8 +83,8 @@ export default function Header() {
         </NavbarContent>
         <NavbarMenu>
           {items.map(item => (
-            <NavbarMenuItem color="foreground" isDisabled={active === item.value} onClick={() => setActive(item.value)}>
-              <Link>{item.label}</Link>
+            <NavbarMenuItem color="foreground" isActive={active === item.value} onClick={() => setActive(item.value)}>
+              <Link color="foreground">{item.label}</Link>
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
