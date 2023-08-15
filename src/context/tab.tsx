@@ -9,7 +9,7 @@ interface ContextProps {
 
 const TabContext = createContext({
     active: 1,
-    setActive: (): number => 1,
+    setActive: (status: number): number => 1,
 });
 
 export const TabContextProvider = ({ children }: { children: React.ReactNode }) => {
