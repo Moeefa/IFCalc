@@ -3,8 +3,8 @@
 import { Dispatch, SetStateAction, createContext, useContext, useState } from "react"
 
 interface ContextProps {
-    tab: number;
-    setTab: Dispatch<SetStateAction<number>>;
+    active: number;
+    setActive: Dispatch<SetStateAction<number>>;
 }
 
 const TabContext = createContext<ContextProps>({
