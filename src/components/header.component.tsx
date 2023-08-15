@@ -44,11 +44,15 @@ export default function Header() {
         position="sticky" 
         className="mb-2"
         classNames={{
+          menuItem: [
+            "cursor-pointer",
+          ],
           item: [
             "flex",
             "relative",
             "h-full",
             "items-center",
+            "cursor-pointer",
             "data-[active=true]:after:content-['']",
             "data-[active=true]:after:absolute",
             "data-[active=true]:after:bottom-0",
@@ -57,7 +61,6 @@ export default function Header() {
             "data-[active=true]:after:h-[2px]",
             "data-[active=true]:after:rounded-[2px]",
             "data-[active=true]:after:bg-primary",
-            "data-[active=false]:cursor-pointer",
           ],
         }}
       >
