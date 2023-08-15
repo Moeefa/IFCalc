@@ -70,8 +70,8 @@ export default function Header() {
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           {items.map(item => (
-            <NavbarItem isActive={active === item.value} onClick={() => setActive(item.value)}>
-              <Link color="foreground">{item.label}</Link>
+            <NavbarItem isActive={active === item.value}>
+              <Link onClick={() => setActive(item.value)} color="foreground">{item.label}</Link>
             </NavbarItem>
           ))}
         </NavbarContent>
@@ -84,8 +84,8 @@ export default function Header() {
         </NavbarContent>
         <NavbarMenu>
           {items.map(item => (
-            <NavbarMenuItem onClick={() => setActive(item.value)}>
-              <Link isDisabled={active === item.value} color="foreground">{item.label}</Link>
+            <NavbarMenuItem>
+              <Link onClick={() => setActive(item.value)} isDisabled={active === item.value} color="foreground">{item.label}</Link>
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
