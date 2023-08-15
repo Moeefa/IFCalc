@@ -57,6 +57,7 @@ export default function Header() {
             "data-[active=true]:after:h-[2px]",
             "data-[active=true]:after:rounded-[2px]",
             "data-[active=true]:after:bg-primary",
+            "data-[active=false]:cursor-pointer",
           ],
         }}
       >
