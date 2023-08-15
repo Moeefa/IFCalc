@@ -14,7 +14,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function Home() {
   const { status } = useSession();
   const { data, error, isLoading } = useSWR(() => status === "authenticated" ? "/api/grade" : null, fetcher);
-  const { tab, setTab } = useTabContext();
+  const { active, setActive } = useTabContext();
 
   switch (tab) {
     case Type.BIMESTRAL:
