@@ -43,10 +43,8 @@ export default function Subject({ data }: { data: IData[] }) {
                       <Table
                         fullWidth
                         removeWrapper
+                        layout="fixed"
                         classNames={{
-                          table: [
-                            "table-fixed",
-                          ],
                           th: [
                             "text-xs",
                             "no-wrap",
