@@ -3,20 +3,20 @@
 import { Dispatch, SetStateAction, createContext, useContext, useState } from "react"
 
 interface ContextProps {
-    tab: string;
-    setTab: Dispatch<SetStateAction<string>>;
+    tab: number;
+    setTab: Dispatch<SetStateAction<number>>;
 }
 
 const TabContext = createContext<ContextProps>({
-    tab: 'final',
-    setTab: (): string => '',
+    active: 0,
+    setActive: (): number => 0,
 });
 
 export const TabContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const [tab, setTab] = useState('final');
+    const [active, setActive] = useState(0);
 
     return (
-        <TabContext.Provider value={{ tab, setTab }}>
+        <TabContext.Provider value={{ active, setActive }}>
             {children}
         </TabContext.Provider>
     );

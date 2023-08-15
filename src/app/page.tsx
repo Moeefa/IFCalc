@@ -1,6 +1,6 @@
 'use client';
 
-import { BimTab, FinalTab } from '@/src/components/tabs.component';
+import { BimTab as Bimestral, FinalTab as Final } from '@/src/components/tabs.component';
 import { Divider, Skeleton, Tab, Tabs } from '@nextui-org/react';
 
 import Subject from '@/src/components/subject.component';
@@ -18,22 +18,20 @@ export default function Home() {
   switch (tab) {
     case 'bimestral':
       return (
-        <BimTab />
+        <Bimestral />
       );
     case 'final':
       return (
         <>
-          <FinalTab />
+          <Final />
           {status === "authenticated"
-          ? <>
-              <Divider className="my-5" />
-              {isLoading || data == undefined
-                ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div>
-                : !!error
-                  ? error.info
+            ? <>
+                <Divider className="my-5" />
+                {isLoading
+                  ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div>
                   : <Subject data={data} />}
-            </>
-          : <></>}
+              </>
+            : <></>}
         </>
       );
   }

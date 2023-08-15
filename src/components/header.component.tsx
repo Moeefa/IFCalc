@@ -23,8 +23,22 @@ import { useTabContext } from '@/src/context/tab';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { tab, setTab } = useTabContext();
+  const { active, setActive } = useTabContext();
   const { status } = useSession();
+
+  enum Type {
+    BIMESTRAL,
+    FINAL,
+  };
+
+  const items = [{
+    label: "Média final",
+    value: Type.FINAL,
+  },
+  {
+    label: "Média bimestral",
+    value: Type.BIMESTRAL,
+  }];
 
   return (
     <>
@@ -37,33 +51,29 @@ export default function Header() {
           <Image src={brand} width={50} priority alt="Ícone IFCalc" />
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarItem>
-            <Link color="foreground" isDisabled={tab === 'final'} className="cursor-pointer" onClick={() => setTab('final')}>
-              Média final
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" isDisabled={tab === 'bimestral'} className="cursor-pointer" onClick={() => setTab('bimestral')}>
-              Média bimestral
-            </Link>
-          </NavbarItem>
+          {items.map((item) => (
+            <>
+              <NavbarItem color="foreground" isDisabled={active === item.value} onClick={() => setActive(item.value)}>
+                <Link>{item.label}</Link>
+              </NavbarItem>
+            </>
+          ))}
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem>
-            {status === "authenticated" ? <LogoutButton /> : <Skeleton isLoaded={status !== "loading"} className="rounded-full"><LoginButton /></Skeleton>}
+            {status === "authenticated" 
+              ? <LogoutButton /> 
+              : <Skeleton isLoaded={status !== "loading"} className="rounded-full"><LoginButton /></Skeleton>}
           </NavbarItem>
         </NavbarContent>
         <NavbarMenu>
-          <NavbarMenuItem>
-            <Link color="foreground" isDisabled={tab === 'final'} className="cursor-pointer" onClick={() => setTab('final')}>
-              Média final
-            </Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem>
-            <Link color="foreground" isDisabled={tab === 'bimestral'} className="cursor-pointer" onClick={() => setTab('bimestral')}>
-              Média bimestral
-            </Link>
-          </NavbarMenuItem>
+          {items.map((item) => (
+            <>
+              <NavbarMenuItem color="foreground" isDisabled={active === item.value} onClick={() => setActive(item.value)}>
+                <Link>{item.label}</Link>
+              </NavbarMenuItem>
+            </>
+          ))}
         </NavbarMenu>
       </Navbar>
     </>
