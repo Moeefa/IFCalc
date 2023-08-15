@@ -70,7 +70,7 @@ export function BimTab() {
   return (
     <>
       <div className="flex justify-center w-full sm:w-auto">
-        <div className="w-11/12 sm:flex sm:flex-wrap sm:justify-center grid grid-cols-2 grid-rows-2 gap-3 mb-2">
+        <div className="w-11/12 flex flex-wrap justify-center gap-3 mb-2">
           {grade.notas.map((e, i) => {
             const state = Number(e) >= 0 && Number(e) <= 10 ? "valid" : "invalid";
           
