@@ -2,7 +2,15 @@
 
 import { Dispatch, SetStateAction, createContext, useContext, useState } from "react"
 
-const TabContext = createContext({});
+interface ContextProps {
+    active: number;
+    setActive: Dispatch<SetStateAction<number>>;
+}
+
+const TabContext = createContext({
+    active: 0,
+    setActive: (): number => 0,
+});
 
 export const TabContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [active, setActive] = useState(0);
