@@ -44,15 +44,11 @@ export default function Header() {
         position="sticky" 
         className="mb-2"
         classNames={{
-          menuItem: [
-            "cursor-pointer",
-          ],
           item: [
             "flex",
             "relative",
             "h-full",
             "items-center",
-            "cursor-pointer",
             "data-[active=true]:after:content-['']",
             "data-[active=true]:after:absolute",
             "data-[active=true]:after:bottom-0",
@@ -74,7 +70,7 @@ export default function Header() {
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           {items.map(item => (
             <NavbarItem isActive={active === item.value}>
-              <Link onClick={() => setActive(item.value)} color="foreground">{item.label}</Link>
+              <Link className="cursor-pointer" onClick={() => setActive(item.value)} color="foreground">{item.label}</Link>
             </NavbarItem>
           ))}
         </NavbarContent>
@@ -88,7 +84,7 @@ export default function Header() {
         <NavbarMenu>
           {items.map(item => (
             <NavbarMenuItem>
-              <Link onClick={() => setActive(item.value)} isDisabled={active === item.value} color="foreground">{item.label}</Link>
+              <Link className="cursor-pointer" onClick={() => setActive(item.value)} isDisabled={active === item.value} color="foreground">{item.label}</Link>
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
