@@ -83,7 +83,7 @@ export default function Header() {
         </NavbarContent>
         <NavbarMenu>
           {items.map(item => (
-            <NavbarMenuItem color="foreground" isActive={active === item.value} onClick={() => setActive(item.value)}>
+            <NavbarMenuItem isActive={active === item.value} onClick={() => setActive(item.value)}>
               <Link color="foreground">{item.label}</Link>
             </NavbarMenuItem>
           ))}
