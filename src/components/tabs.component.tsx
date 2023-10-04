@@ -71,7 +71,7 @@ export function BimTab() {
   return (
     <>
       <div className="flex justify-center">
-        <div className="w-11/12 sm:w-auto flex flex-wrap justify-center gap-3 mb-2">
+        <div className="w-11/12 flex flex-col sm:flex-row flex-wrap justify-center gap-3 mb-2">
           {grade.notas.map((e, i) => {
             const state = Number(e) >= 0 && Number(e) <= 10 ? "valid" : "invalid";
           
@@ -80,6 +80,7 @@ export function BimTab() {
                 size="md"
                 key={`${i + 1}_grade`}
                 variant="flat"
+                className="sm:w-48"
                 classNames={{
                   inputWrapper: [
                     "bg-content1",
@@ -99,12 +100,12 @@ export function BimTab() {
           })}
         </div>
       </div>
-      <div className="flex gap-2 justify-center mb-3">
+      <div className="flex gap-2 justify-center mb-10">
         <Button 
           color="primary" 
           radius="full" 
           isIconOnly 
-          isDisabled={grade.notas.length >= 6}
+          isDisabled={grade.notas.length >= 10}
           onPress={() => {
             let copy = grade.notas;
             copy.push('');
