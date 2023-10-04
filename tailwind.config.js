@@ -17,13 +17,13 @@ module.exports = {
       themes: {
         light: {
           colors: {
-            primary: "#338ef7",
+            // primary: "#338ef7",
             danger: "firebrick",
           },
         },
         dark: {
           colors: {
-            primary: "#338ef7",
+            // primary: "#338ef7",
             danger: "firebrick",
           },
         },
