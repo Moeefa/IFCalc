@@ -27,15 +27,15 @@ export default function Home() {
           <div className="sm:flex sm:justify-center gap-10">
             <Final />
             <Divider className="my-4 sm:hidden" />
-            <ScrollShadow hideScrollBar className="sm:w-auto sm:pb-[2em] sm:pr-[2em] sm:max-h-[30em]">
               {status === "authenticated"
                 ? <>
-                    {isLoading
-                      ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div>
-                      : <Subject data={data} />}
+                    <ScrollShadow hideScrollBar className="sm:w-auto sm:pb-[2em] sm:pr-[2em] sm:max-h-[30em]">
+                      {isLoading
+                        ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div>
+                        : <Subject data={data} />}
+                    </ScrollShadow>
                   </>
                 : <></>}
-            </ScrollShadow>
           </div>
         </>
       );
