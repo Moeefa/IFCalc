@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Providers>
           <Header />
-          <main>
+          <main className="my-8">
             {children}
           </main>
           <Footer />

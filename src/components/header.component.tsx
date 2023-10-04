@@ -1,26 +1,27 @@
 'use client';
 
-import { 
-  Link, 
-  Navbar, 
-  NavbarBrand, 
-  NavbarContent, 
-  NavbarItem, 
-  NavbarMenu, 
-  NavbarMenuItem, 
-  NavbarMenuToggle, 
-  Skeleton } from '@nextui-org/react';
+import {
+  Link,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+  Skeleton
+} from '@nextui-org/react';
 import {
   LoginButton,
   LogoutButton,
 } from '@/src/components/buttons.component';
 
-import { useState } from 'react';
 import Image from 'next/image';
+import { Type } from '@/types/index.d';
 import brand from '@/public/icon.svg';
 import { useSession } from 'next-auth/react';
+import { useState } from 'react';
 import { useTabContext } from '@/src/context/tab';
-import { Type } from '@/types/index.d';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,6 +58,7 @@ export default function Header() {
             "data-[active=true]:after:h-[2px]",
             "data-[active=true]:after:rounded-[2px]",
             "data-[active=true]:after:bg-primary",
+            "data-[active=true]:font-normal"
           ],
         }}
       >
@@ -69,7 +71,7 @@ export default function Header() {
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           {items.map(item => (
-            <NavbarItem isActive={active === item.value}>
+            <NavbarItem key={item.value} isActive={active === item.value}>
               <Link className="cursor-pointer" onClick={() => setActive(item.value)} color="foreground">{item.label}</Link>
             </NavbarItem>
           ))}
@@ -83,7 +85,7 @@ export default function Header() {
         </NavbarContent>
         <NavbarMenu>
           {items.map(item => (
-            <NavbarMenuItem>
+            <NavbarMenuItem key={item.value}>
               <Link className="cursor-pointer" onClick={() => setActive(item.value)} isDisabled={active === item.value} color="foreground">{item.label}</Link>
             </NavbarMenuItem>
           ))}

@@ -14,10 +14,10 @@ const toFixed = (n: number, precision: number) => {
 export function FinalCard({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grade?: { [index: string]: number | string } }) {
   const final = (((Number(grade["1"]) * 2) + (Number(grade["2"]) * 2) + (Number(grade["3"]) * 3) + (Number(grade["4"]) * 3)) / (2 + 2 + 3 + 3));
   const hasExceeded = Number(grade["1"]) > 10 || Number(grade["2"]) > 10 || Number(grade["3"]) > 10 || Number(grade["4"]) > 10 || Number(grade["1"]) < 0 || Number(grade["2"]) < 0 || Number(grade["3"]) < 0 || Number(grade["4"]) < 0;
-  const isEmpty = grade["1"] == "0" || grade["2"] == "0" || grade["1"] == "" || grade["2"] == "";
+  const isEmpty = grade["1"] == "" || grade["2"] == "";
 
   return (
-    <Card shadow="none" className="sm:w-72 w-11/12">
+    <Card shadow="none" className="sm:w-full w-11/12">
       <CardHeader className="flex justify-center">
         <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 && !hasExceeded ? "from-blue-600 to-blue-800" : "from-red-600 to-red-800"}`}>{hasExceeded ? "Inválido" : final >= 6 ? "Aprovado" : "Reprovado"}</p>
       </CardHeader>
@@ -30,8 +30,8 @@ export function FinalCard({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grad
           <Divider />
           <CardFooter className="flex justify-center">
             <p className="text-xs text-center text-default-400">
-              Estimativa da nota necessária no {isEmpty ? "1° ou 2°" : "3° ou 4°"} bimestre:
-              {' '}{Number(((6 - final) / (isEmpty ? 2 : 3)) * 10).toLocaleString("pt-BR")}
+              Estimativa da nota necessária no <span className="text-danger">{grade["1"] == "" ? "1" : grade["2"] == "" ? "2" : grade["3"] == "" ? "3" : "4"}</span>° bimestre:
+              {' '}{Number(Math.min(10, ((((6 - final) / (isEmpty ? 2 : 3)) * 10) / (grade["1"] == "" ? 3 : grade["2"] == "" ? 2 : 1)) + 0.05).toFixed(2)).toLocaleString("pt-BR")}
             </p>
           </CardFooter>
         </>}
