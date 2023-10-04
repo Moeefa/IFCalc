@@ -31,7 +31,7 @@ export function FinalCard({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grad
           <CardFooter className="flex justify-center">
             <p className="text-xs text-center text-default-400">
               Estimativa da nota necessária no <span className="text-danger">{grade["1"] == "" ? "1" : grade["2"] == "" ? "2" : grade["3"] == "" ? "3" : "4"}</span>° bimestre:
-              {' '}{Number(Math.min(10, ((((6 - final) / (isEmpty ? 2 : 3)) * 10) / (grade["1"] == "" ? 3 : grade["2"] == "" ? 2 : 1)) + 0.05).toFixed(2)).toLocaleString("pt-BR")}
+              {' '}{Number(Math.min(10, ((((6 - final) / (isEmpty ? 2 : 3)) * 10) / (grade["1"] == "" ? 3 : grade["2"] == "" ? 2 : 1)) + 0.01).toFixed(2)).toLocaleString("pt-BR")}
             </p>
           </CardFooter>
         </>}
