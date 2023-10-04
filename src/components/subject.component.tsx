@@ -81,7 +81,7 @@ export default function Subject({ data }: { data: IData[] }) {
                     <Divider className="my-2" />
                     <p className="text-xs text-center text-default-400 p-1">
                       Estimativa da nota necessária no {e.notas["1"] == "" ? "1°" : e.notas["2"] == "" ? "2°" : e.notas["3"] == "" ? "3°" : "4°"} bimestre:
-                      {' '}{Number(Math.min(10, ((((6 - final) / (e.notas["1"] == "" || e.notas["2"] == "" ? 2 : 3)) * 10) / (e.notas["1"] == "" ? 3 : e.notas["2"] == "" ? 2 : 1)) + 0.05).toFixed(2)).toLocaleString("pt-BR")}
+                      {' '}{Number(Math.min(10, ((((6 - final) / (e.notas["1"] == "" || e.notas["2"] == "" ? 2 : 3)) * 10) / (e.notas["1"] == "" ? 3 : e.notas["2"] == "" ? 2 : 1)) + 0.01).toFixed(2)).toLocaleString("pt-BR")}
                     </p>
                   </>
                   : <></>}
