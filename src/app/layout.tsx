@@ -1,6 +1,7 @@
 import './globals.css';
 
 import Footer from '@/src/components/footer.component';
+import Head from 'next/head';
 import Header from '@/src/components/header.component';
 import { Providers } from './providers';
 import { Roboto } from 'next/font/google';
@@ -16,6 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning lang="pt-BR" className={roboto.className}>
+      <Head>
+        <meta name="google-adsense-account" content="ca-pub-1685879549843656"></meta>
+      </Head>
       <body>
         <Providers>
           <Header />
