@@ -12,14 +12,12 @@ export const metadata = {
   title: 'IFCalc',
   description: 'O IFCalc foi criado no intuito de auxiliar os alunos a visualizarem suas notas e aprovações. Os alunos podem salvar, editar e excluir suas notas no banco de dados.',
   icons: '/icon.svg',
+  'google-adsense-account': 'ca-pub-1685879549843656',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning lang="pt-BR" className={roboto.className}>
-      <Head>
-        <meta name="google-adsense-account" content="ca-pub-1685879549843656"></meta>
-      </Head>
       <body>
         <Providers>
           <Header />
