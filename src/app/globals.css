@@ -2,20 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground: #ffffff;
-  --background: #F4F6F6;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #000000;
-    --background: #131313;
-  }
-}
-
 body, html {
-  background-color: var(--background);
-  min-height: 100vh;
-  width: 100%;
+  @apply min-h-screen w-full
 }

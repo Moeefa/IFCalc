@@ -124,6 +124,7 @@ export default function Home() {
           </div>
         </>
       );
+
     case Type.FINAL:
       return (
         <>
@@ -167,7 +168,7 @@ export default function Home() {
             {status === "authenticated"
               ? <>
                   <ScrollShadow hideScrollBar className="sm:w-auto sm:pr-[2em] sm:h-[calc(100vh-12.5em)] sm:min-h-[16em]">
-                    {isLoading ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div> : <Subject data={data} />}
+                    {isLoading ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div> : <Subject data={data} setGrade={setGrade} />}
                   </ScrollShadow>
                 </>
               : <></>}
