@@ -49,7 +49,7 @@ export default function Subject({ data, setGrade }: { data: IData[], setGrade: D
                   startContent={<div className={`flex justify-center items-center h-10 w-10 p-5 drop-shadow-lg rounded-full bg-background`}><p>{Number(final.toString().match(/^-?\d+(?:\.\d{0,1})?/)![0]).toLocaleString("pt-BR")}</p></div>}
                   title={<><p className="sm:truncate sm:w-44 grow">{e.nome}</p> <Button onClick={() => setGrade({ "1": e.notas["1"], "2": e.notas["2"], "3": e.notas["3"], "4": e.notas["4"] })} size="sm" variant="light" isIconOnly><Clipboard /></Button></>}
                   aria-label={e.nome}
-                  subtitle={<p className={`font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 ? "from-blue-600 to-blue-800" : e.cursando ? "from-neutral-500 to-neutral-800 dark:from-neutral-200 dark:to-neutral-600" : "from-red-600 to-red-800"}`}>{final >= 6 ? "Aprovado" : e.cursando ? "Cursando" : (e.notas["1"] != "" && e.notas["2"] != "" && e.notas["3"] != "") && Number((((((6 - final) / 3)) * 10) / 1) + 0.01) > 10 ? "Prova Final" : "Reprovado"}</p>}
+                  subtitle={<p className={`font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 ? "from-blue-600 to-blue-800" : e.cursando ? "from-neutral-500 to-neutral-800 dark:from-neutral-200 dark:to-neutral-600" : "from-red-600 to-red-800"}`}>{final >= 6 ? "Aprovado" : (e.notas["1"] != "" && e.notas["2"] != "" && e.notas["3"] != "") && Number((((((6 - final) / 3)) * 10) / 1) + 0.01) > 10 ? "Prova Final" : e.cursando ? "Cursando" : "Reprovado"}</p>}
                 >
                   <div className="flex justify-center px-4">
                     <div>
