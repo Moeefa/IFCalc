@@ -1,8 +1,9 @@
 'use client';
 
-import { BimestralCard, FinalCard } from '@/src/components/cards.component';
+import { BimestralCard, FinalCard, FreqCard } from '@/src/components/cards.component';
 import {
   Button,
+  Card,
   Divider,
   Input,
   ScrollShadow,
@@ -25,6 +26,9 @@ export default function Home() {
   const { status } = useSession();
   const { data, error, isLoading } = useSWR(() => status === "authenticated" ? "/api/grade" : null, fetcher);
   const { active, setActive } = useTabContext();
+
+  const final = (((Number(grade["1"]) * 2) + (Number(grade["2"]) * 2) + (Number(grade["3"]) * 3) + (Number(grade["4"]) * 3)) / (2 + 2 + 3 + 3));
+  const hasExceeded = Number(grade["1"]) > 10 || Number(grade["2"]) > 10 || Number(grade["3"]) > 10 || Number(grade["4"]) > 10 || Number(grade["1"]) < 0 || Number(grade["2"]) < 0 || Number(grade["3"]) < 0 || Number(grade["4"]) < 0;
 
   switch (active) {
     case Type.BIMESTRAL:    
@@ -129,7 +133,12 @@ export default function Home() {
       return (
         <>
           <div className="sm:flex sm:justify-center gap-10">
-            <div className="flex flex-col sm:justify-normal justify-center w-full sm:w-auto">
+            <div className="flex flex-col sm:justify-normal justify-center w-full sm:w-auto gap-2">
+              <div className="flex justify-center">
+                <Card shadow="none" className="flex mb-[1em] p-[1em] items-center sm:w-full w-11/12 justify-center">
+                  <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 && (status === "authenticated" ? data?.freq : 100) >= 75 && !hasExceeded ? "from-blue-600 to-blue-800" : "from-red-600 to-red-800"}`}>{hasExceeded ? "Inválido" : final >= 6 && (status === "authenticated" ? data?.freq : 100) ? "Aprovado" : "Reprovado"}</p>
+                </Card>
+              </div>
               <div className="flex justify-center sm:block">
                 <div className="w-11/12 sm:w-full grid grid-cols-2 grid-rows-2 gap-3 mb-2">
                   {[...Array(4)].map((_, i) => {
@@ -162,13 +171,18 @@ export default function Home() {
               <div className="flex justify-center">
                 <FinalCard grade={grade} />
               </div>
+              {status === "authenticated"
+                ? <div className="flex justify-center">
+                    <FreqCard freq={data?.freq.toFixed(2)}/>
+                  </div>
+                : <></>}
             </div>
 
             <Divider className="my-4 sm:hidden" />
             {status === "authenticated"
               ? <>
                   <ScrollShadow hideScrollBar className="sm:w-auto sm:pr-[2em] sm:h-[calc(100vh-12.5em)] sm:min-h-[16em]">
-                    {isLoading ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div> : <Subject data={data} setGrade={setGrade} />}
+                    {isLoading ? <div className="flex justify-center"><Skeleton className="rounded-medium w-11/12 sm:w-96 h-20 px-4" /></div> : <Subject data={data.data} setGrade={setGrade} />}
                   </ScrollShadow>
                 </>
               : <></>}

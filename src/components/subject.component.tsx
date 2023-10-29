@@ -17,6 +17,11 @@ type IData = {
   notas: { [index: string]: number };
 }
 
+const toFixed = (n: number, precision: number) => {
+  const s = `${n}`, i = `${n}`.split('.'), p = Math.max(precision | 0, 0);
+  return Number(i[0] + (p ? `.${(i[1] ?? '').padEnd(p, '0')}`.slice(0, p + 1) : ''));
+};
+
 const Clipboard = () => {
   return (
     <>
@@ -42,7 +47,7 @@ export default function Subject({ data, setGrade }: { data: IData[], setGrade: D
           >
             {data.map((e: any, i: number) => {
               const final = (((Number(e.notas["1"] || 0) * 2) + (Number(e.notas["2"] || 0) * 2) + (Number(e.notas["3"] || 0) * 3) + (Number(e.notas["4"] || 0) * 3)) / (2 + 2 + 3 + 3));
-              const isPF = (e.notas["1"] != "" && e.notas["2"] != "" && e.notas["3"] != "") && Number((((((6 - final) / 3)) * 10) / 1) + 0.01) > 10;
+              const isPF = (e.notas["1"] != "" && e.notas["2"] != "" && e.notas["3"] != "") && Number((((((6 - final) / 3)) * 10) / 1) + 0.1) > 10;
 
               return (
                 <AccordionItem
@@ -93,7 +98,7 @@ export default function Subject({ data, setGrade }: { data: IData[], setGrade: D
                     <Divider className="my-2" />
                     <p className="text-xs text-center text-default-400 p-1">
                       Estimativa da nota necessária no {e.notas["1"] == "" ? "1°" : e.notas["2"] == "" ? "2°" : e.notas["3"] == "" ? "3°" : "4°"} bimestre:
-                      {' '}{Number(Math.min(10, ((((6 - final) / (e.notas["1"] == "" || e.notas["2"] == "" ? 2 : 3)) * 10) / (e.notas["1"] == "" ? 3 : e.notas["2"] == "" ? 2 : 1)) + 0.01).toFixed(2)).toLocaleString("pt-BR")}
+                      {' '}{toFixed(Number(Math.min(10, ((((6 - final) / (e.notas["1"] == "" || e.notas["2"] == "" ? 2 : 3)) * 10) / (e.notas["1"] == "" ? 3 : e.notas["2"] == "" ? 2 : 1)) + 0.1)), 1).toLocaleString("pt-BR")}
                     </p>
                   </>
                   : <></>}

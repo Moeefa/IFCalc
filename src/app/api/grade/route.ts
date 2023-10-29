@@ -26,12 +26,12 @@ export async function GET() {
     }
   });
 
-  const data = res.data
-    .filter((a: any) => a.situacao !== "Transferido")
+  const filtered = res.data.filter((a: any) => a.situacao !== "Transferido")
+  const data = filtered
     .reduce((a: any, b: any) => ([
       ...a,
       {
-        nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).replace(/(III|II|I)/g, "").trim(),
+        nome: b.disciplina.slice(b.disciplina.indexOf("-") + 1, b.disciplina.length).replace(/(III|II|I)$/, "").trim(),
         notas: {
           "1": Number(b.nota_etapa_1.nota?.replace(",", ".")),
           "2": Number(b.nota_etapa_2.nota?.replace(",", ".")),
@@ -45,5 +45,7 @@ export async function GET() {
       }
     ]), []);
 
-  return NextResponse.json(data);
+  const freq = (filtered.reduce((a: any, b: any) => a + Number(b.percentual_carga_horaria_frequentada), 0) / filtered.length - 0.27);
+
+  return NextResponse.json({ freq, data });
 }

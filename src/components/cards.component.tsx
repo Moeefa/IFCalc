@@ -19,10 +19,10 @@ export function FinalCard({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grad
   return (
     <Card shadow="none" className="sm:w-full w-11/12">
       <CardHeader className="flex justify-center">
-        <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 && !hasExceeded ? "from-blue-600 to-blue-800" : "from-red-600 to-red-800"}`}>{hasExceeded ? "Inválido" : final >= 6 ? "Aprovado" : "Reprovado"}</p>
+        <p className={`text-lg`}>Nota Final</p>
       </CardHeader>
       <CardBody className="pt-0">
-        <p className="text-center">{hasExceeded ? "Nota inválida" : `Nota final: ${toFixed(Number(final), 1).toLocaleString("pt-BR")}`}</p>
+        <p className="text-center">{hasExceeded ? "Nota inválida" : `${toFixed(Number(final), 1).toLocaleString("pt-BR")}`}</p>
       </CardBody>
       {final >= 6 || hasExceeded
         ? <></>
@@ -31,7 +31,7 @@ export function FinalCard({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grad
           <CardFooter className="flex justify-center">
             <p className="text-xs text-center text-default-400">
               Estimativa da nota necessária no <span className="text-danger">{grade["1"] == "" ? "1" : grade["2"] == "" ? "2" : grade["3"] == "" ? "3" : "4"}</span>° bimestre:
-              {' '}{Number(Math.min(10, ((((6 - final) / (isEmpty ? 2 : 3)) * 10) / (grade["1"] == "" ? 3 : grade["2"] == "" ? 2 : 1)) + 0.01).toFixed(2)).toLocaleString("pt-BR")}
+              {' '}{toFixed(Number(Math.min(10, ((((6 - final) / (isEmpty ? 2 : 3)) * 10) / (grade["1"] == "" ? 3 : grade["2"] == "" ? 2 : 1)) + 0.1)), 1).toLocaleString("pt-BR")}
             </p>
           </CardFooter>
         </>}
@@ -51,16 +51,25 @@ export function BimestralCard({ grade = { notas: [''], conceito: '' } }: { grade
       <CardBody className="pt-0">
         <p className="text-center">{hasExceeded ? "Nota inválida" : `Nota final: ${toFixed(Number(final), 1).toLocaleString("pt-BR")}`}</p>
       </CardBody>
-      {/*final >= 6 || hasExceeded
-        ? <></>
-        : <>
-          <Divider />
-          <CardFooter className="flex justify-center">
-            <p className="text-xs text-center text-default-400">
-              {' '}{Number((((6 - final)) * 10).toFixed(1)).toLocaleString("pt-BR")}
-            </p>
-          </CardFooter>
-      </>*/}
+    </Card>
+  );
+}
+
+export function FreqCard({ freq }: { freq: number }) {
+  return (
+    <Card shadow="none" className="sm:w-full w-11/12">
+      <CardHeader className="flex justify-center">
+        <p className={`text-lg`}>Frequência</p>
+      </CardHeader>
+      <CardBody className="pt-0">
+        <p className="text-center">{freq ? `${freq}%` : "Sem dados"}</p>
+      </CardBody>
+      <Divider />
+      <CardFooter className="flex justify-center">
+        <p className="text-xs text-center text-default-400">
+          É necessário 75% ou mais de presença para ser aprovado
+        </p>
+      </CardFooter>
     </Card>
   );
 }
