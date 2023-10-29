@@ -26,7 +26,7 @@ export async function GET() {
     }
   });
 
-  const filtered = res.data.filter((a: any) => a.situacao !== "Transferido")
+  const filtered = res.data.filter((a: any) => a.situacao === "Cursando")
   const data = filtered
     .reduce((a: any, b: any) => ([
       ...a,
@@ -45,7 +45,7 @@ export async function GET() {
       }
     ]), []);
 
-  const freq = (filtered.reduce((a: any, b: any) => a + Number(b.percentual_carga_horaria_frequentada), 0) / filtered.length - 0.27);
+  const freq = ((filtered.reduce((a: any, b: any) => a + b.percentual_carga_horaria_frequentada, 0) - 4) / filtered.length);
 
   return NextResponse.json({ freq, data });
 }
