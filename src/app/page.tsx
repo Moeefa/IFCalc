@@ -135,7 +135,7 @@ export default function Home() {
           <div className="sm:flex sm:justify-center gap-10">
             <div className="flex flex-col sm:justify-normal justify-center w-full sm:w-auto gap-2">
               <div className="flex justify-center">
-                <Card shadow="none" className="flex mb-[1em] p-[1em] items-center sm:w-full w-11/12 justify-center">
+                <Card shadow="none" className="flex mb-2 p-[1em] items-center sm:w-full w-11/12 justify-center">
                   <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 && (status === "authenticated" ? data?.freq : 100) >= 75 && !hasExceeded ? "from-blue-600 to-blue-800" : "from-red-600 to-red-800"}`}>{hasExceeded ? "Inválido" : final >= 6 && (status === "authenticated" ? data?.freq : 100) ? "Aprovado" : "Reprovado"}</p>
                 </Card>
               </div>
