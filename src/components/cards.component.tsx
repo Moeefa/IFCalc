@@ -31,7 +31,7 @@ export function FinalCard({ grade = { "1": 0, "2": 0, "3": 0, "4": 0 } }: { grad
           <CardFooter className="flex justify-center">
             <p className="text-xs text-center text-default-400">
               Estimativa da nota necessária no <span className="text-danger">{grade["1"] == "" ? "1" : grade["2"] == "" ? "2" : grade["3"] == "" ? "3" : "4"}</span>° bimestre:
-              {' '}{toFixed(Number(Math.min(10, ((((6 - final) / (isEmpty ? 2 : 3)) * 10) / (grade["1"] == "" ? 3 : grade["2"] == "" ? 2 : 1)) + 0.1)), 1).toLocaleString("pt-BR", { minimumFractionDigits: 1 })}
+              {' '}{(Number((Math.min(10, ((((6 - final) / (isEmpty ? 2 : 3)) * 10) / (grade["1"] == "" ? 3 : grade["2"] == "" ? 2 : 1)) + 0.01)).toFixed(1))).toLocaleString("pt-BR", { minimumFractionDigits: 1 })}
             </p>
           </CardFooter>
         </>}
@@ -49,7 +49,7 @@ export function BimestralCard({ grade = { notas: [''], conceito: '' } }: { grade
         <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-b ${final >= 6 && !hasExceeded ? "from-blue-600 to-blue-800" : "from-red-600 to-red-800"}`}>{hasExceeded ? "Inválido" : final >= 6 ? "Aprovado" : "Reprovado"}</p>
       </CardHeader>
       <CardBody className="pt-0">
-        <p className="text-center">{hasExceeded ? "Nota inválida" : `Nota final: ${toFixed(Number(final), 1).toLocaleString("pt-BR", { minimumFractionDigits: 1 })}`}</p>
+        <p className="text-center">{hasExceeded ? "Nota inválida" : `Nota final: ${Number(final.toFixed(1)).toLocaleString("pt-BR", { minimumFractionDigits: 1 })}`}</p>
       </CardBody>
     </Card>
   );

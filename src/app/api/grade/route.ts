@@ -38,10 +38,10 @@ export async function GET() {
           "3": Number(b.nota_etapa_3.nota?.replace(",", ".")),
           "4": Number(b.nota_etapa_4.nota?.replace(",", ".")),
         },
-        cursando: b.nota_etapa_1.nota === "" || 
-                  b.nota_etapa_2.nota === "" || 
-                  b.nota_etapa_3.nota === "" || 
-                  b.nota_etapa_4.nota === "",
+        cursando: b.nota_etapa_1.nota === "" || b.nota_etapa_1.nota === null || 
+                  b.nota_etapa_2.nota === "" || b.nota_etapa_2.nota === null || 
+                  b.nota_etapa_3.nota === "" || b.nota_etapa_3.nota === null || 
+                  b.nota_etapa_4.nota === "" || b.nota_etapa_4.nota === null,
       }
     ]), []);
 
