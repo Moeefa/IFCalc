@@ -26,7 +26,7 @@ export async function GET() {
     }
   });
 
-  const filtered = res.data.filter((a: any) => a.situacao === "Cursando")
+  const filtered = res.data.filter((a: any) => a.situacao !== "Transferido")
   const data = filtered
     .reduce((a: any, b: any) => ([
       ...a,
