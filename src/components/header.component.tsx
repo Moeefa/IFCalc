@@ -16,14 +16,17 @@ import {
   LogoutButton,
 } from '@/src/components/buttons.component';
 
+import BlackLogo from '@/public/icon.svg';
 import Image from 'next/image';
 import { Type } from '@/types/index.d';
-import brand from '@/public/icon.svg';
+import WhiteLogo from '@/public/w_icon.svg';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useTabContext } from '@/src/context/tab';
+import { useTheme } from 'next-themes';
 
 export default function Header() {
+  const { resolvedTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { active, setActive } = useTabContext();
   const { status } = useSession();
@@ -67,7 +70,7 @@ export default function Header() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Image src={brand} width={50} priority alt="Ícone IFCalc" />
+          <Image src={resolvedTheme === "light" ? WhiteLogo : BlackLogo} width={50} priority alt="Ícone IFCalc" />
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           {items.map(item => (
