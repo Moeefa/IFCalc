@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Header from '@/src/components/header.component';
 import { Providers } from './providers';
 import { Roboto } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <Footer />
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
