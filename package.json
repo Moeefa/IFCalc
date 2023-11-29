@@ -6,6 +6,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "@nextui-org/react": "^2.0.19",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
