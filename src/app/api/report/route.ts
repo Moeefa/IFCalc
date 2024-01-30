@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { auth } from "@/auth"
 import axios from "axios"
 
@@ -28,4 +29,4 @@ export const GET = auth(async (req) => {
   const frequency = ((filtered.reduce((a: any, b: any) => a + b.percentual_carga_horaria_frequentada, 0) - 4) / filtered.length);
 
   return Response.json({ frequency, subjects: data });
-})
+}) as any
