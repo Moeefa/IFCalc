@@ -1,4 +1,4 @@
-import NextAuth, { JWTWithUID, Session } from "next-auth"
+import NextAuth, { JWT, Session } from "next-auth"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
@@ -29,7 +29,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     updateAge: 2 * 60 * 60,
   },
   callbacks: {
-    async session({ session, token }: { session: Session; token?: JWTWithUID }) {
+    async session({ session, token }: { session: Session; token?: JWT }) {
       if (session.user && token) {
         session.user.id = token.sub;
         session.user.name = token.uid?.nome_social || token.uid?.nome_usual;
