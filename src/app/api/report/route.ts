@@ -4,8 +4,10 @@ import axios from "axios"
 
 export const GET = auth(async (req) => {
   if (!req.auth) return Response.json("Unauthorized", { status: 401 });
+  
+  const year = new Date().getFullYear();
 
-  const res = await axios.get("https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/2023/1/", {
+  const res = await axios.get(`https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${year}/1/`, {
     timeout: 15_000,
     signal: AbortSignal.timeout(15_000),
     headers: {

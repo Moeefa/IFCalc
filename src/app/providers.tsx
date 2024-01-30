@@ -17,6 +17,7 @@ export default function Providers({
       <SWRConfig
         value={{
           errorRetryCount: 3,
+          revalidateOnFocus: false,
           fetcher: (resource, init) => fetch(resource, init).then(res => res.json())
         }}
       >
