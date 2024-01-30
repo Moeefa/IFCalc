@@ -3,5 +3,6 @@
   "useTabs": false,
   "singleQuote": false,
   "trailingComma": "es5",
-  "experimentalTernaries": true
+  "experimentalTernaries": true,
+  "semi": true
 }
