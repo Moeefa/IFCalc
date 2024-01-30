@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+O IFCalc foi feito em Next.js no intuito de auxiliar os alunos do Instituto Federal de Mato Grosso a visualizarem suas notas de uma maneira simplificada.
 
-## Getting Started
+## Autenticação OAuth 🗝️
+O Oauth do SUAP só funcionará em campi de MT.  
+Pois cada IF possui SUAPs diferentes, utilizando OAuths diferentes.
+Se deseja criar uma versão pro seu estado, [confira esta seção](#fazer-o-próprio-deploy-da-aplicação-🚀).
 
-First, run the development server:
+Além disso, não possuímos informação de sua senha de login,
+pois o seu login é verificado pelo SUAP, que então envia um JWT (Json Web Token), 
+cujo você não deve compartilhar com ninguém, pois contém acesso aos seus dados pessoais,
+para obtermos seus dados e assim acessar suas notas a partir da API do próprio SUAP.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Fazer o próprio deploy da aplicação 🚀
+Para fazer o deploy da aplicação é bem simples:
+- Você deve criar uma aplicação OAuth (https://suap.ifmt.edu.br/admin/api/aplicacaooauth2/);
+  - A aplicação deve ser do tipo Authorization Code e Confidential;
+  - O campo de Redirect URIs deve conter o seu callback de login (exemplo: http://localhost:3000/api/auth/callback/suap);
+  - Não é necessário um algoritmo específico, pois não é usado OIDC (OpenID Connect) no projeto.
+- Configure as variáveis de ambiente com o seu client ID (CLIENT_ID) e client secret (CLIENT_SECRET);
+- A variável AUTH_SECRET deve ser uma chave aleatória. (https://authjs.dev/reference/core#secret);
+- Faça o deploy em uma host ([Vercel](https://vercel.com/) como exemplo).
