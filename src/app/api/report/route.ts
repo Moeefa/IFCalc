@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import axios from "axios"
 
 export const GET = auth(async (req) => {
-  if (!req.auth) return Response.json({ detail: "Unauthorized" }, { status: 401 });
+  if (!req.auth) return Response.json("Unauthorized", { status: 401 });
   
   const year = new Date().getFullYear();
 
