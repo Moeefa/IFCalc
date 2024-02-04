@@ -126,8 +126,8 @@ export default function Home() {
               {isLoading || error
                 ? [...Array(7)].map((_, i) => {
                   return (
-                    <AccordionItem key={i} value="skel">
-                      <AccordionTrigger className="px-4 space-x-2">
+                    <AccordionItem key={i} value={`skel-${i}`}>
+                      <AccordionTrigger disabled className="px-4 space-x-2">
                         <Skeleton className="h-9 w-9 rounded-full" />
                         <div className="flex flex-col gap-1 w-1/2 flex-1">
                           <Skeleton className="h-5 min-w-44" />
@@ -137,35 +137,37 @@ export default function Home() {
                     </AccordionItem>
                   )
                 })
-                : data === "Unauthorized" ? <div className="flex items-center justify-center"><p className="leading-7 [&:not(:first-child)]:mt-6 mt-6 max-w-48 text-center">Entre com o SUAP para visualizar suas matérias e notas.</p></div> : data?.subjects.map((subject: any, i: number) => (
-                    <AccordionItem className="last:border-none" key={i} value={subject.name}>
-                      <AccordionTrigger className="flex justify-start px-4 gap-2 w-full hover:no-underline">
-                        <span className="flex text-xs items-center justify-center bg-secondary w-9 h-9 rounded-full hover:bg-muted/50">{Number(subject.final).toLocaleString("pt-BR")}</span>
-                        <div className="flex flex-col w-1/2 flex-1"> 
-                          <p className="truncate text-left text-base flex-1">{subject.name}</p>
-                          <p className="truncate text-left text-xs">{subject.final < 6 ? "Reprovado" : "Aprovado"}</p>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="w-full px-4">
-                        <Table className="w-full">
-                          <TableCaption>Notas bimestrais</TableCaption>
-                          <TableHeader className="[&_tr]:border-none [&_tr]:bg-muted [&_tr>th]:text-muted-foreground [&_tr]:rounded-xl [&_tr>th:first-child]:rounded-l-xl [&_tr>th:last-child]:rounded-r-xl [&_tr>th]:h-9">
-                            <TableRow>
-                              {[...Array(4)].map((_, i) => (
-                                <TableHead key={i} className="text-center text-xs">{i + 1}º</TableHead>
-                              ))}
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody className="[&_tr>td:first-child]:rounded-l-xl [&_tr>td:last-child]:rounded-r-xl [&_tr>td]:h-9">
-                            <TableRow className="hover:bg-transparent">
-                              {[...Array(4)].map((_, i) => (
-                                <TableCell key={i} className="font-medium text-center">{Number(subject.grades[i]).toLocaleString("pt-BR")}</TableCell>
-                              ))}
-                            </TableRow>
-                          </TableBody>
-                        </Table>
-                      </AccordionContent>
-                    </AccordionItem>
+                : data === "Unauthorized" ? <div className="flex items-center justify-center"><p className="leading-7 [&:not(:first-child)]:mt-6 mt-6 max-w-48 text-center">Entre com o SUAP para visualizar suas matérias e notas.</p></div> 
+                : data === "Não encontrado." ? <div className="flex items-center justify-center"><p className="leading-7 [&:not(:first-child)]:mt-6 mt-6 max-w-48 text-center">Nenhuma matéria encontrada.</p></div>
+                : data?.subjects.map((subject: any, i: number) => (
+                  <AccordionItem className="last:border-none" key={i} value={subject.name}>
+                    <AccordionTrigger className="flex justify-start px-4 gap-2 w-full hover:no-underline">
+                      <span className="flex text-xs items-center justify-center bg-secondary w-9 h-9 rounded-full hover:bg-muted/50">{Number(subject.final).toLocaleString("pt-BR")}</span>
+                      <div className="flex flex-col w-1/2 flex-1"> 
+                        <p className="truncate text-left text-base flex-1">{subject.name}</p>
+                        <p className="truncate text-left text-xs">{subject.final < 6 ? "Reprovado" : "Aprovado"}</p>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="w-full px-4">
+                      <Table className="w-full">
+                        <TableCaption>Notas bimestrais</TableCaption>
+                        <TableHeader className="[&_tr]:border-none [&_tr]:bg-muted [&_tr>th]:text-muted-foreground [&_tr]:rounded-xl [&_tr>th:first-child]:rounded-l-xl [&_tr>th:last-child]:rounded-r-xl [&_tr>th]:h-9">
+                          <TableRow>
+                            {[...Array(4)].map((_, i) => (
+                              <TableHead key={i} className="text-center text-xs">{i + 1}º</TableHead>
+                            ))}
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody className="[&_tr>td:first-child]:rounded-l-xl [&_tr>td:last-child]:rounded-r-xl [&_tr>td]:h-9">
+                          <TableRow className="hover:bg-transparent">
+                            {[...Array(4)].map((_, i) => (
+                              <TableCell key={i} className="font-medium text-center">{Number(subject.grades[i]).toLocaleString("pt-BR")}</TableCell>
+                            ))}
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </AccordionContent>
+                  </AccordionItem>
               ))}
             </Accordion>
           </ScrollArea>
