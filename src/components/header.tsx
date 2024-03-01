@@ -2,12 +2,13 @@ import { Coffee, LogIn, LogOut } from "lucide-react";
 import { SignIn, SignOut } from "./auth-buttons";
 
 import { Button } from "./ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import { ToggleTheme } from "./toggle-theme";
 import { auth } from "@/auth";
 
 export const Header = async () => {
-  const session = await auth()
+  const session = await auth();
 
   return (
     <>
@@ -19,7 +20,11 @@ export const Header = async () => {
             </div>
           )}
 
-          <Button asChild size="icon" className="flex sm:flex-none mr-2 h-9 sm:p-4 sm:w-fit items-center gap-2">
+          <Button
+            asChild
+            size="icon"
+            className="flex sm:flex-none mr-2 h-9 sm:p-4 sm:w-fit items-center gap-2"
+          >
             <Link target="_blank" href="https://livepix.gg/moeefa">
               <Coffee className="w-4 h-4" />
               <span className="sr-only sm:not-sr-only">Doar</span>
@@ -28,10 +33,18 @@ export const Header = async () => {
 
           <div className="flex justify-between w-full flex-1 sm:flex-none sm:w-fit items-center gap-4">
             <ToggleTheme />
-            {session?.user ? <SignOut>Encerrar sessão <LogOut className="w-4 h-4 ml-2" /></SignOut> : <SignIn provider="suap">Entrar com o SUAP <LogIn className="w-4 h-4 ml-2" /></SignIn>}
+            {session?.user ? (
+              <SignOut>
+                Encerrar sessão <LogOut className="w-4 h-4 ml-2" />
+              </SignOut>
+            ) : (
+              <SignIn provider="suap">
+                Entrar com o SUAP <LogIn className="w-4 h-4 ml-2" />
+              </SignIn>
+            )}
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
