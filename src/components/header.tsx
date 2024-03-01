@@ -2,7 +2,6 @@ import { Coffee, LogIn, LogOut } from "lucide-react";
 import { SignIn, SignOut } from "./auth-buttons";
 
 import { Button } from "./ui/button";
-import Image from "next/image";
 import Link from "next/link";
 import { ToggleTheme } from "./toggle-theme";
 import { auth } from "@/auth";

@@ -1,4 +1,4 @@
-import NextAuth, { JWT, Session } from "next-auth"
+import NextAuth, { JWT, Session } from "next-auth";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
@@ -19,7 +19,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return {
           id: profile.identificacao,
           ...profile,
-        }
+        };
       },
     },
   ],
@@ -37,13 +37,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.access_token = token.access_token as string;
       }
 
-      return session
+      return session;
     },
     async jwt({ token, user, account, profile }) {
-      token.access_token ??= account?.access_token
-      token.uid ??= user
+      token.access_token ??= account?.access_token;
+      token.uid ??= user;
 
-      return token
+      return token;
     },
   },
 });

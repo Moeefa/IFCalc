@@ -1,34 +1,52 @@
-import "./globals.css"
+import "./globals.css";
 
-import type { Metadata, Viewport } from "next"
+import type { Metadata, Viewport } from "next";
 
-import { Footer } from "@/components/footer"
-import { Header } from "@/components/header"
-import { Inter } from "next/font/google"
-import Providers from "@/app/providers"
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { Inter } from "next/font/google";
+import Providers from "@/app/providers";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "IFCalc",
-  description: "O IFCalc foi criado no intuito de auxiliar os alunos a visualizarem suas notas e aprovações.",
+  description:
+    "O IFCalc foi criado no intuito de auxiliar os alunos a visualizarem suas notas e aprovações.",
   icons: "/icon.svg",
   creator: "Luiz Henrique da Silva Xinaider",
-  authors: [{ name: "Luiz Henrique da Silva Xinaider", url: "https://github.com/Moeefa" }],
-  keywords: ["IFCalc", "IFMT", "Instituto Federal", "Notas", "Média", "Aprovação", "Reprovação", "Cálculo", "Cálculo de média", "Cálculo de aprovação", "Cálculo de reprovação"],
-}
+  authors: [
+    {
+      name: "Luiz Henrique da Silva Xinaider",
+      url: "https://github.com/Moeefa",
+    },
+  ],
+  keywords: [
+    "IFCalc",
+    "IFMT",
+    "Instituto Federal",
+    "Notas",
+    "Média",
+    "Aprovação",
+    "Reprovação",
+    "Cálculo",
+    "Cálculo de média",
+    "Cálculo de aprovação",
+    "Cálculo de reprovação",
+  ],
+};
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#60a5fa' },
-    { media: '(prefers-color-scheme: dark)', color: '#1d4ed8' },
+    { media: "(prefers-color-scheme: light)", color: "#60a5fa" },
+    { media: "(prefers-color-scheme: dark)", color: "#1d4ed8" },
   ],
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="pt-BR">
@@ -44,5 +62,5 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
-  )
+  );
 }

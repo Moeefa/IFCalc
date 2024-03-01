@@ -2,8 +2,8 @@ import { JWT } from "@auth/core/jwt";
 
 declare module "next-auth" {
   export interface DefaultSession {
-    user?: User
-    expires: ISODateString
+    user?: User;
+    expires: ISODateString;
     access_token?: string;
   }
 
@@ -24,6 +24,6 @@ declare module "next-auth" {
       campus?: string;
       foto?: string;
       tipo_usuario?: string;
-    }
+    };
   }
 }
