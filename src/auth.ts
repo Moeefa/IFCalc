@@ -1,15 +1,6 @@
-import type {
-  Account,
-  NextAuthConfig,
-  Profile,
-  Session,
-  User,
-} from "next-auth";
+import NextAuth, { JWT, Session } from "next-auth";
 
-import type { JWT } from "next-auth/jwt";
-import NextAuth from "next-auth";
-
-export const config = {
+export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
   providers: [
     {
@@ -38,28 +29,21 @@ export const config = {
     updateAge: 2 * 60 * 60,
   },
   callbacks: {
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token?: JWT }) {
       if (session.user && token) {
-        session.user.id = token.sub as string;
+        session.user.id = token.sub;
         session.user.name = token.uid?.nome_social || token.uid?.nome_usual;
         session.user.image = token.uid?.foto;
-        session.access_token = token.access_token;
+        session.access_token = token.access_token as string;
       }
 
       return session;
     },
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account, profile }) {
       token.access_token ??= account?.access_token;
-      token.uid ??= {
-        id: user?.id,
-        identificacao: user?.identificacao,
-        nome_social: user?.nome_social,
-        nome_usual: user?.nome_usual,
-      };
+      token.uid ??= user;
 
       return token;
     },
   },
-} satisfies NextAuthConfig;
-
-export const { handlers, auth, signIn, signOut } = NextAuth(config);
+});
