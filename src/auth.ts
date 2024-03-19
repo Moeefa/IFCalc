@@ -4,6 +4,7 @@ import type { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret: process.env.AUTH_SECRET,
   providers: [
     {
       clientId: process.env.AUTH_SUAP_ID,
