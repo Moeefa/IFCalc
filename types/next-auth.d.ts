@@ -2,6 +2,10 @@ import "next-auth";
 
 // Declare your framework library
 declare module "next-auth" {
+  interface Profile {
+    identificacao: string;
+  }
+
   /**
    * The shape of the user object returned in the OAuth providers' `profile` callback,
    * or the second parameter of the `session` callback, when using a database.

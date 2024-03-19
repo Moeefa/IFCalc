@@ -1,4 +1,4 @@
-import type { Profile, Session, User } from "next-auth";
+import type { Account, Profile, Session, User } from "next-auth";
 
 import type { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth";
@@ -18,12 +18,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
       token: "https://suap.ifmt.edu.br/o/token/",
       userinfo: "https://suap.ifmt.edu.br/api/eu/",
-      profile(profile: Profile) {
-        return {
-          id: profile.identificacao,
-          ...profile,
-        };
-      },
     },
   ],
   session: {
@@ -49,14 +43,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }: {
       token: JWT;
       user: User;
-      account: Profile;
+      account: Account | null;
     }) {
       token.access_token = account?.access_token as string;
       token.uid ??= {
-        identificacao: user.identificacao as string,
-        nome_social: user.nome_social as string,
-        nome_usual: user.nome_usual as string,
-        nome: user.nome as string,
+        identificacao: user.identificacao,
+        nome_social: user.nome_social,
+        nome_usual: user.nome_usual,
+        nome: user.nome,
       };
 
       return token;
