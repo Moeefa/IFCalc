@@ -7,8 +7,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
   providers: [
     {
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
+      clientId: process.env.AUTH_SUAP_ID,
+      clientSecret: process.env.AUTH_SUAP_SECRET,
       id: "suap",
       name: "SUAP",
       type: "oauth",
