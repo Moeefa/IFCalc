@@ -1,25 +1,28 @@
-import NextAuth, { JWT, Session } from "next-auth";
+import type {
+  Account,
+  NextAuthConfig,
+  Profile,
+  Session,
+  User,
+} from "next-auth";
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+import type { JWT } from "next-auth/jwt";
+import NextAuth from "next-auth";
+
+export const config = {
+  basePath: "/auth",
   secret: process.env.AUTH_SECRET,
   providers: [
     {
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
+      clientId: process.env.AUTH_SUAP_ID,
+      clientSecret: process.env.AUTH_SUAP_SECRET,
       id: "suap",
       name: "SUAP",
-      type: "oauth",
+      type: "oidc",
+      issuer: "https://suap.ifmt.edu.br/o/.well-known/openid-configuration/",
       authorization: {
         url: "https://suap.ifmt.edu.br/o/authorize",
-        params: { scope: "email identificacao" },
-      },
-      token: "https://suap.ifmt.edu.br/o/token/",
-      userinfo: "https://suap.ifmt.edu.br/api/eu/",
-      profile(profile) {
-        return {
-          id: profile.identificacao,
-          ...profile,
-        };
+        params: { scope: "openid email identificacao" },
       },
     },
   ],
@@ -29,7 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     updateAge: 2 * 60 * 60,
   },
   callbacks: {
-    async session({ session, token }: { session: Session; token?: JWT }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (session.user && token) {
         session.user.id = token.sub;
         session.user.name = token.uid?.nome_social || token.uid?.nome_usual;
@@ -39,11 +42,25 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       return session;
     },
-    async jwt({ token, user, account, profile }) {
-      token.access_token ??= account?.access_token;
-      token.uid ??= user;
+    async jwt({
+      token,
+      user,
+      account,
+    }: {
+      token: JWT;
+      user: User;
+      account: Account | null;
+    }) {
+      token.access_token = account?.access_token as string;
+      token.uid ??= {
+        identificacao: user.identificacao,
+        nome_social: user.nome_social,
+        nome_usual: user.nome_usual,
+      };
 
       return token;
     },
   },
-});
+} satisfies NextAuthConfig;
+
+export const { handlers, auth, signIn, signOut } = NextAuth(config);
