@@ -11,6 +11,7 @@ import NextAuth from "next-auth";
 
 export const config = {
   basePath: "/auth",
+  trustHost: true,
   secret: process.env.AUTH_SECRET,
   providers: [
     {
@@ -18,11 +19,12 @@ export const config = {
       clientSecret: process.env.AUTH_SUAP_SECRET,
       id: "suap",
       name: "SUAP",
-      type: "oidc",
-      issuer: "https://suap.ifmt.edu.br/o/.well-known/openid-configuration/",
+      type: "oauth",
+      token: "https://suap.ifmt.edu.br/o/token/",
+      userinfo: "https://suap.ifmt.edu.br/api/eu/",
       authorization: {
         url: "https://suap.ifmt.edu.br/o/authorize",
-        params: { scope: "openid email identificacao" },
+        params: { scope: "identificacao" },
       },
     },
   ],
@@ -36,8 +38,7 @@ export const config = {
       if (session.user && token) {
         session.user.id = token.sub;
         session.user.name = token.uid?.nome_social || token.uid?.nome_usual;
-        session.user.image = token.uid?.foto;
-        session.access_token = token.access_token as string;
+        session.access_token = token.access_token;
       }
 
       return session;
@@ -51,7 +52,7 @@ export const config = {
       user: User;
       account: Account | null;
     }) {
-      token.access_token = account?.access_token as string;
+      token.access_token = account?.access_token;
       token.uid ??= {
         identificacao: user.identificacao,
         nome_social: user.nome_social,
