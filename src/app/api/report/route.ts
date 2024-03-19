@@ -69,4 +69,4 @@ export const GET = auth(async (req) => {
       { status: 500 }
     );
   }
-}) as any;
+});
