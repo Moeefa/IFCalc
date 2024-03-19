@@ -1,9 +1,16 @@
-import type { Account, Profile, Session, User } from "next-auth";
+import type {
+  Account,
+  NextAuthConfig,
+  Profile,
+  Session,
+  User,
+} from "next-auth";
 
 import type { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth";
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const config = {
+  basePath: "/auth",
   secret: process.env.AUTH_SECRET,
   providers: [
     {
@@ -54,4 +61,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token;
     },
   },
-});
+} satisfies NextAuthConfig;
+
+export const { handlers, auth, signIn, signOut } = NextAuth(config);
