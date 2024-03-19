@@ -4,7 +4,6 @@ import type { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  secret: process.env.AUTH_SECRET,
   providers: [
     {
       clientId: process.env.AUTH_SUAP_ID,
@@ -12,12 +11,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       id: "suap",
       name: "SUAP",
       type: "oauth",
+      wellKnown: "https://suap.ifmt.edu.br/o/.well-known/openid-configuration",
       authorization: {
         url: "https://suap.ifmt.edu.br/o/authorize",
-        params: { scope: "email identificacao" },
+        params: { scope: "openid email identificacao" },
       },
-      token: "https://suap.ifmt.edu.br/o/token/",
-      userinfo: "https://suap.ifmt.edu.br/api/eu/",
     },
   ],
   session: {
@@ -50,7 +48,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         identificacao: user.identificacao,
         nome_social: user.nome_social,
         nome_usual: user.nome_usual,
-        nome: user.nome,
       };
 
       return token;
