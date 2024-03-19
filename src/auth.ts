@@ -10,9 +10,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientSecret: process.env.AUTH_SUAP_SECRET,
       id: "suap",
       name: "SUAP",
-      type: "oauth",
-      token: "https://suap.ifmt.edu.br/o/token/",
-      userinfo: "https://suap.ifmt.edu.br/api/eu/",
+      type: "oidc",
+      issuer: "https://suap.ifmt.edu.br/o/.well-known/openid-configuration/",
       authorization: {
         url: "https://suap.ifmt.edu.br/o/authorize",
         params: { scope: "openid email identificacao" },
