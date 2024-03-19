@@ -11,7 +11,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       id: "suap",
       name: "SUAP",
       type: "oauth",
-      wellKnown: "https://suap.ifmt.edu.br/o/.well-known/openid-configuration",
+      token: "https://suap.ifmt.edu.br/o/token/",
+      userinfo: "https://suap.ifmt.edu.br/api/eu/",
       authorization: {
         url: "https://suap.ifmt.edu.br/o/authorize",
         params: { scope: "openid email identificacao" },
