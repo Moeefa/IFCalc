@@ -10,7 +10,6 @@ import type { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth";
 
 export const config = {
-  trustHost: true,
   secret: process.env.AUTH_SECRET,
   providers: [
     {
