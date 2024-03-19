@@ -34,9 +34,6 @@ export const metadata: Metadata = {
     "Cálculo de aprovação",
     "Cálculo de reprovação",
   ],
-  verification: {
-    google: "fwUIRvaOjpP73e7CxtTz7PdWYqo7Suw_ir1I-GWDUew",
-  },
 };
 
 export const viewport: Viewport = {
