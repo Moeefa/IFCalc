@@ -1,6 +1,6 @@
-import NextAuth, { JWT, Profile, Session } from "next-auth";
+import NextAuth, { type NextAuthConfig } from "next-auth";
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const config = {
   secret: process.env.AUTH_SECRET,
   providers: [
     {
@@ -15,7 +15,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
       token: "https://suap.ifmt.edu.br/o/token/",
       userinfo: "https://suap.ifmt.edu.br/api/eu/",
-      profile(profile: Profile) {
+      profile(profile: any) {
         return {
           id: profile.identificacao,
           ...profile,
@@ -29,7 +29,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     updateAge: 2 * 60 * 60,
   },
   callbacks: {
-    async session({ session, token }: { session: Session; token: JWT }) {
+    async session({ session, token }: any) {
       if (session.user && token) {
         session.user.id = token.sub;
         session.user.name = token.uid?.nome_social || token.uid?.nome_usual;
@@ -39,15 +39,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       return session;
     },
-    async jwt({
-      token,
-      user,
-      account,
-    }: {
-      token: JWT;
-      user: Profile;
-      account: Profile;
-    }) {
+    async jwt({ token, user, account }: any) {
       token.access_token = account?.access_token as string;
       token.uid ??= {
         identificacao: user.identificacao as string,
@@ -59,4 +51,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token;
     },
   },
-});
+} satisfies NextAuthConfig;
+
+export const { handlers, auth, signIn, signOut } = NextAuth(config);
