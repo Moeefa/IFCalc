@@ -29,6 +29,9 @@ export const config = {
     updateAge: 2 * 60 * 60,
   },
   callbacks: {
+    async redirect({ baseUrl }) {
+      return baseUrl;
+    },
     async session({ session, token }) {
       if (session.user && token) {
         session.user.id = token.sub as string;

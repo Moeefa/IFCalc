@@ -24,7 +24,6 @@ export default function SignIn() {
     })();
   }, []);
 
-  console.log(providers);
   return (
     <>
       <div className="flex justify-center w-full">
