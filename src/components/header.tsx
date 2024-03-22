@@ -37,7 +37,7 @@ export const Header = async () => {
                 Encerrar sessão <LogOut className="w-4 h-4 ml-2" />
               </SignOut>
             ) : (
-              <SignIn provider="suap">
+              <SignIn>
                 Entrar com o SUAP <LogIn className="w-4 h-4 ml-2" />
               </SignIn>
             )}

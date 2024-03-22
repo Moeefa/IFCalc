@@ -1,11 +1,8 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 
 export const config = {
-  secret: process.env.AUTH_SECRET,
   providers: [
     {
-      clientId: process.env.AUTH_SUAP_ID,
-      clientSecret: process.env.AUTH_SUAP_SECRET,
       id: "suap",
       name: "SUAP",
       type: "oauth",
