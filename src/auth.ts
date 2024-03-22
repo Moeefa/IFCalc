@@ -1,10 +1,13 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 
 export const config = {
+  pages: {
+    signIn: "/auth/signin",
+  },
   providers: [
     {
       id: "suap",
-      name: "SUAP",
+      name: "SUAP - IFMT",
       type: "oauth",
       token: "https://suap.ifmt.edu.br/o/token/",
       userinfo: "https://suap.ifmt.edu.br/api/eu/",
@@ -14,7 +17,7 @@ export const config = {
       },
       profile(profile) {
         return {
-          id: profile.identificacao,
+          id: profile.identificacstao,
           ...profile,
         };
       },
