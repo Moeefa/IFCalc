@@ -1,7 +1,6 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 
 export const config = {
-  basePath: "/auth",
   secret: process.env.AUTH_SECRET,
   providers: [
     {
