@@ -4,16 +4,14 @@ import axios from "axios";
 export const GET = auth(async (req) => {
   if (!req.auth) return Response.json("Unauthorized", { status: 401 });
 
-  const year = new Date().getFullYear();
-
   try {
     const res = await axios.get(
-      `https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${year}/1/`,
+      `https://suap.ifmt.edu.br/api/v2/minhas-informacoes/boletim/${new Date().getFullYear()}/1/`,
       {
         timeout: 15_000,
         signal: AbortSignal.timeout(15_000),
         headers: {
-          Authorization: `Bearer ${req.auth?.access_token}`,
+          Authorization: `Bearer ${req.auth.access_token}`,
         },
       }
     );
@@ -69,4 +67,4 @@ export const GET = auth(async (req) => {
       { status: 500 }
     );
   }
-}) as any;
+});

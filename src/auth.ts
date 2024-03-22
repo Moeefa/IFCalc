@@ -1,4 +1,4 @@
-import NextAuth, { JWT, Session } from "next-auth";
+import NextAuth from "next-auth";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
@@ -29,9 +29,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     updateAge: 2 * 60 * 60,
   },
   callbacks: {
-    async session({ session, token }: { session: Session; token?: JWT }) {
+    async session({ session, token }) {
       if (session.user && token) {
-        session.user.id = token.sub;
+        session.user.id = token.sub as string;
         session.user.name = token.uid?.nome_social || token.uid?.nome_usual;
         session.user.image = token.uid?.foto;
         session.access_token = token.access_token as string;
@@ -39,9 +39,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       return session;
     },
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, user, account }) {
       token.access_token ??= account?.access_token;
-      token.uid ??= user;
+      console.log(user);
 
       return token;
     },

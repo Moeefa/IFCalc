@@ -1,14 +1,20 @@
-import { JWT } from "@auth/core/jwt";
+import "next-auth";
+import "next-auth/jwt";
 
 declare module "next-auth" {
-  export interface DefaultSession {
+  interface User {}
+
+  interface Account {}
+
+  export interface Session {
     user?: User;
     expires: ISODateString;
     access_token?: string;
   }
+}
 
+declare module "next-auth/jwt" {
   export interface JWT {
-    sub?: string;
     access_token?: string;
     uid?: {
       id?: string;
