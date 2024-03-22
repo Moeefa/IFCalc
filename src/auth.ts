@@ -9,12 +9,12 @@ export const config = {
       id: "suap",
       name: "SUAP",
       type: "oauth",
+      token: "https://suap.ifmt.edu.br/o/token/",
+      userinfo: "https://suap.ifmt.edu.br/api/eu/",
       authorization: {
         url: "https://suap.ifmt.edu.br/o/authorize",
         params: { scope: "email identificacao" },
       },
-      token: "https://suap.ifmt.edu.br/o/token/",
-      userinfo: "https://suap.ifmt.edu.br/api/eu/",
       profile(profile) {
         return {
           id: profile.identificacao,
@@ -41,7 +41,7 @@ export const config = {
     },
     async jwt({ token, user, account }) {
       token.access_token ??= account?.access_token;
-      console.log(user);
+      token.uid ??= user;
 
       return token;
     },
