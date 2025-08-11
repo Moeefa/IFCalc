@@ -1,13 +1,7 @@
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
-
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import { Inter } from "next/font/google";
-import Providers from "@/app/providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import Providers from "./providers";
 
 export const metadata: Metadata = {
 	title: "IFCalc",
@@ -49,17 +43,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="pt-BR">
-			<body className={`${inter.className}`}>
-				<Providers>
-					<div className="flex flex-col min-h-screen">
-						<Header />
-						<main className="flex flex-col justify-center flex-1 relative px-8 mt-24 mb-4 space-y-4">
-							{children}
-						</main>
-						<Footer />
-					</div>
-				</Providers>
+		<html lang="pt-BR" suppressHydrationWarning>
+			<body className="font-openrunde">
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);

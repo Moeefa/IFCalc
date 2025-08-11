@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 98.04%;
-  --foreground: 240 10% 3.9%;
+  --background: 0 0% 96.1%;
+  --foreground: 0 0% 18%;
 
-  --card: 0 0% 100%;
+  --card: 0 0% 98%;
+  --card-bottom: 0 0% 97%;
   --card-foreground: 240 10% 3.9%;
 
-  --popover: 0 0% 100%;
+  --popover: 0 0% 98%;
   --popover-foreground: 240 10% 3.9%;
 
   --primary: 240 5.9% 10%;
@@ -18,8 +19,8 @@
   --secondary: 240 4.8% 95.9%;
   --secondary-foreground: 240 5.9% 10%;
 
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
+  --muted: 0 0% 94%;
+  --muted-foreground: 0 0% 40%;
 
   --accent: 240 4.8% 95.9%;
   --accent-foreground: 240 5.9% 10%;
@@ -27,7 +28,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 240 5.9% 90%;
+  --border: 0 0% 91%;
   --input: 240 5.9% 90%;
   --ring: 240 10% 3.9%;
 
@@ -36,12 +37,13 @@
 
 .dark {
   --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
+  --foreground: 49 43% 93%;
 
-  --card: 240 10% 3.9%;
+  --card: 0 0% 10%;
+  --card-bottom: 240 6% 8%;
   --card-foreground: 0 0% 98%;
 
-  --popover: 240 10% 3.9%;
+  --popover: 0 0% 10%;
   --popover-foreground: 0 0% 98%;
 
   --primary: 0 0% 98%;
@@ -59,9 +61,45 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 240 3.7% 15.9%;
+  --border: 0 0% 18%;
   --input: 240 3.7% 15.9%;
   --ring: 240 4.9% 83.9%;
+}
+
+@font-face {
+  font-family: 'OpenRunde';
+  src: url('/fonts/OpenRunde-Regular.woff2') format('woff2'),
+       url('/fonts/OpenRunde-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenRunde';
+  src: url('/fonts/OpenRunde-Medium.woff2') format('woff2'),
+       url('/fonts/OpenRunde-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenRunde';
+  src: url('/fonts/OpenRunde-Semibold.woff2') format('woff2'),
+       url('/fonts/OpenRunde-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenRunde';
+  src: url('/fonts/OpenRunde-Bold.woff2') format('woff2'),
+       url('/fonts/OpenRunde-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @layer base {
@@ -70,6 +108,41 @@
   }
   body,
   html {
-    @apply bg-background text-foreground w-full h-full;
+    @apply bg-background text-foreground w-full h-full antialiased md:subpixel-antialiased;
+    letter-spacing: -0.05cap;
+  }
+  :root {
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 18%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 49 43% 93%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+
+.bg-card-gradient {
+  background: linear-gradient(to bottom, hsl(var(--card)), hsl(var(--card-bottom)));
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+

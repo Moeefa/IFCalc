@@ -2,13 +2,16 @@
 
 import { SettingsProvider } from "@/contexts/settings";
 import { ThemeProvider } from "next-themes";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-  return (
-    <SettingsProvider>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        {children}
-      </ThemeProvider>
-    </SettingsProvider>
-  );
+	return (
+		<SettingsProvider>
+			<SidebarProvider>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+					{children}
+				</ThemeProvider>
+			</SidebarProvider>
+		</SettingsProvider>
+	);
 }
