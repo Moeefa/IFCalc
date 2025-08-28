@@ -43,7 +43,7 @@ export const Footer = () => {
 	return (
 		<footer className=" bg-card-gradient rounded-2xl border border-border">
 			<div className="px-0 py-12">
-				<div className="grid grid-cols-1 px-6 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+				<div className="grid grid-cols-1 px-6 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
 					<div className="lg:col-span-2">
 						<div className="flex items-center gap-4 mb-6">
 							<Image
@@ -91,29 +91,29 @@ export const Footer = () => {
 						</div>
 					</div>
 
-					<div>
-						<h4 className="font-semibold mb-4">Sobre o IFCalc</h4>
-						<ul className="space-y-2 text-sm text-muted-foreground">
-							<li>
-								<a
-									href="#"
-									className="font-semibold hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors flex items-center gap-1"
-								>
-									Como usar
-									<ExternalLink size={12} />
-								</a>
-							</li>
-							<li>
-								<a
-									href="#"
-									className="font-semibold hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors flex items-center gap-1"
-								>
-									Funcionalidades
-									<ExternalLink size={12} />
-								</a>
-							</li>
-						</ul>
-					</div>
+					{/* <div> */}
+					{/* 	<h4 className="font-semibold mb-4">Sobre o IFCalc</h4> */}
+					{/* 	<ul className="space-y-2 text-sm text-muted-foreground"> */}
+					{/* 		<li> */}
+					{/* 			<a */}
+					{/* 				href="#" */}
+					{/* 				className="font-semibold hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors flex items-center gap-1" */}
+					{/* 			> */}
+					{/* 				Como usar */}
+					{/* 				<ExternalLink size={12} /> */}
+					{/* 			</a> */}
+					{/* 		</li> */}
+					{/* 		<li> */}
+					{/* 			<a */}
+					{/* 				href="#" */}
+					{/* 				className="font-semibold hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors flex items-center gap-1" */}
+					{/* 			> */}
+					{/* 				Funcionalidades */}
+					{/* 				<ExternalLink size={12} /> */}
+					{/* 			</a> */}
+					{/* 		</li> */}
+					{/* 	</ul> */}
+					{/* </div> */}
 
 					<div>
 						<h4 className="font-semibold mb-4">Suporte</h4>
