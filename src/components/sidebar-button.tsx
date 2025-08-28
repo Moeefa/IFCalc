@@ -18,11 +18,10 @@ export function SidebarButton({
 
 	return (
 		<SidebarMenuItem
+			key={item.title}
 			onClick={() => {
 				if (isMobile) toggleSidebar();
 			}}
-			className="hidden sm:block"
-			key={item.title}
 		>
 			<SidebarMenuButton asChild>
 				<Link className="flex items-center text-foreground" href={item.url}>
