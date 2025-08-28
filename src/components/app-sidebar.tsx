@@ -6,15 +6,12 @@ import {
 	SidebarGroupContent,
 	SidebarGroupLabel,
 	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { getPeriods, getUserData } from "@/lib/suap";
 import { cookies } from "next/headers";
 import { PeriodSelector } from "./period-selector";
 import { isAuthenticated } from "@/lib/auth";
 import { Suspense } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { COOKIES } from "@/lib/constants";
 
@@ -25,6 +22,7 @@ import { PaperclipIcon } from "./icons/paperclip";
 import { CalendarDaysIcon } from "./icons/calendar-days";
 import { TasksIcon } from "./icons/tasks";
 import { CalculatorIcon } from "./icons/calculator";
+import { SidebarButton } from "./sidebar-button";
 
 const items = [
 	{
@@ -123,17 +121,7 @@ export async function AppSidebar() {
 					<SidebarGroupContent>
 						<SidebarMenu>
 							{items.map((item) => (
-								<SidebarMenuItem key={item.title}>
-									<SidebarMenuButton asChild>
-										<Link
-											className="flex items-center text-foreground"
-											href={item.url}
-										>
-											{item.icon}
-											<span className="font-semibold">{item.title}</span>
-										</Link>
-									</SidebarMenuButton>
-								</SidebarMenuItem>
+								<SidebarButton item={item} key={item.url} />
 							))}
 						</SidebarMenu>
 					</SidebarGroupContent>
