@@ -1,7 +1,7 @@
 import { ReactNode, Suspense } from "react";
 import { ErrorBoundary } from "@/components/common/error-boundary";
 import { isAuthenticated } from "@/lib/auth";
-import { Lock } from "lucide-react";
+import { MagnifierWorriedIcon } from "../icons/magnifier-worried";
 
 interface DataWrapperProps {
 	children: ReactNode;
@@ -14,7 +14,7 @@ interface DataWrapperProps {
 function UnauthenticatedMessage({ message }: { message: string }) {
 	return (
 		<div className="flex flex-col items-center justify-center p-8 space-y-4 bg-card-gradient rounded-2xl border border-border">
-			<Lock className="size-12 text-muted-foreground" />
+			<MagnifierWorriedIcon className="size-12" />
 			<div className="text-center space-y-2">
 				<p className="text-foreground max-w-md font-semibold">{message}</p>
 			</div>

@@ -1,13 +1,4 @@
 import {
-	Backpack,
-	Inbox,
-	Sigma,
-	Paperclip,
-	PencilRuler,
-	Home,
-	CalendarDays,
-} from "lucide-react";
-import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
@@ -27,41 +18,49 @@ import Link from "next/link";
 import Image from "next/image";
 import { COOKIES } from "@/lib/constants";
 
+import { HouseIcon } from "@/components/icons/house";
+import { RulerPenIcon } from "./icons/ruler-pen";
+import { InboxIcon } from "./icons/inbox";
+import { PaperclipIcon } from "./icons/paperclip";
+import { CalendarDaysIcon } from "./icons/calendar-days";
+import { TasksIcon } from "./icons/tasks";
+import { CalculatorIcon } from "./icons/calculator";
+
 const items = [
 	{
 		title: "Início",
 		url: "/",
-		icon: Home,
+		icon: <HouseIcon />,
 	},
 	{
 		title: "Calculadora",
 		url: "/calculadora",
-		icon: Sigma,
+		icon: <CalculatorIcon />,
 	},
 	{
 		title: "Matérias",
 		url: "/materias",
-		icon: PencilRuler,
+		icon: <RulerPenIcon />,
 	},
 	{
 		title: "Trabalhos",
 		url: "/trabalhos",
-		icon: Backpack,
+		icon: <TasksIcon />,
 	},
 	{
 		title: "Mensagens",
 		url: "/mensagens",
-		icon: Inbox,
+		icon: <InboxIcon />,
 	},
 	{
 		title: "Materiais",
 		url: "/materiais",
-		icon: Paperclip,
+		icon: <PaperclipIcon />,
 	},
 	{
 		title: "Horários",
 		url: "/horarios",
-		icon: CalendarDays,
+		icon: <CalendarDaysIcon />,
 	},
 ];
 
@@ -106,10 +105,10 @@ async function SelectedPeriod() {
 
 export async function AppSidebar() {
 	return (
-		<Sidebar>
+		<Sidebar className="border-none">
 			<SidebarContent>
 				<SidebarGroup className="flex-1">
-					<SidebarGroupLabel className="flex items-center gap-2">
+					<SidebarGroupLabel className="flex items-center gap-2 mb-2">
 						<Image
 							width={20}
 							height={20}
@@ -130,7 +129,7 @@ export async function AppSidebar() {
 											className="flex items-center text-foreground"
 											href={item.url}
 										>
-											<item.icon />
+											{item.icon}
 											<span className="font-semibold">{item.title}</span>
 										</Link>
 									</SidebarMenuButton>

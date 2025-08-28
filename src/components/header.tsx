@@ -1,9 +1,9 @@
-import { LogIn, LogOut } from "lucide-react";
 import { SignIn, SignOut } from "./auth-buttons";
-
 import { ToggleTheme } from "@/components/toggle-theme";
-import { SidebarTrigger } from "./ui/sidebar";
 import { isAuthenticated } from "@/lib/auth";
+import { SidebarTrigger } from "./ui/sidebar";
+import { ArrowInIcon } from "./icons/arrow-in";
+import { ArrowOutIcon } from "./icons/arrow-out";
 
 export const Header = async () => {
 	const authenticated = isAuthenticated();
@@ -18,11 +18,11 @@ export const Header = async () => {
 					<ToggleTheme />
 					{authenticated ? (
 						<SignOut>
-							Sair <LogOut className="w-4 h-4 ml-2" />
+							Sair <ArrowOutIcon className="size-5 ml-2" />
 						</SignOut>
 					) : (
 						<SignIn>
-							Entrar com SUAP <LogIn className="w-4 h-4 ml-2" />
+							Entrar com SUAP <ArrowInIcon className="size-5 ml-2" />
 						</SignIn>
 					)}
 				</nav>

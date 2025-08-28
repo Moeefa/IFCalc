@@ -57,8 +57,12 @@ export const SUBJECT_ICON_RULES = [
 		iconName: "Calculator",
 	},
 	{
+		keywords: ["esporte", "educação física"],
+		iconName: "Basketball",
+	},
+	{
 		keywords: ["física"],
-		iconName: "Atom",
+		iconName: "Rotation360",
 	},
 	{
 		keywords: [
@@ -69,19 +73,19 @@ export const SUBJECT_ICON_RULES = [
 			"código",
 			"website",
 		],
-		iconName: "Code",
+		iconName: "Computer",
 	},
 	{
 		keywords: ["química"],
-		iconName: "FlaskConical",
+		iconName: "Rotation360",
 	},
 	{
 		keywords: ["ambiente", "geografia"],
-		iconName: "Globe",
+		iconName: "Earth",
 	},
 	{
 		keywords: ["ciência", "metodologia"],
-		iconName: "BookOpenCheck",
+		iconName: "BookOpen",
 	},
 	{
 		keywords: ["ética", "filosofia", "sociologia"],
@@ -89,11 +93,11 @@ export const SUBJECT_ICON_RULES = [
 	},
 	{
 		keywords: ["arquitetura", "computador", "sistemas"],
-		iconName: "Server",
+		iconName: "Layers",
 	},
 	{
 		keywords: ["arte"],
-		iconName: "Palette",
+		iconName: "Paintbrush",
 	},
 	{
 		keywords: ["introdução", "fundamento"],

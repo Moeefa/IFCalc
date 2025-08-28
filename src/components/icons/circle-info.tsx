@@ -1,0 +1,18 @@
+import { SVGProps } from "react";
+
+export const CircleInfoIcon = (props: SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="18"
+		height="18"
+		fill="none"
+		viewBox="0 0 18 18"
+		{...props}
+	>
+		<path
+			fill="currentColor"
+			d="M9 1C4.589 1 1 4.589 1 9s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8m.75 11.819a.75.75 0 0 1-1.5 0V8.25a.75.75 0 0 1 1.5 0zM9 6.75a1.001 1.001 0 0 1 0-2 1.001 1.001 0 0 1 0 2"
+			className="nc-icon-wrapper"
+		></path>
+	</svg>
+);

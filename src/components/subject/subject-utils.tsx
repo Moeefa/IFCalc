@@ -1,29 +1,27 @@
-import {
-	Atom,
-	Calculator,
-	Code,
-	FlaskConical,
-	Globe,
-	NotebookText,
-	Palette,
-	Scale,
-	Server,
-	BookOpenCheck,
-	GraduationCap,
-} from "lucide-react";
 import { SUBJECT_ICON_RULES, GRADE_COLORS } from "@/lib/constants";
+import { BookBookmarkIcon } from "../icons/book-bookmark";
+import { Rotation360Icon } from "../icons/rotation-360";
+import { CalculatorIcon } from "../icons/calculator";
+import { BastketballIcon } from "../icons/basketball";
+import { ScaleIcon } from "../icons/scale";
+import { EarthIcon } from "../icons/earth";
+import { GraduationCapIcon } from "../icons/graduation-cap";
+import { BookOpenIcon } from "../icons/book-open";
+import { ComputerIcon } from "../icons/computer";
+import { LayersIcon } from "../icons/layers";
+import { PaintbrushIcon } from "../icons/paintbrush";
 
 const iconComponents = {
-	Calculator: <Calculator className="size-6 text-muted-foreground" />,
-	Atom: <Atom className="size-6 text-muted-foreground" />,
-	Code: <Code className="size-6 text-muted-foreground" />,
-	FlaskConical: <FlaskConical className="size-6 text-muted-foreground" />,
-	Globe: <Globe className="size-6 text-muted-foreground" />,
-	BookOpenCheck: <BookOpenCheck className="size-6 text-muted-foreground" />,
-	Scale: <Scale className="size-6 text-muted-foreground" />,
-	Server: <Server className="size-6 text-muted-foreground" />,
-	Palette: <Palette className="size-6 text-muted-foreground" />,
-	GraduationCap: <GraduationCap className="size-6 text-muted-foreground" />,
+	Calculator: <CalculatorIcon className="size-6" />,
+	Rotation360: <Rotation360Icon className="size-6" />,
+	Computer: <ComputerIcon className="size-6" />,
+	Earth: <EarthIcon className="size-6" />,
+	BookOpen: <BookOpenIcon className="size-6" />,
+	Scale: <ScaleIcon className="size-6" />,
+	Layers: <LayersIcon className="size-6" />,
+	Paintbrush: <PaintbrushIcon className="size-6" />,
+	GraduationCap: <GraduationCapIcon className="size-6" />,
+	Basketball: <BastketballIcon className="size-6" />,
 } as const;
 
 export function getSubjectIcon(subjectName: string) {
@@ -35,7 +33,7 @@ export function getSubjectIcon(subjectName: string) {
 		}
 	}
 
-	return <NotebookText className="size-6 text-muted-foreground" />;
+	return <BookBookmarkIcon className="size-6" />;
 }
 
 export function getGradeColor(grade: number) {

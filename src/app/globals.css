@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 96.1%;
+  --background: 48 15% 97%;
   --foreground: 0 0% 18%;
 
-  --card: 0 0% 98%;
-  --card-bottom: 0 0% 97%;
+  --card: 48 33% 99%;
+  --card-bottom: 48 33% 98%;
   --card-foreground: 240 10% 3.9%;
 
   --popover: 0 0% 98%;
@@ -36,11 +36,11 @@
 }
 
 .dark {
-  --background: 240 10% 3.9%;
+  --background: 60 3% 15%;
   --foreground: 49 43% 93%;
 
-  --card: 0 0% 10%;
-  --card-bottom: 240 6% 8%;
+  --card: 60 2% 11%;
+  --card-bottom: 60 2% 9%;
   --card-foreground: 0 0% 98%;
 
   --popover: 0 0% 10%;
@@ -67,36 +67,40 @@
 }
 
 @font-face {
-  font-family: 'OpenRunde';
-  src: url('/fonts/OpenRunde-Regular.woff2') format('woff2'),
-       url('/fonts/OpenRunde-Regular.woff') format('woff');
+  font-family: "OpenRunde";
+  src:
+    url("/fonts/OpenRunde-Regular.woff2") format("woff2"),
+    url("/fonts/OpenRunde-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'OpenRunde';
-  src: url('/fonts/OpenRunde-Medium.woff2') format('woff2'),
-       url('/fonts/OpenRunde-Medium.woff') format('woff');
+  font-family: "OpenRunde";
+  src:
+    url("/fonts/OpenRunde-Medium.woff2") format("woff2"),
+    url("/fonts/OpenRunde-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'OpenRunde';
-  src: url('/fonts/OpenRunde-Semibold.woff2') format('woff2'),
-       url('/fonts/OpenRunde-Semibold.woff') format('woff');
+  font-family: "OpenRunde";
+  src:
+    url("/fonts/OpenRunde-Semibold.woff2") format("woff2"),
+    url("/fonts/OpenRunde-Semibold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'OpenRunde';
-  src: url('/fonts/OpenRunde-Bold.woff2') format('woff2'),
-       url('/fonts/OpenRunde-Bold.woff') format('woff');
+  font-family: "OpenRunde";
+  src:
+    url("/fonts/OpenRunde-Bold.woff2") format("woff2"),
+    url("/fonts/OpenRunde-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -108,7 +112,7 @@
   }
   body,
   html {
-    @apply bg-background text-foreground w-full h-full antialiased md:subpixel-antialiased;
+    @apply text-foreground w-full h-full antialiased md:subpixel-antialiased;
     letter-spacing: -0.05cap;
   }
   :root {
@@ -134,15 +138,22 @@
 }
 
 .bg-card-gradient {
-  background: linear-gradient(to bottom, hsl(var(--card)), hsl(var(--card-bottom)));
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--card)),
+    hsl(var(--card-bottom))
+  );
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+  html,
   body {
-    @apply bg-background text-foreground;
+    @apply h-screen w-screen m-0 p-0;
+  }
+  body {
+    @apply text-foreground;
   }
 }
-

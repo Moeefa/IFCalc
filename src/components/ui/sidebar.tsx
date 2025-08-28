@@ -22,8 +22,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { ViewVerticalIcon } from "@radix-ui/react-icons";
-import { PanelLeft } from "lucide-react";
+import { SidebarIcon } from "@/components/icons/sidebar";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -155,7 +154,7 @@ const SidebarProvider = React.forwardRef<
 							} as React.CSSProperties
 						}
 						className={cn(
-							"group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-card-gradient",
+							"group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-transparent",
 							className,
 						)}
 						ref={ref}
@@ -195,7 +194,7 @@ const Sidebar = React.forwardRef<
 			return (
 				<div
 					className={cn(
-						"flex h-full w-[--sidebar-width] flex-col bg-card-gradient text-sidebar-foreground",
+						"flex h-full w-[--sidebar-width] flex-col bg-transparent text-sidebar-foreground",
 						className,
 					)}
 					ref={ref}
@@ -212,7 +211,7 @@ const Sidebar = React.forwardRef<
 					<SheetContent
 						data-sidebar="sidebar"
 						data-mobile="true"
-						className="w-[--sidebar-width] bg-card-gradient p-0 text-sidebar-foreground [&>button]:hidden"
+						className="w-[--sidebar-width] bg-card-gradient border-r border-border p-0 text-sidebar-foreground [&>button]:hidden"
 						style={
 							{
 								"--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -266,7 +265,7 @@ const Sidebar = React.forwardRef<
 				>
 					<div
 						data-sidebar="sidebar"
-						className="flex h-full w-full flex-col bg-card-gradient group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+						className="flex h-full w-full flex-col bg-transparent group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
 					>
 						{children}
 					</div>
@@ -281,7 +280,7 @@ const SidebarTrigger = React.forwardRef<
 	React.ElementRef<typeof Button>,
 	React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
-	const { toggleSidebar } = useSidebar();
+	const { toggleSidebar, open } = useSidebar();
 
 	return (
 		<Button
@@ -296,7 +295,7 @@ const SidebarTrigger = React.forwardRef<
 			{...props}
 		>
 			<div>
-				<PanelLeft className="size-4" />
+				<SidebarIcon className="size-5" />
 			</div>
 			<span className="sr-only">Toggle Sidebar</span>
 		</Button>
@@ -322,7 +321,7 @@ const SidebarRail = React.forwardRef<
 				"absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex",
 				"[[data-side=left]_&]:cursor-w-resize [[data-side=right]_&]:cursor-e-resize",
 				"[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
-				"group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full group-data-[collapsible=offcanvas]:hover:bg-card-gradient",
+				"group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full group-data-[collapsible=offcanvas]:hover:bg-transparent",
 				"[[data-side=left][data-collapsible=offcanvas]_&]:-right-2",
 				"[[data-side=right][data-collapsible=offcanvas]_&]:-left-2",
 				className,
@@ -573,7 +572,7 @@ const SidebarMenuButton = React.forwardRef<
 		ref,
 	) => {
 		const Comp = asChild ? Slot : "button";
-		const { isMobile, state } = useSidebar();
+		const { isMobile, setOpenMobile, state } = useSidebar();
 
 		const button = (
 			<Comp

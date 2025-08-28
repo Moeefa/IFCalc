@@ -12,7 +12,6 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Info, Minus, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -22,6 +21,9 @@ import {
 	GRADE_CONFIG,
 	type CalculatorMode,
 } from "@/lib/constants";
+import { CircleInfoIcon } from "@/components/icons/circle-info";
+import { MinusIcon } from "@/components/icons/minus";
+import { PlusIcon } from "@/components/icons/plus";
 
 export default function Page() {
 	const [mode, setMode] = useState<CalculatorMode>("b");
@@ -61,7 +63,8 @@ export default function Page() {
 		let result = 0;
 
 		if (mode === "b") {
-			const gradeSum = numericGrades.reduce((a, b) => a + b, 0);
+			const gradeSum =
+				numericGrades.reduce((a, b) => a + b, 0) / numericGrades.length;
 			const participationScore = parseFloat(participation);
 			const participationValid = !isNaN(participationScore)
 				? participationScore
@@ -133,7 +136,7 @@ export default function Page() {
 										onClick={addGradeField}
 									>
 										<div>
-											<Plus className="size-4" />
+											<PlusIcon className="size-4" />
 										</div>
 									</Button>
 									<Button
@@ -142,7 +145,7 @@ export default function Page() {
 										disabled={grades.length <= 1}
 									>
 										<div>
-											<Minus className="size-4" />
+											<MinusIcon className="size-4" />
 										</div>
 									</Button>
 								</div>
@@ -153,7 +156,7 @@ export default function Page() {
 							<p className="flex items-center font-semibold text-muted-foreground text-sm space-x-1">
 								<span>{CALCULATOR_MODES[mode].description}</span>
 								<TooltipTrigger>
-									<Info className="size-4" />
+									<CircleInfoIcon className="size-4" />
 								</TooltipTrigger>
 							</p>
 							<TooltipContent className="rounded-2xl border border-border bg-gradient-to-b text-[hsl(49_43%_93%)] dark:text-[hsl(0_0%_18%)] from-[hsl(0_0%_10%)] to-[hsl(240_6%_8%)] dark:from-[hsl(0_0%_98%)] dark:to-[hsl(0_0%_97%)]">

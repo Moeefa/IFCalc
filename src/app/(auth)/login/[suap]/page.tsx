@@ -1,3 +1,4 @@
+import { ArrowInIcon } from "@/components/icons/arrow-in";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -8,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 
 export default function Page({ params }: { params: { suap: string } }) {
@@ -17,6 +19,14 @@ export default function Page({ params }: { params: { suap: string } }) {
 				<div className="flex items-center gap-2 self-center">
 					<div className="text-primary-foreground flex size-12 items-center justify-center rounded-md">
 						<Image src="/icon.svg" alt="Logo" width={200} height={200} />
+						<Separator orientation="vertical" className="h-10 mx-4" />
+						<Image
+							src="/suap.png"
+							alt="SUAP"
+							width={48}
+							height={48}
+							className="ml-2"
+						/>
 					</div>
 				</div>
 				<div className="flex flex-col gap-6">
@@ -25,7 +35,7 @@ export default function Page({ params }: { params: { suap: string } }) {
 							<CardTitle className="text-xl">
 								SUAP {params.suap.toUpperCase()}
 							</CardTitle>
-							<CardDescription>
+							<CardDescription className="font-semibold">
 								Para acessar suas notas e frequência, faça login com a conta do
 								SUAP de seu Instituto Federal.
 							</CardDescription>
@@ -35,9 +45,11 @@ export default function Page({ params }: { params: { suap: string } }) {
 								<div className="grid gap-6">
 									<div className="grid gap-6">
 										<div className="grid gap-3">
-											<Label htmlFor="matricula">Matrícula</Label>
+											<Label htmlFor="matricula" className="font-semibold">
+												Matrícula
+											</Label>
 											<Input
-												className="rounded-md"
+												className="rounded-md bg-muted font-semibold"
 												name="matricula"
 												id="matricula"
 												type="text"
@@ -46,17 +58,22 @@ export default function Page({ params }: { params: { suap: string } }) {
 											/>
 										</div>
 										<div className="grid gap-3">
-											<Label htmlFor="senha">Senha</Label>
+											<Label htmlFor="senha" className="font-semibold">
+												Senha
+											</Label>
 											<Input
-												className="rounded-md"
+												className="rounded-md bg-muted font-semibold"
 												name="senha"
 												id="senha"
 												type="password"
 												required
 											/>
 										</div>
-										<Button type="submit" className="w-full">
-											Entrar
+										<Button
+											type="submit"
+											className="w-full font-semibold border border-border"
+										>
+											Entrar <ArrowInIcon className="size-5 ml-2" />
 										</Button>
 									</div>
 								</div>

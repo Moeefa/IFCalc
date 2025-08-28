@@ -6,6 +6,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { ErrorBoundary } from "@/components/common/error-boundary";
 import Image from "next/image";
 import Link from "next/link";
+import { RoundedPanel } from "@/components/rounded-panel";
 
 export default function RootLayout({
 	children,
@@ -13,9 +14,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<>
+		<div className="bg-card-gradient min-h-screen w-full flex">
 			<AppSidebar />
-			<div className="flex flex-col min-h-screen overflow-hidden p-6 w-full">
+			<RoundedPanel>
 				<Header />
 				<main className="flex flex-col flex-1 relative my-6">
 					<Link
@@ -45,7 +46,7 @@ export default function RootLayout({
 					<ErrorBoundary>{children}</ErrorBoundary>
 				</main>
 				<Footer />
-			</div>
-		</>
+			</RoundedPanel>
+		</div>
 	);
 }

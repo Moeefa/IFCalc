@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { Period } from "../../types/suap";
 import { revalidate } from "@/app/actions/revalidate";
 import { COOKIES } from "@/lib/constants";
+import { PenIcon } from "@/components/icons/pen";
 
 export function PeriodSelector({
 	periods,
@@ -31,7 +32,9 @@ export function PeriodSelector({
 
 	return (
 		<div>
-			<p className="font-semibold px-3">Período letivo</p>
+			<p className="font-semibold px-3 flex items-center text-lg">
+				Período letivo <PenIcon className="size-6 ml-1" />
+			</p>
 			<Select value={selected} onValueChange={setSelected}>
 				<SelectTrigger className="text-xl shadow-none font-semibold m-0 border-none w-full flex justify-between">
 					<SelectValue placeholder="Selecione" />
