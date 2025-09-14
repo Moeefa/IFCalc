@@ -15,8 +15,9 @@ import { cn } from "@/lib/utils";
 
 const TRANSITION = {
   type: "spring",
+  stiffness: 260,
+  damping: 20,
   bounce: 0.05,
-  duration: 0.3,
 };
 
 function useClickOutside(

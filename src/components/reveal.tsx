@@ -79,14 +79,16 @@ export function RevealElements({
 			opacity: 1,
 			transition: {
 				delay: delay,
-				type: "spring",
-				stiffness: 280, // Bouncy spring for popup
-				damping: 32, // Low damping for more bounce
-				mass: 1.2, // Slightly higher mass for more bounce
-				velocity: 12, // Initial velocity for pop effect
+				scale: {
+					type: "spring" as const,
+					stiffness: 280, // Bouncy spring for popup
+					damping: 32, // Low damping for more bounce
+					mass: 1.2, // Slightly higher mass for more bounce
+					velocity: 12, // Initial velocity for pop effect
+				},
 				opacity: {
 					duration: 0.3,
-					ease: "easeOut",
+					ease: "easeOut" as const,
 				},
 			},
 		}),
@@ -94,12 +96,14 @@ export function RevealElements({
 			scale: 0,
 			opacity: 0,
 			transition: {
-				type: "spring",
-				stiffness: 300,
-				damping: 25,
+				scale: {
+					type: "spring" as const,
+					stiffness: 300,
+					damping: 25,
+				},
 				opacity: {
 					duration: 0.2,
-					ease: "easeIn",
+					ease: "easeIn" as const,
 				},
 			},
 		},
@@ -121,7 +125,6 @@ export function RevealElements({
 		const calculatedDelay =
 			item.delay !== undefined ? item.delay : index * baseDelay;
 
-		// Only portal if document.body exists (avoids SSR issues)
 		return (
 			<motion.div
 				key={index}

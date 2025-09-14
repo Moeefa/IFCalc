@@ -36,7 +36,7 @@ export function ToggleTheme() {
 	}
 
 	return (
-		<MotionConfig transition={{ type: "spring", duration: 0.7, bounce: 0 }}>
+		<MotionConfig transition={{ type: "spring", stiffness: 120, damping: 20, mass: 0.8 }}>
 			<Button onClick={handleClick} className="flex items-center">
 				{/* Theme Icon */}
 				<motion.div layout>
