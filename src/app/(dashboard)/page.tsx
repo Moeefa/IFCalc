@@ -165,7 +165,7 @@ export default function Home() {
 								transition={{ duration: 0.4, delay: 0.2, ease: "backOut" }}
 								viewport={{ once: true }}
 							>
-								<CalculatorIcon className="w-8 h-8 text-primary" />
+								<CalculatorIcon className="size-8" />
 							</motion.div>
 							<h3 className="text-xl font-semibold mb-3">
 								Calculadora de notas
@@ -189,7 +189,7 @@ export default function Home() {
 								transition={{ duration: 0.4, delay: 0.3, ease: "backOut" }}
 								viewport={{ once: true }}
 							>
-								<CalendarDaysIcon className="w-8 h-8 text-primary" />
+								<CalendarDaysIcon className="size-8" />
 							</motion.div>
 							<h3 className="text-xl font-semibold mb-3">Horários</h3>
 							<p className="text-muted-foreground font-semibold">
@@ -211,7 +211,7 @@ export default function Home() {
 								transition={{ duration: 0.4, delay: 0.4, ease: "backOut" }}
 								viewport={{ once: true }}
 							>
-								<TasksIcon className="w-8 h-8 text-primary" />
+								<TasksIcon className="size-8" />
 							</motion.div>
 							<h3 className="text-xl font-semibold mb-3">Trabalhos</h3>
 							<p className="text-muted-foreground font-semibold">
@@ -233,7 +233,7 @@ export default function Home() {
 								transition={{ duration: 0.4, delay: 0.5, ease: "backOut" }}
 								viewport={{ once: true }}
 							>
-								<PaperclipIcon className="w-8 h-8 text-primary" />
+								<PaperclipIcon className="size-8" />
 							</motion.div>
 							<h3 className="text-xl font-semibold mb-3">Materiais</h3>
 							<p className="text-muted-foreground font-semibold">
@@ -255,7 +255,7 @@ export default function Home() {
 								transition={{ duration: 0.4, delay: 0.6, ease: "backOut" }}
 								viewport={{ once: true }}
 							>
-								<InboxIcon className="w-8 h-8 text-primary" />
+								<InboxIcon className="size-8" />
 							</motion.div>
 							<h3 className="text-xl font-semibold mb-3">Mensagens</h3>
 							<p className="text-muted-foreground font-semibold">
@@ -277,7 +277,7 @@ export default function Home() {
 								transition={{ duration: 0.4, delay: 0.7, ease: "backOut" }}
 								viewport={{ once: true }}
 							>
-								<RulerPenIcon className="w-8 h-8 text-primary" />
+								<RulerPenIcon className="size-8" />
 							</motion.div>
 							<h3 className="text-xl font-semibold mb-3">Gestão de matérias</h3>
 							<p className="text-muted-foreground font-semibold">
