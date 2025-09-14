@@ -60,16 +60,9 @@ export function ToggleTheme() {
 
 				{/* Mode Text */}
 				<div className="flex flex-row">
-					<AnimatePresence initial={false} mode="popLayout">
-						<motion.span
-							key={resolvedTheme === "dark" ? "dark" : "light"}
-							initial={{ opacity: 0, y: -48 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: 48 }}
-						>
-							{resolvedTheme === "dark" ? "Escuro" : "Claro"}
-						</motion.span>
-					</AnimatePresence>
+					<span key={resolvedTheme === "dark" ? "dark" : "light"}>
+						{resolvedTheme === "dark" ? "Escuro" : "Claro"}
+					</span>
 				</div>
 			</Button>
 		</MotionConfig>

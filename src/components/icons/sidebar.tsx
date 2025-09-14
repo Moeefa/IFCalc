@@ -6,14 +6,14 @@ export const SidebarIcon = (props: SVGProps<SVGSVGElement>) => (
 		width="18"
 		height="18"
 		fill="none"
-		viewBox="0 0 18 18"
+		viewBox="0 0 24 24"
 		{...props}
 	>
 		<path
-			fill="currentColor"
 			fillRule="evenodd"
-			d="M16.5 11.25v-5.5A2.75 2.75 0 0 0 13.75 3h-10A2.75 2.75 0 0 0 1 5.75v5.5A2.75 2.75 0 0 0 3.75 14h10a2.75 2.75 0 0 0 2.75-2.75m-1.5 0c0 .689-.561 1.25-1.25 1.25H7.5v-8h6.25c.689 0 1.25.561 1.25 1.25z"
 			clipRule="evenodd"
-		></path>
+			d="M9 6V18H18C19.1046 18 20 17.1046 20 16V8C20 6.89543 19.1046 6 18 6H9ZM2 8C2 5.79086 3.79086 4 6 4H18C20.2091 4 22 5.79086 22 8V16C22 18.2091 20.2091 20 18 20H6C3.79086 20 2 18.2091 2 16V8Z"
+			fill="currentColor"
+		/>
 	</svg>
 );

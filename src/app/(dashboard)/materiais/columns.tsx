@@ -10,7 +10,7 @@ export const columns: ColumnDef<Material>[] = [
 		cell: ({ row }) => {
 			const descricao = row.getValue("descricao") as string;
 			return (
-				<span className="text-muted-foreground text-xs">
+				<span className="text-muted-foreground">
 					{descricao || row.original?.url.split("/").pop() || "Sem descrição"}
 				</span>
 			);

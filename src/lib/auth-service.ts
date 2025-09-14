@@ -43,6 +43,7 @@ export class AuthService {
 		const cookieStore = cookies();
 		cookieStore.delete(COOKIES.ACCESS_TOKEN);
 		cookieStore.delete(COOKIES.REFRESH_TOKEN);
+		cookieStore.delete(COOKIES.PERIOD);
 	}
 
 	static getTokens(): {

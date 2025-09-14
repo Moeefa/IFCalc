@@ -101,12 +101,12 @@ async function SelectedPeriod() {
 	);
 }
 
-export async function AppSidebar() {
+export function AppSidebar() {
 	return (
-		<Sidebar className="border-none">
-			<SidebarContent>
+		<Sidebar>
+			<SidebarContent className="bg-card-gradient">
 				<SidebarGroup className="flex-1">
-					<SidebarGroupLabel className="flex items-center gap-2 mb-2">
+					<SidebarGroupLabel className="flex items-center gap-2">
 						<Image
 							width={20}
 							height={20}

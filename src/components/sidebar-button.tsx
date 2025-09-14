@@ -7,6 +7,7 @@ import {
 	useSidebar,
 } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { usePathname } from "next/navigation";
 
 export function SidebarButton({
 	item,
@@ -15,6 +16,7 @@ export function SidebarButton({
 }) {
 	const isMobile = useIsMobile();
 	const { toggleSidebar } = useSidebar();
+	const pathname = usePathname();
 
 	return (
 		<SidebarMenuItem
@@ -23,7 +25,11 @@ export function SidebarButton({
 				if (isMobile) toggleSidebar();
 			}}
 		>
-			<SidebarMenuButton asChild>
+			<SidebarMenuButton
+				isActive={pathname == item.url}
+				className="data-[active=false]/menu-button:text-muted-foreground"
+				asChild
+			>
 				<Link className="flex items-center text-foreground" href={item.url}>
 					{item.icon}
 					<span className="font-semibold">{item.title}</span>

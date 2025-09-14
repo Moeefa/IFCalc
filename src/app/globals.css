@@ -19,7 +19,7 @@
   --secondary: 240 4.8% 95.9%;
   --secondary-foreground: 240 5.9% 10%;
 
-  --muted: 0 0% 94%;
+  --muted: 48 15% 94%;
   --muted-foreground: 0 0% 40%;
 
   --accent: 240 4.8% 95.9%;
@@ -52,8 +52,8 @@
   --secondary: 240 3.7% 15.9%;
   --secondary-foreground: 0 0% 98%;
 
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
+  --muted: 60 3% 13.5%;
+  --muted-foreground: 49 10% 64.9%;
 
   --accent: 240 3.7% 15.9%;
   --accent-foreground: 0 0% 98%;
@@ -114,6 +114,7 @@
   html {
     @apply text-foreground w-full h-full antialiased md:subpixel-antialiased;
     letter-spacing: -0.05cap;
+    scroll-behavior: smooth;
   }
   :root {
     --sidebar-background: 0 0% 98%;
@@ -149,11 +150,9 @@
   * {
     @apply border-border;
   }
+
   html,
   body {
-    @apply h-screen w-screen m-0 p-0;
-  }
-  body {
-    @apply text-foreground;
+    @apply h-screen w-screen bg-background text-foreground;
   }
 }

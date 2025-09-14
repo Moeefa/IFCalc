@@ -24,7 +24,7 @@ export default function Page({ params }: { params: { suap: string } }) {
 					<Card className="w-full bg-card-gradient shadow-none rounded-2xl border border-border">
 						<CardHeader className="text-center">
 							<CardTitle className="text-xl">Bem-vindo</CardTitle>
-							<CardDescription>
+							<CardDescription className="font-semibold">
 								Para acessar suas notas e frequência, faça login com a conta do
 								SUAP de seu Instituto Federal.
 							</CardDescription>
