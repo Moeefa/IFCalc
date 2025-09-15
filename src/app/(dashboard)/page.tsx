@@ -288,37 +288,6 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
-			{/* CTA Section */}
-			<motion.section
-				className="py-20 px-6 bg-card-gradient border border-border rounded-2xl"
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.8, ease: "easeOut" }}
-				viewport={{ once: true, margin: "-100px" }}
-			>
-				<div className="container mx-auto max-w-4xl text-center">
-					<motion.h2
-						className="text-3xl md:text-4xl font-bold mb-6"
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-						viewport={{ once: true }}
-					>
-						Pronto para simplificar sua vida acadêmica?
-					</motion.h2>
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-						viewport={{ once: true }}
-					>
-						<SignIn size="lg" className="text-lg px-8">
-							Começar agora
-						</SignIn>
-					</motion.div>
-				</div>
-			</motion.section>
 		</div>
 	);
 }

@@ -28,37 +28,37 @@ const items = [
 	{
 		title: "Início",
 		url: "/",
-		icon: <HouseIcon />,
+		icon: <HouseIcon className="text-blue-400 dark:text-blue-300" />,
 	},
 	{
 		title: "Calculadora",
 		url: "/calculadora",
-		icon: <CalculatorIcon />,
+		icon: <CalculatorIcon className="text-green-500 dark:text-green-300" />,
 	},
 	{
 		title: "Matérias",
 		url: "/materias",
-		icon: <RulerPenIcon />,
+		icon: <RulerPenIcon className="text-yellow-500 dark:text-yellow-300" />,
 	},
 	{
 		title: "Trabalhos",
 		url: "/trabalhos",
-		icon: <TasksIcon />,
+		icon: <TasksIcon className="text-purple-500 dark:text-purple-300" />,
 	},
 	{
 		title: "Mensagens",
 		url: "/mensagens",
-		icon: <InboxIcon />,
+		icon: <InboxIcon className="text-red-500 dark:text-red-300" />,
 	},
 	{
 		title: "Materiais",
 		url: "/materiais",
-		icon: <PaperclipIcon />,
+		icon: <PaperclipIcon className="text-pink-500 dark:text-pink-400" />,
 	},
 	{
 		title: "Horários",
 		url: "/horarios",
-		icon: <CalendarDaysIcon />,
+		icon: <CalendarDaysIcon className="text-indigo-500 dark:text-indigo-300" />,
 	},
 ];
 

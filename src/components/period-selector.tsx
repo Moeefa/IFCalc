@@ -31,7 +31,7 @@ export function PeriodSelector({
 	}, [selected]);
 
 	return (
-		<div>
+		<div className="p-2 bg-background rounded-lg border border-border flex flex-col gap-1">
 			<p className="font-semibold px-3 flex items-center text-lg">
 				Período letivo <PenIcon className="size-6 ml-1" />
 			</p>
