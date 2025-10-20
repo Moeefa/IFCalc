@@ -4,13 +4,14 @@ import Loading from "./loading";
 
 export default async function Page() {
 	return (
-		<div className="flex sm:flex-row flex-col gap-4 w-full">
-			<DataWrapper
-				loading={<Loading />}
-				unauthenticatedMessage="Faça o login com a conta do seu SUAP para ver os seus trabalhos e aproveitar todas as funcionalidades do sistema!"
-			>
+		<DataWrapper
+			loading={<Loading />}
+			requireAuth
+			unauthenticatedMessage="Faça o login com a conta do seu SUAP para ver os seus trabalhos e aproveitar todas as funcionalidades do sistema!"
+		>
+			<div className="flex sm:flex-row flex-col gap-4 w-full">
 				<HomeworkData />
-			</DataWrapper>
-		</div>
+			</div>
+		</DataWrapper>
 	);
 }
