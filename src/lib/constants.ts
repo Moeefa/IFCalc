@@ -12,6 +12,11 @@ export const PROVIDER_NAMES = {
 	"ifsertao-pe": "Pernambuco",
 } as const;
 
+export const SUAP_ERRPORS = {
+	"No active account found with the given credentials":
+		"Nenhuma conta ativa encontrada com as credenciais fornecidas",
+} as const;
+
 export type SuapProvider = keyof typeof PROVIDER_NAMES;
 
 export const AUTH_CONFIG = {

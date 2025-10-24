@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { AUTH_CONFIG, COOKIES, API_ENDPOINTS } from "./constants";
 import { getSuapBaseUrl, handleApiError } from "./helpers";
+import https from "https";
 
 export interface LoginCredentials {
 	username: string;

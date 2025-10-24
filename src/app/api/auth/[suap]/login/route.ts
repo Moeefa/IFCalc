@@ -9,9 +9,11 @@ export async function POST(
 	const username = formData.get("matricula");
 	const password = formData.get("senha");
 
-	if (!username || !password) {
-		return AuthService.createUnauthenticatedResponse("Missing credentials", 400);
-	}
+	if (!username || !password)
+		return AuthService.createUnauthenticatedResponse(
+			"Missing credentials",
+			400,
+		);
 
 	const result = await AuthService.login({
 		username: username.toString(),
@@ -19,12 +21,11 @@ export async function POST(
 		provider: params.suap,
 	});
 
-	if (!result.success) {
+	if (!result.success)
 		return AuthService.createUnauthenticatedResponse(
 			result.error || "Login failed",
-			401
+			401,
 		);
-	}
 
 	return AuthService.createAuthenticatedRedirect("/", request);
 }
