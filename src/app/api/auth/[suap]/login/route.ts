@@ -2,30 +2,38 @@ import { NextResponse } from "next/server";
 import { AuthService } from "@/lib/auth-service";
 
 export async function POST(
-	request: Request,
-	{ params }: { params: { suap: string } },
+  request: Request,
+  { params }: { params: { suap: string } },
 ) {
-	const formData = await request.formData();
-	const username = formData.get("matricula");
-	const password = formData.get("senha");
+  const searchParams = new URL(request.url).searchParams;
+  const redirect = searchParams.get("redirect") || "/";
 
-	if (!username || !password)
-		return AuthService.createUnauthenticatedResponse(
-			"Missing credentials",
-			400,
-		);
+  console.log("Redirect URL:", redirect);
 
-	const result = await AuthService.login({
-		username: username.toString(),
-		password: password.toString(),
-		provider: params.suap,
-	});
+  const formData = await request.formData();
+  const username = formData.get("matricula");
+  const password = formData.get("senha");
 
-	if (!result.success)
-		return AuthService.createUnauthenticatedResponse(
-			result.error || "Login failed",
-			401,
-		);
+  if (!username || !password)
+    return AuthService.createUnauthenticatedResponse(
+      "Missing credentials",
+      400,
+    );
 
-	return AuthService.createAuthenticatedRedirect("/", request);
+  const result = await AuthService.login({
+    username: username.toString(),
+    password: password.toString(),
+    provider: params.suap,
+  });
+
+  if (!result.success)
+    return AuthService.createUnauthenticatedResponse(
+      result.error || "Login failed",
+      401,
+    );
+
+  return AuthService.createAuthenticatedRedirect(
+    decodeURIComponent(redirect),
+    request,
+  );
 }
