@@ -81,6 +81,7 @@ export function SubjectCard({
 	details,
 	showIndividualFrequency,
 }: SubjectCardProps) {
+	console.log(subject, details);
 	const mfd = subject.medias.find((s: any) => s.tipo === "MFD")?.nota || "0,0";
 	const grade = Number(mfd?.replace(",", "."));
 
@@ -89,8 +90,8 @@ export function SubjectCard({
 			<DialogTrigger asChild>
 				<div className="cursor-pointer rounded-2xl p-5 lg:w-64 w-full h-auto min-h-56 transition-all flex flex-col duration-200 hover:scale-[1.02] bg-card-gradient border border-border">
 					<h2 className="text-lg font-semibold text-foreground flex flex-1 gap-2">
-						<span className="pt-1">{getSubjectIcon(subject.nome)}</span>
-						<p>{subject.nome}</p>
+						<span className="pt-1">{getSubjectIcon(subject.descricao)}</span>
+						<p>{subject.descricao}</p>
 					</h2>
 					<p className="text-sm text-muted-foreground mt-2 font-semibold">
 						Frequência:{" "}
@@ -114,7 +115,7 @@ export function SubjectCard({
 			</DialogTrigger>
 			<DialogContent className="bg-card-gradient max-w-xl max-h-full h-4/5 overflow-auto sm:rounded-2xl rounded-2xl border border-border">
 				<DialogHeader>
-					<DialogTitle>{subject.nome}</DialogTitle>
+					<DialogTitle>{subject.descricao}</DialogTitle>
 					<DialogDescription>
 						Situação:{" "}
 						<span className="font-medium">{subject.situacao?.rotulo}</span>

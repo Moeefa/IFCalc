@@ -83,18 +83,21 @@ async function SelectedPeriod() {
 
 	const cookieStore = cookies();
 	const selectedPeriod =
-		periods
+		periods?.results
 			.find(
 				(period) =>
 					period.id.toString() === cookieStore.get(COOKIES.PERIOD)?.value,
 			)
-			?.id.toString() || periods[0]?.id.toString();
+			?.id.toString() || periods?.results[0]?.id.toString();
 
 	return (
 		<>
 			{authenticated && (
 				<SidebarFooter className="gap-0">
-					<PeriodSelector periods={periods} initialValue={selectedPeriod} />
+					<PeriodSelector
+						periods={periods?.results}
+						initialValue={selectedPeriod}
+					/>
 				</SidebarFooter>
 			)}
 		</>

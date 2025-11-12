@@ -1,3 +1,10 @@
+export type Results<T> = {
+	results: T[];
+	count: number;
+	next: string | null;
+	previous: string | null;
+};
+
 export type Material = {
 	id: number;
 	data: string;
@@ -53,7 +60,7 @@ export type Message = {
 
 export type Subject = {
 	id: number;
-	nome: string;
+	descricao: string;
 	sigla: string;
 	situacao: { rotulo: string; status: string } | null;
 	ch_total_aula: number;

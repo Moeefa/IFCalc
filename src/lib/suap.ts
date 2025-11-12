@@ -8,6 +8,7 @@ import type {
 	Message,
 	User,
 	Material,
+	Results,
 } from "../../types/suap";
 import { cache } from "react";
 import { AUTH_CONFIG, COOKIES, API_ENDPOINTS, SuapProvider } from "./constants";
@@ -124,19 +125,22 @@ export async function getPeriod(): Promise<Period | undefined> {
 	const periodID = cookies().get(COOKIES.PERIOD)?.value;
 	const periods = await getPeriods();
 
-	if (!periodID || !periods.length) {
-		return periods[0];
+	if (!periodID || !periods?.results.length) {
+		return periods?.results[0];
 	}
 
-	return periods.find((p) => p.id === Number(periodID)) || periods[0];
+	return (
+		periods.results.find((p) => p.id === Number(periodID)) ||
+		periods?.results[0]
+	);
 }
 
 export async function getUserData(): Promise<User | null> {
 	return await fetchFromSuap<User>(API_ENDPOINTS.USER_DATA);
 }
 
-export const getPeriods = cache(async (): Promise<Period[]> => {
-	return (await fetchFromSuap<Period[]>(API_ENDPOINTS.PERIODS)) ?? [];
+export const getPeriods = cache(async (): Promise<Results<Period> | null> => {
+	return await fetchFromSuap<Results<Period>>(API_ENDPOINTS.PERIODS);
 });
 
 export async function getSubjects(): Promise<Subject[]> {
@@ -146,18 +150,22 @@ export async function getSubjects(): Promise<Subject[]> {
 		return [];
 	}
 
-	const subjects = await fetchFromSuap<Subject[]>(
+	const subjects = await fetchFromSuap<Results<Subject>>(
 		API_ENDPOINTS.SUBJECTS(period.semestre),
 	);
 
-	return subjects ?? [];
+	return subjects?.results ?? [];
 }
 
 export async function getSubjectDetails(
 	subjectId: number,
 ): Promise<SubjectDetails[] | null> {
-	return await fetchFromSuap<SubjectDetails[]>(
-		API_ENDPOINTS.SUBJECT_DETAILS(subjectId),
+	return (
+		(
+			await fetchFromSuap<Results<SubjectDetails>>(
+				API_ENDPOINTS.SUBJECT_DETAILS(subjectId),
+			)
+		)?.results ?? null
 	);
 }
 
@@ -168,11 +176,11 @@ export async function getDiaries(): Promise<Diary[]> {
 		return [];
 	}
 
-	const diaries = await fetchFromSuap<Diary[]>(
+	const diaries = await fetchFromSuap<Results<Diary>>(
 		API_ENDPOINTS.DIARIES(period.semestre),
 	);
 
-	return diaries ?? [];
+	return diaries?.results ?? [];
 }
 
 export async function getHomeworks(): Promise<Homework[]> {

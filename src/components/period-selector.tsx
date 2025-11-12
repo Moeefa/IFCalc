@@ -17,11 +17,11 @@ export function PeriodSelector({
 	periods,
 	initialValue,
 }: {
-	periods: Period[];
+	periods: Period[] | undefined;
 	initialValue?: string;
 }) {
 	const [selected, setSelected] = useState(() => {
-		return initialValue || periods[0]?.id.toString() || "";
+		return initialValue || periods?.[0].id.toString() || "";
 	});
 
 	useEffect(() => {
@@ -40,7 +40,7 @@ export function PeriodSelector({
 					<SelectValue placeholder="Selecione" />
 				</SelectTrigger>
 				<SelectContent>
-					{periods.map((period) => (
+					{periods?.map((period) => (
 						<SelectItem
 							key={period.id}
 							value={period.id.toString()}
